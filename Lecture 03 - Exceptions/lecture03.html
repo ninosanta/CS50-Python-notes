@@ -1,0 +1,249 @@
+                <main class="col-lg">
+
+                    <h1 class="no_toc" id="lecture-3">Lecture 3</h1>
+
+<ul id="markdown-toc">
+  <li><a href="#exceptions" id="markdown-toc-exceptions">Exceptions</a></li>
+  <li><a href="#runtime-errors" id="markdown-toc-runtime-errors">Runtime Errors</a></li>
+  <li><a href="#try" id="markdown-toc-try"><code class="language-plaintext highlighter-rouge">try</code></a></li>
+  <li><a href="#else" id="markdown-toc-else"><code class="language-plaintext highlighter-rouge">else</code></a></li>
+  <li><a href="#creating-a-function-to-get-an-integer" id="markdown-toc-creating-a-function-to-get-an-integer">Creating a Function to Get an Integer</a></li>
+  <li><a href="#pass" id="markdown-toc-pass"><code class="language-plaintext highlighter-rouge">pass</code></a></li>
+  <li><a href="#summing-up" id="markdown-toc-summing-up">Summing Up</a></li>
+</ul>
+
+<h2 id="exceptions">Exceptions</h2>
+<ul>
+  <li data-marker="*">Exceptions are things that go wrong within our coding.</li>
+  <li data-marker="*">
+    <p>In our text editor, type <code class="language-plaintext highlighter-rouge">code hello.py</code> to create a new file. Type as follows (with the intentional errors included):</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="s">"hello, world)
+</span></code></pre></div>    </div>
+    <p>Notice that we intentionally left out a quotation mark.</p>
+  </li>
+  <li data-marker="*">
+    <p>Running <code class="language-plaintext highlighter-rouge">python hello.py</code> in our terminal window, an error is outputted. The compiler states that it is a “syntax error.”” Syntax errors are those that require you to double-check that you typed in your code correction.</p>
+  </li>
+  <li data-marker="*">You can learn more in Python’s documentation of <a href="https://docs.python.org/3/tutorial/errors.html">Errors and Exceptions</a>.</li>
+</ul>
+
+<h2 id="runtime-errors">Runtime Errors</h2>
+<ul>
+  <li data-marker="*">Runtime errors refer to those created by unexpected behavior within your code. For example, perhaps you intended for a user to input a number, but they input a character instead. Your program may throw an error because of this unexpected input from the user.</li>
+  <li data-marker="*">
+    <p>In your terminal window, run <code class="language-plaintext highlighter-rouge">code number.py</code>. Code as follows in your text editor:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's x? "</span><span class="p">))</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"x is </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice that by including the <code class="language-plaintext highlighter-rouge">f</code>, we tell Python to interpolate what is in the curly braces as the value of <code class="language-plaintext highlighter-rouge">x</code>. Further, testing out your code, you can imagine how one could easily type in a string or a character instead of a number. Even still, a user could type nothing at all – simply hitting the enter key.</p>
+  </li>
+  <li data-marker="*">
+    <p>As programmers, we should be defensive to ensure that our users are entering what we expected. We might consider “corner cases” such as <code class="language-plaintext highlighter-rouge">-1</code>, <code class="language-plaintext highlighter-rouge">0</code>, or <code class="language-plaintext highlighter-rouge">cat</code>.</p>
+  </li>
+  <li data-marker="*">
+    <p>If we run this program and type in “cat”, we’ll suddenly see <code class="language-plaintext highlighter-rouge">ValueError: invalid literal for int() with base 10: 'cat'</code> Essentially, the Python interpreter does not like that we passed “cat” to the <code class="language-plaintext highlighter-rouge">print</code> function.</p>
+  </li>
+  <li data-marker="*">
+    <p>An effective strategy to fix this potential error would be to create “error handling” to ensure the user behaves as we intend.</p>
+  </li>
+  <li data-marker="*">You can learn more in Python’s documentation of <a href="https://docs.python.org/3/tutorial/errors.html">Errors and Exceptions</a>.</li>
+</ul>
+
+<h2 id="try"><code class="language-plaintext highlighter-rouge">try</code></h2>
+<ul>
+  <li data-marker="*">
+    <p>In Python <code class="language-plaintext highlighter-rouge">try</code> and <code class="language-plaintext highlighter-rouge">except</code> are ways of testing out user input before something goes wrong. Modify your code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span><span class="p">:</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's x?"</span><span class="p">))</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"x is </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+<span class="k">except</span> <span class="nb">ValueError</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"x is not an integer"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how, running this code, inputting <code class="language-plaintext highlighter-rouge">50</code> will be accepted. However, typing in <code class="language-plaintext highlighter-rouge">cat</code> will produce an error visible to the user, instructing them why their input was not accepted.</p>
+  </li>
+  <li data-marker="*">
+    <p>This is still not the best way to implement this code. Notice that we are trying to do two lines of code. For best practice, we should only <code class="language-plaintext highlighter-rouge">try</code> the fewest lines of code possible that we are concerned could fail. Adjust your code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span><span class="p">:</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's x?"</span><span class="p">))</span>
+<span class="k">except</span> <span class="nb">ValueError</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"x is not an integer"</span><span class="p">)</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"x is </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice that while this accomplishes our goal of trying as few lines as possible, we now face a new error! We face a <code class="language-plaintext highlighter-rouge">NameError</code> where <code class="language-plaintext highlighter-rouge">x is not defined</code>. Look at this code and consider: Why is x not defined in some cases?</p>
+  </li>
+  <li data-marker="*">
+    <p>Indeed, if you examine the order of operations in <code class="language-plaintext highlighter-rouge">x = int(input("What's x?"))</code>, working right to left, it could take an incorrectly inputted character and attempt to assign it as an integer. If this fails, the assignment of the value of <code class="language-plaintext highlighter-rouge">x</code> never occurs. Therefore, there is no x to print on our final line of code.</p>
+  </li>
+</ul>
+
+<h2 id="else"><code class="language-plaintext highlighter-rouge">else</code></h2>
+
+<ul>
+  <li data-marker="*">
+    <p>It turns out that there is another way to implement <code class="language-plaintext highlighter-rouge">try</code> that could catch errors of this nature.</p>
+  </li>
+  <li data-marker="*">
+    <p>Adjust your code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span><span class="p">:</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's x?"</span><span class="p">))</span>
+<span class="k">except</span> <span class="nb">ValueError</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"x is not an integer"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"x is </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice that if no exception occurs, it will then run the block of code within <code class="language-plaintext highlighter-rouge">else</code>. Running <code class="language-plaintext highlighter-rouge">python number.py</code> and supplying <code class="language-plaintext highlighter-rouge">50</code>, you’ll notice that the result will be printed. Trying again, this time supplying <code class="language-plaintext highlighter-rouge">cat</code>, you’ll notice that the program now catches the error.</p>
+  </li>
+  <li data-marker="*">
+    <p>Considering improving our code, notice that we are being a bit rude to our user. If our user does not cooperate, we currently simply end our program. Consider how we can use a loop to prompt the user for <code class="language-plaintext highlighter-rouge">x</code> and if they don’t prompt again! Improve your code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's x?"</span><span class="p">))</span>
+    <span class="k">except</span> <span class="nb">ValueError</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"x is not an integer"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">break</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"x is </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice that <code class="language-plaintext highlighter-rouge">while True</code> will loop forever. If the user succeeds in supplying the correct input, we can break from the loop and then print the output. Now, a user that inputs something incorrectly will be asked for input again.</p>
+  </li>
+</ul>
+
+<h2 id="creating-a-function-to-get-an-integer">Creating a Function to Get an Integer</h2>
+
+<ul>
+  <li data-marker="*">
+    <p>Surely, there are many times that we would want to get an integer from our user. Modify your code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="nf">get_int</span><span class="p">()</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"x is </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_int</span><span class="p">():</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's x?"</span><span class="p">))</span>
+        <span class="k">except</span> <span class="nb">ValueError</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s">"x is not an integer"</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">break</span>
+    <span class="k">return</span> <span class="n">x</span>
+
+
+<span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice that we are manifesting many great properties. First, we have abstracted away the ability to get an integer. Now, this whole program boils down to the first three lines of the program.</p>
+  </li>
+  <li data-marker="*">
+    <p>Even still, we can improve this program. Consider what else you could do to improve this program. Modify your code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="nf">get_int</span><span class="p">()</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"x is </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_int</span><span class="p">():</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's x?"</span><span class="p">))</span>
+        <span class="k">except</span> <span class="nb">ValueError</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s">"x is not an integer"</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">x</span>
+
+
+<span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice that <code class="language-plaintext highlighter-rouge">return</code> will not only break you out of a loop, but it will also return a value.</p>
+  </li>
+  <li data-marker="*">
+    <p>Some people may argue you could do the following:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="nf">get_int</span><span class="p">()</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"x is </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_int</span><span class="p">():</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's x?"</span><span class="p">))</span>
+        <span class="k">except</span> <span class="nb">ValueError</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s">"x is not an integer"</span><span class="p">)</span>
+
+
+<span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice this does the same thing as the previous iteration of our code, simply with fewer lines.</p>
+  </li>
+</ul>
+
+<h2 id="pass"><code class="language-plaintext highlighter-rouge">pass</code></h2>
+
+<ul>
+  <li data-marker="*">
+    <p>We can make it such that our code does not warn our user, but simply re-asks them our prompting question by modifying our code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="nf">get_int</span><span class="p">()</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"x is </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_int</span><span class="p">():</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's x?"</span><span class="p">))</span>
+        <span class="k">except</span> <span class="nb">ValueError</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+
+<span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice that our code will still function but will not repeatedly inform the user of their error. In some cases, you’ll want to be very clear to the user what error is being produced. Other times, you might decide that you simply want to ask them for input again.</p>
+  </li>
+  <li data-marker="*">
+    <p>One final refinement that could improve the implementation of this <code class="language-plaintext highlighter-rouge">get_int</code> function. Right now, notice that we are relying currently upon the honor system that the <code class="language-plaintext highlighter-rouge">x</code> is in both the <code class="language-plaintext highlighter-rouge">main</code> and <code class="language-plaintext highlighter-rouge">get_int</code> functions. We probably want to pass in a prompt that the user sees when asked for input. Modify your code as follows.</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="nf">get_int</span><span class="p">(</span><span class="s">"What's x? "</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"x is </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_int</span><span class="p">(</span><span class="n">prompt</span><span class="p">):</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="n">prompt</span><span class="p">))</span>
+        <span class="k">except</span> <span class="nb">ValueError</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+
+<span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+  </li>
+  <li data-marker="*">
+    <p>You can learn more in Python’s documentation of <a href="https://docs.python.org/3/tutorial/controlflow.html#pass-statements"><code class="language-plaintext highlighter-rouge">pass</code></a>.</p>
+  </li>
+</ul>
+
+<h2 id="summing-up">Summing Up</h2>
+<p>Errors are inevitable in your code. However, you have the opportunity to use what was learned today to help prevent these errors. In this lecture, you learned about…</p>
+
+<ul>
+  <li data-marker="*">Exceptions</li>
+  <li data-marker="*">Value Errors</li>
+  <li data-marker="*">Runtime Errors</li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">try</code></li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">else</code></li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">pass</code></li>
+</ul>
+
+
+                </main>

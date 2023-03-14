@@ -1,0 +1,427 @@
+<!DOCTYPE html><html lang="en-us"><head>
+
+                <main class="col-lg">
+
+                    <h1 class="no_toc" id="lecture-1">Lecture 1</h1>
+
+<ul id="markdown-toc">
+  <li><a href="#conditionals" id="markdown-toc-conditionals">Conditionals</a></li>
+  <li><a href="#if-statements" id="markdown-toc-if-statements">if Statements</a></li>
+  <li><a href="#control-flow-elif-and-else" id="markdown-toc-control-flow-elif-and-else">Control Flow, elif, and else</a></li>
+  <li><a href="#or" id="markdown-toc-or">or</a></li>
+  <li><a href="#and" id="markdown-toc-and">and</a></li>
+  <li><a href="#modulo" id="markdown-toc-modulo">Modulo</a></li>
+  <li><a href="#creating-our-own-parity-function" id="markdown-toc-creating-our-own-parity-function">Creating Our Own Parity Function</a></li>
+  <li><a href="#pythonic" id="markdown-toc-pythonic">Pythonic</a></li>
+  <li><a href="#match" id="markdown-toc-match"><code class="language-plaintext highlighter-rouge">match</code></a>    <ul>
+      <li><a href="#summing-up" id="markdown-toc-summing-up">Summing Up</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="conditionals">Conditionals</h2>
+<ul>
+  <li data-marker="*">Conditionals allow you, the programmer, to allow your program to make decisions: As if your program has the choice between taking the left-hand road or the right-hand road based upon certain conditions.</li>
+  <li data-marker="*">Built within Python are a set of “operators” that can are used to ask mathematical questions.</li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">&gt;</code> and <code class="language-plaintext highlighter-rouge">&lt;</code> symbols are probably quite familiar to you.</li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">&gt;=</code> denotes “greater than or equal to.”</li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">&lt;=</code> denotes “less than or equal to.”</li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">==</code> denotes “equals, though do notice the double equal sign! A single equal sign would assign a value. Double equal signs are used to compare variables.</li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">!=</code> denotes “not equal to.</li>
+  <li data-marker="*">Conditional statements compare a left-hand term to a right-hand term.</li>
+</ul>
+
+<h2 id="if-statements">if Statements</h2>
+<ul>
+  <li data-marker="*">In your terminal window, type <code class="language-plaintext highlighter-rouge">code compare.py</code>. This will create a brand new file called “compare.”</li>
+  <li data-marker="*">
+    <p>In the text editor window, begin with the following:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's x? "</span><span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's y? "</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"x is less than y"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how your program takes the input of the user for both x and y, casting them as integers and saving them into their respective x and y variables. Then, the <code class="language-plaintext highlighter-rouge">if</code> statement compares x and y. If the condition of <code class="language-plaintext highlighter-rouge">x &lt; y</code> is met, the <code class="language-plaintext highlighter-rouge">print</code> statement is executed.</p>
+  </li>
+  <li data-marker="*">If statements use <code class="language-plaintext highlighter-rouge">bool</code> or boolean values (true or false) to decide whether or not to execute. If the statement of <code class="language-plaintext highlighter-rouge">x &gt; y</code> is true, the compiler will register it as <code class="language-plaintext highlighter-rouge">true</code> and execute the code.</li>
+</ul>
+
+<h2 id="control-flow-elif-and-else">Control Flow, elif, and else</h2>
+<ul>
+  <li data-marker="*">
+    <p>Further revise your code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's x? "</span><span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's y? "</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"x is less than y"</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"x is greater than y"</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"x is equal to y"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how you are providing a series of <code class="language-plaintext highlighter-rouge">if</code> statements. First, the first <code class="language-plaintext highlighter-rouge">if</code> statement is evaluated. Then, the second <code class="language-plaintext highlighter-rouge">if</code> statement runs its evaluation. Finally, the last <code class="language-plaintext highlighter-rouge">if</code> statement runs its evaluation. This flow of decisions is called “control flow.”</p>
+  </li>
+  <li data-marker="*">
+    <p>Our code can be represented as follows:</p>
+
+    <pre><code class="language-mermaid">flowchart TD
+  A([start]) --&gt; B{x &lt; y}
+  B -- True --&gt; C["#quot;x is less than y#quot;"]
+  C --&gt; D{x &gt; y}
+  D -- True --&gt; E["#quot;x is greater than y#quot;"]
+  E --&gt; F{x == y}
+  F -- True --&gt; G["#quot;x is equal to y#quot;"]
+  G --&gt; H([stop])
+  B -- False --&gt; D
+  D -- False --&gt; F
+  F -- False --&gt; H
+</code></pre>
+  </li>
+  <li data-marker="*">
+    <p>This program can be improved by not asking three consecutive questions. After all, not all three questions can have an outcome of true! Revise your program as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's x? "</span><span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's y? "</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"x is less than y"</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"x is greater than y"</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"x is equal to y"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how the use of <code class="language-plaintext highlighter-rouge">elif</code> allows the program to make less decisions. First, the <code class="language-plaintext highlighter-rouge">if</code> statement is evaluated. If this statement is found to be true, all the <code class="language-plaintext highlighter-rouge">elif</code> statements not be run at all. However, if the <code class="language-plaintext highlighter-rouge">if</code> statement is evaluated and found to be false, the first <code class="language-plaintext highlighter-rouge">elif</code> will be evaluated. If this is true, it will not run the final evaluation.</p>
+  </li>
+  <li data-marker="*">
+    <p>Our code can be represented as follows:</p>
+
+    <pre><code class="language-mermaid">flowchart TD
+  A([start]) --&gt; B{x &lt; y}
+  B -- True --&gt; C["#quot;x is less than y#quot;"]
+  B -- False --&gt; D{x &gt; y}
+  D -- True --&gt; E["#quot;x is greater than y#quot;"]
+  D -- False --&gt; F{x == y}
+  F -- True --&gt; G["#quot;x is equal to y#quot;"]
+  G --&gt; H([stop])
+  F -- False --&gt; H
+  C --&gt; H
+  E --&gt; H
+</code></pre>
+  </li>
+  <li data-marker="*">While your computer may not notice a difference speed-wise between our first program and this revised program, consider how an online server running billions or trillions of these types of calculations each day could definitely be impacted by such a small coding decision.</li>
+  <li data-marker="*">
+    <p>There is one final improvement we can make to our program. Notice how logically <code class="language-plaintext highlighter-rouge">elif x == y</code> is not a necessary evaluation to run. After all, if logically x is not less than y AND x is not greater than y, x MUST equal y. Therefore, we don’t have to run <code class="language-plaintext highlighter-rouge">elif x == y</code>. We can create a “catch-all,” default outcome using an <code class="language-plaintext highlighter-rouge">else</code> statement. We can revise as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's x? "</span><span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's y? "</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"x is less than y"</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"x is greater than y"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"x is equal to y"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how the relative complexity of this program has decreased through our revision.</p>
+  </li>
+  <li data-marker="*">
+    <p>Our code can be represented as follows:</p>
+
+    <pre><code class="language-mermaid">flowchart TD
+  A([start]) --&gt; B{x &lt; y}
+  B -- True --&gt; C["#quot;x is less than y#quot;"]
+  B -- False --&gt; D{x &gt; y}
+  D -- True --&gt; E["#quot;x is greater than y#quot;"]
+  D -- False --&gt; F["#quot;x is equal to y#quot;"]
+  F --&gt; G([stop])
+  C --&gt; G
+  E --&gt; G
+</code></pre>
+  </li>
+</ul>
+
+<h2 id="or">or</h2>
+<ul>
+  <li data-marker="*">
+    <p><code class="language-plaintext highlighter-rouge">or</code> allows your program to decide between one or more alternatives. For example, we could further edit our program as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's x? "</span><span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's y? "</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span> <span class="ow">or</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"x is not equal to y"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"x is equal to y"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice that the result of our program is the same, but the complexity is decreased and the efficiency of our code is increased.</p>
+  </li>
+  <li data-marker="*">
+    <p>At this point, our code is pretty great. However, could the design be further improved? We could further edit our code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's x? "</span><span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's y? "</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">x</span> <span class="o">!=</span> <span class="n">y</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"x is not equal to y"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"x is equal to y"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how we removed the <code class="language-plaintext highlighter-rouge">or</code> entirely, and simply asked “is x not equal to y?” We ask one and only one question. Very efficient!</p>
+  </li>
+  <li data-marker="*">
+    <p>For the purpose of illustration, we could also change our code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's x? "</span><span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's y? "</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"x is equal to y"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"x is not equal to y"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice that the <code class="language-plaintext highlighter-rouge">==</code> operator evaluates if what is on the left and right are equal to one another. That use of double equal signs is very important. If you use only one equal sign, an error will likely be thrown by the compiler.</p>
+  </li>
+  <li data-marker="*">
+    <p>Our code can be illustrated as follows:</p>
+
+    <pre><code class="language-mermaid">flowchart TD
+  A([start]) --&gt; B{x == y}
+  B -- True --&gt; C["#quot;x is equal to y#quot;"]
+  B -- False --&gt; E["#quot;x is not equal to y#quot;"]
+  C --&gt; F([stop])
+  E --&gt; F
+</code></pre>
+  </li>
+</ul>
+
+<h2 id="and">and</h2>
+<ul>
+  <li data-marker="*">Similar to <code class="language-plaintext highlighter-rouge">or</code>, <code class="language-plaintext highlighter-rouge">and</code> can be used within conditional statements.</li>
+  <li data-marker="*">
+    <p>Execute in the terminal window <code class="language-plaintext highlighter-rouge">code grade.py</code>. Start your new program as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">score</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"Score: "</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">90</span> <span class="ow">and</span> <span class="n">score</span> <span class="o">&lt;=</span> <span class="mi">100</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Grade: A"</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;=</span><span class="mi">80</span> <span class="ow">and</span> <span class="n">score</span> <span class="o">&lt;</span> <span class="mi">90</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Grade: B"</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;=</span><span class="mi">70</span> <span class="ow">and</span> <span class="n">score</span> <span class="o">&lt;</span> <span class="mi">80</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Grade: C"</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;=</span><span class="mi">60</span> <span class="ow">and</span> <span class="n">score</span> <span class="o">&lt;</span> <span class="mi">70</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Grade: D"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Grade: F"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice that executing <code class="language-plaintext highlighter-rouge">python grade.py</code> you will be able to input a score and get a grade. However, notice how there are potentials for bugs.</p>
+  </li>
+  <li data-marker="*">
+    <p>Typically, we do not want to ever trust our user to input the correct information. We could improve our code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">score</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"Score: "</span><span class="p">))</span>
+
+  <span class="k">if</span> <span class="mi">90</span> <span class="o">&lt;=</span> <span class="n">score</span> <span class="o">&lt;=</span> <span class="mi">100</span><span class="p">:</span>
+      <span class="nf">print</span><span class="p">(</span><span class="s">"Grade: A"</span><span class="p">)</span>
+  <span class="k">elif</span> <span class="mi">80</span> <span class="o">&lt;=</span> <span class="n">score</span> <span class="o">&lt;</span> <span class="mi">90</span><span class="p">:</span>
+      <span class="nf">print</span><span class="p">(</span><span class="s">"Grade: B"</span><span class="p">)</span>
+  <span class="k">elif</span> <span class="mi">70</span> <span class="o">&lt;=</span> <span class="n">score</span> <span class="o">&lt;</span> <span class="mi">80</span><span class="p">:</span>
+      <span class="nf">print</span><span class="p">(</span><span class="s">"Grade: C"</span><span class="p">)</span>
+  <span class="k">elif</span> <span class="mi">60</span> <span class="o">&lt;=</span> <span class="n">score</span> <span class="o">&lt;</span> <span class="mi">70</span><span class="p">:</span>
+      <span class="nf">print</span><span class="p">(</span><span class="s">"Grade: D"</span><span class="p">)</span>
+  <span class="k">else</span><span class="p">:</span>
+      <span class="nf">print</span><span class="p">(</span><span class="s">"Grade: F"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how Python allows you to chain together the operators and conditions in a way quite uncommon to other programming languages.</p>
+  </li>
+  <li data-marker="*">
+    <p>Still, we can further improve our program:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">score</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"Score: "</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">90</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Grade: A"</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">80</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Grade: B"</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">70</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Grade: C"</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">60</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Grade: D"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Grade: F"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how the program is improved by asking fewer questions. This makes our program easier to read and far more maintainable in the future.</p>
+  </li>
+  <li data-marker="*">You can learn more in Python’s documentation on <a href="https://docs.python.org/3/tutorial/controlflow.html">control flow</a>.</li>
+</ul>
+
+<h2 id="modulo">Modulo</h2>
+<ul>
+  <li data-marker="*">In mathematics, parity refers to whether a number is either even or odd.</li>
+  <li data-marker="*">The modulo <code class="language-plaintext highlighter-rouge">%</code> operator in programming allows one to see if two numbers divide evenly or divide and have a remainder.</li>
+  <li data-marker="*">For example, 4 % 2 would result in zero, because it evenly divides. However, 3 % 2 does not divide evenly and would result in a number other than zero!</li>
+  <li data-marker="*">
+    <p>In the terminal window, create a new program by typing <code class="language-plaintext highlighter-rouge">code parity.py</code>. In the text editor window, type your code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's x? "</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Even"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Odd"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how our users can type in any number 1 or greater to see if it is even or odd.</p>
+  </li>
+</ul>
+
+<h2 id="creating-our-own-parity-function">Creating Our Own Parity Function</h2>
+<ul>
+  <li data-marker="*">As discussed in Lecture 0, you will find it useful to create a function of your own!</li>
+  <li data-marker="*">
+    <p>We can create our own function to check whether a number is even or odd. Adjust your code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's x? "</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nf">is_even</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"Even"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"Odd"</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">is_even</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">False</span>
+
+
+<span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice that one reason our <code class="language-plaintext highlighter-rouge">if</code> statement <code class="language-plaintext highlighter-rouge">is_even(x)</code> works, even though there is no operator there. This is because our function returns a <code class="language-plaintext highlighter-rouge">bool</code> (or boolean), true or false, back to the main function. The <code class="language-plaintext highlighter-rouge">if</code> statement simply evaluates whether or not <code class="language-plaintext highlighter-rouge">is_even</code> of <code class="language-plaintext highlighter-rouge">x</code> is true or false.</p>
+  </li>
+</ul>
+
+<h2 id="pythonic">Pythonic</h2>
+<ul>
+  <li data-marker="*">In the programming world, there are types of programming that are called “Pythonic” in nature. That is, there are ways to program that are sometimes only seen in Python programming. Consider the following revision to our program:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's x? "</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nf">is_even</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"Even"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"Odd"</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">is_even</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">True</span> <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="bp">False</span>
+
+
+<span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice that this return statement in our code is almost like a sentence in English. This is a unique way of coding only seen in Python.</p>
+  </li>
+  <li data-marker="*">
+    <p>We can further revise our code and make it more and more readable:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's x? "</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nf">is_even</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"Even"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"Odd"</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">is_even</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span>
+
+
+<span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice that the program will evaluate what is happening within the <code class="language-plaintext highlighter-rouge">n % 2 == 0</code> as either true or false and simply return that to the main function.</p>
+  </li>
+</ul>
+
+<h1 id="match"><code class="language-plaintext highlighter-rouge">match</code></h1>
+<ul>
+  <li data-marker="*">Similar to <code class="language-plaintext highlighter-rouge">if</code>, <code class="language-plaintext highlighter-rouge">elif</code>, and <code class="language-plaintext highlighter-rouge">else</code> statements, <code class="language-plaintext highlighter-rouge">match</code> statements can be used to conditionally run code that matches certain values.</li>
+  <li data-marker="*">Consider the following program:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your name? "</span><span class="p">)</span>
+
+  <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s">"Harry"</span><span class="p">:</span>
+      <span class="nf">print</span><span class="p">(</span><span class="s">"Gryffindor"</span><span class="p">)</span>
+  <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s">"Hermione"</span><span class="p">:</span>
+      <span class="nf">print</span><span class="p">(</span><span class="s">"Gryffindor"</span><span class="p">)</span>
+  <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s">"Ron"</span><span class="p">:</span> 
+      <span class="nf">print</span><span class="p">(</span><span class="s">"Gryffindor"</span><span class="p">)</span>
+  <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s">"Draco"</span><span class="p">:</span>
+      <span class="nf">print</span><span class="p">(</span><span class="s">"Slytherin"</span><span class="p">)</span>
+  <span class="k">else</span><span class="p">:</span>
+      <span class="nf">print</span><span class="p">(</span><span class="s">"Who?"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice the first three conditional statements print the same response.</p>
+  </li>
+  <li data-marker="*">We can improve this code slightly with the use of the <code class="language-plaintext highlighter-rouge">or</code> keyword:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your name? "</span><span class="p">)</span>
+
+  <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s">"Harry"</span> <span class="ow">or</span> <span class="n">name</span> <span class="o">==</span> <span class="s">"Hermione"</span> <span class="ow">or</span> <span class="n">name</span> <span class="o">==</span> <span class="s">"Ron"</span><span class="p">:</span> 
+      <span class="nf">print</span><span class="p">(</span><span class="s">"Gryffindor"</span><span class="p">)</span>
+  <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s">"Draco"</span><span class="p">:</span>
+      <span class="nf">print</span><span class="p">(</span><span class="s">"Slytherin"</span><span class="p">)</span>
+  <span class="k">else</span><span class="p">:</span>
+      <span class="nf">print</span><span class="p">(</span><span class="s">"Who?"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice the number of <code class="language-plaintext highlighter-rouge">elif</code> statements has decreased, improving the readability of our code.</p>
+  </li>
+  <li data-marker="*">Alternatively, we can use <code class="language-plaintext highlighter-rouge">match</code> statements to map names to houses. Consider the following code:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your name? "</span><span class="p">)</span>
+
+  <span class="n">match</span> <span class="n">name</span><span class="p">:</span> 
+      <span class="n">case</span> <span class="s">"Harry"</span><span class="p">:</span>
+          <span class="nf">print</span><span class="p">(</span><span class="s">"Gryffindor"</span><span class="p">)</span>
+      <span class="n">case</span> <span class="s">"Hermione"</span><span class="p">:</span>
+          <span class="nf">print</span><span class="p">(</span><span class="s">"Gryffindor"</span><span class="p">)</span>
+      <span class="n">case</span> <span class="s">"Ron"</span><span class="p">:</span> 
+          <span class="nf">print</span><span class="p">(</span><span class="s">"Gryffindor"</span><span class="p">)</span>
+      <span class="n">case</span> <span class="s">"Draco"</span><span class="p">:</span>
+          <span class="nf">print</span><span class="p">(</span><span class="s">"Slytherin"</span><span class="p">)</span>
+      <span class="n">case</span> <span class="n">_</span><span class="p">:</span>
+          <span class="nf">print</span><span class="p">(</span><span class="s">"Who?"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice the use of the <code class="language-plaintext highlighter-rouge">_</code> symbol in the last case. This will match with any input, resulting in similar behavior as an <code class="language-plaintext highlighter-rouge">else</code> statement.</p>
+  </li>
+  <li data-marker="*">A match statement compares the value following the <code class="language-plaintext highlighter-rouge">match</code> keyword with each of the values following the <code class="language-plaintext highlighter-rouge">case</code> keywords. In the event a match is found, the respective indented code section is executed and the program stops the matching.</li>
+  <li data-marker="*">We can improve the code:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your name? "</span><span class="p">)</span>
+
+  <span class="n">match</span> <span class="n">name</span><span class="p">:</span> 
+      <span class="n">case</span> <span class="s">"Harry"</span> <span class="o">|</span> <span class="s">"Hermione"</span> <span class="o">|</span> <span class="s">"Ron"</span><span class="p">:</span>
+          <span class="nf">print</span><span class="p">(</span><span class="s">"Gryffindor"</span><span class="p">)</span>
+      <span class="n">case</span> <span class="s">"Draco"</span><span class="p">:</span>
+          <span class="nf">print</span><span class="p">(</span><span class="s">"Slytherin"</span><span class="p">)</span>
+      <span class="n">case</span> <span class="n">_</span><span class="p">:</span>
+          <span class="nf">print</span><span class="p">(</span><span class="s">"Who?"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice, the use of the single vertical bar <code class="language-plaintext highlighter-rouge">|</code>. Much like the <code class="language-plaintext highlighter-rouge">or</code> keyword, this allows us to check for multiple values in the same <code class="language-plaintext highlighter-rouge">case</code> statement.</p>
+  </li>
+</ul>
+
+<h2 id="summing-up">Summing Up</h2>
+<p>You now have the power within Python to use conditional statements to ask questions and have your program take action accordingly. In this lecture, we discussed…</p>
+
+<ul>
+  <li data-marker="*">Conditionals;</li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">if</code> Statements;</li>
+  <li data-marker="*">Control flow, <code class="language-plaintext highlighter-rouge">elif</code>, and <code class="language-plaintext highlighter-rouge">else</code>;</li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">or</code>;</li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">and</code>;</li>
+  <li data-marker="*">Modulo;</li>
+  <li data-marker="*">Creating your own function;</li>
+  <li data-marker="*">Pythonic coding;</li>
+  <li data-marker="*">and <code class="language-plaintext highlighter-rouge">match</code>.</li>
+</ul>
+
+
+                </main>

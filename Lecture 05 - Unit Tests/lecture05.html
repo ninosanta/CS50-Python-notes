@@ -1,0 +1,351 @@
+                <main class="col-lg">
+
+                    <h1 class="no_toc" id="lecture-5">Lecture 5</h1>
+
+<ul id="markdown-toc">
+  <li><a href="#unit-tests" id="markdown-toc-unit-tests">Unit Tests</a></li>
+  <li><a href="#assert" id="markdown-toc-assert"><code class="language-plaintext highlighter-rouge">assert</code></a></li>
+  <li><a href="#pytest" id="markdown-toc-pytest"><code class="language-plaintext highlighter-rouge">pytest</code></a></li>
+  <li><a href="#testing-strings" id="markdown-toc-testing-strings">Testing Strings</a></li>
+  <li><a href="#organizing-tests-into-folders" id="markdown-toc-organizing-tests-into-folders">Organizing Tests into Folders</a></li>
+  <li><a href="#summing-up" id="markdown-toc-summing-up">Summing Up</a></li>
+</ul>
+
+<h2 id="unit-tests">Unit Tests</h2>
+
+<ul>
+  <li data-marker="*">Up until now, you have been likely testing your own code using <code class="language-plaintext highlighter-rouge">print</code> statements.</li>
+  <li data-marker="*">Alternatively, you may have been relying upon CS50 to test your code for you!</li>
+  <li data-marker="*">It’s most common in industry to write code to test your own programs.</li>
+  <li data-marker="*">
+    <p>In your console window, type <code class="language-plaintext highlighter-rouge">code calculator.py</code>. Note that you may have previously coded this file in a previous lecture. In the text editor, make sure that your code appears as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's x? "</span><span class="p">))</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"x squared is"</span><span class="p">,</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">n</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice that you could plausibly test the above code on your own using some obvious numbers such as <code class="language-plaintext highlighter-rouge">2</code>. However, consider why you might want to create a test that ensures that the above code functions appropriately.</p>
+  </li>
+  <li data-marker="*">
+    <p>Following convention, let’s create a new test program by typing <code class="language-plaintext highlighter-rouge">code test_calculator.py</code> and modify your code in the text editor as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">calculator</span> <span class="kn">import</span> <span class="n">square</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="nf">test_square</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">test_square</span><span class="p">():</span>
+    <span class="k">if</span> <span class="nf">square</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"2 squared was not 4"</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nf">square</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">9</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"3 squared was not 9"</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice that we are importing the <code class="language-plaintext highlighter-rouge">square</code> function from <code class="language-plaintext highlighter-rouge">square.py</code> on the first line of code. By convention, we are creating a function called <code class="language-plaintext highlighter-rouge">test_square</code>. Inside that function, we define some conditions to test.</p>
+  </li>
+  <li data-marker="*">In the console window, type <code class="language-plaintext highlighter-rouge">python test_calculator.py</code>. You’ll notice that nothing is being outputted. It could be that everything is running fine! Alternatively, it could be that our test function did not discover one of the “corner cases” that could produce an error.</li>
+  <li data-marker="*">Right now, our code tests two conditions. If we wanted to test many more conditions, our test code could easily become bloated. How could we expand our test capabilities without expanding our test code?</li>
+</ul>
+
+<h2 id="assert"><code class="language-plaintext highlighter-rouge">assert</code></h2>
+<ul>
+  <li data-marker="*">
+    <p>Python’s <code class="language-plaintext highlighter-rouge">assert</code> command allows us to tell the compiler that something, some assertion, is true. We can apply this to our test code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">calculator</span> <span class="kn">import</span> <span class="n">square</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="nf">test_square</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">test_square</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="nf">square</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span>
+    <span class="k">assert</span> <span class="nf">square</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">9</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice that we are definitively asserting what <code class="language-plaintext highlighter-rouge">square(2)</code> and <code class="language-plaintext highlighter-rouge">square(3)</code> should equal. Our code is reduced from four test lines down to two.</p>
+  </li>
+  <li data-marker="*">
+    <p>We can purposely break our calculator code by modifying it as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's x? "</span><span class="p">))</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"x squared is"</span><span class="p">,</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">n</span> <span class="o">+</span> <span class="n">n</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice that we have changed the <code class="language-plaintext highlighter-rouge">*</code> operator to a <code class="language-plaintext highlighter-rouge">+</code> in the square function.</p>
+  </li>
+  <li data-marker="*">Now running <code class="language-plaintext highlighter-rouge">python test_square.py</code> in the console window, you will notice that an <code class="language-plaintext highlighter-rouge">AssertionError</code> is raised by the compiler. Essentially, this is the compiler telling us that one of our conditions was not met.</li>
+  <li data-marker="*">
+    <p>One of the challenges that we are now facing is that our code could become even more burdensome if we wanted to provide more descriptive error output to our users. Plausibly, we could code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">calculator</span> <span class="kn">import</span> <span class="n">square</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="nf">test_square</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">test_square</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="nf">square</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span>
+    <span class="k">except</span> <span class="nb">AssertionError</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"2 squared is not 4"</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="nf">square</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">9</span>
+    <span class="k">except</span> <span class="nb">AssertionError</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"3 squared is not 9"</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="nf">square</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span>
+    <span class="k">except</span> <span class="nb">AssertionError</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"-2 squared is not 4"</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="nf">square</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">9</span>
+    <span class="k">except</span> <span class="nb">AssertionError</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"-3 squared is not 9"</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="nf">square</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+    <span class="k">except</span> <span class="nb">AssertionError</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"0 squared is not 0"</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice that running this code will produce multiple errors. However, it’s not producing all the errors above. This is a good illustration that it’s worth testing multiple cases such that you might catch situations where there are coding mistakes.</p>
+  </li>
+  <li data-marker="*">The above code illustrates a major challenge: How could we make it easier to test your code without dozens of lines of code like the above?</li>
+</ul>
+
+<p>You can learn more in Python’s documentation of <a href="https://docs.python.org/3/reference/simple_stmts.html#assert"><code class="language-plaintext highlighter-rouge">assert</code></a>.</p>
+
+<h2 id="pytest"><code class="language-plaintext highlighter-rouge">pytest</code></h2>
+<ul>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">pytest</code> is a third-party library that allows you to unit test your program. That is, you can test your functions within your program.</li>
+  <li data-marker="*">To utilize <code class="language-plaintext highlighter-rouge">pytest</code> please type <code class="language-plaintext highlighter-rouge">pip install pytest</code> into your console window.</li>
+  <li data-marker="*">
+    <p>Before applying <code class="language-plaintext highlighter-rouge">pytest</code> to our own program, modify your <code class="language-plaintext highlighter-rouge">test_calculator</code> function as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">calculator</span> <span class="kn">import</span> <span class="n">square</span>
+
+
+<span class="k">def</span> <span class="nf">test_assert</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="nf">square</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span>
+    <span class="k">assert</span> <span class="nf">square</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">9</span>
+    <span class="k">assert</span> <span class="nf">square</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span>
+    <span class="k">assert</span> <span class="nf">square</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">9</span>
+    <span class="k">assert</span> <span class="nf">square</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+</code></pre></div>    </div>
+    <p>Notice how the above code asserts all the conditions that we want to test.</p>
+  </li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">pytest</code> allows us to run our program directly through it, such that we can more easily view the results of our test conditions.</li>
+  <li data-marker="*">
+    <p>In the terminal window, type <code class="language-plaintext highlighter-rouge">pytest test_calculator.py</code>. You’ll immediately notice that output will be provided. Notice the red <code class="language-plaintext highlighter-rouge">F</code> near the top of the output, indicating that something in your code failed. Further, notice that the red <code class="language-plaintext highlighter-rouge">E</code> provides some hints about the errors in your <code class="language-plaintext highlighter-rouge">calculator.py</code> program. Based upon the output, you can imagine a scenario where <code class="language-plaintext highlighter-rouge">3 * 3</code> has outputted <code class="language-plaintext highlighter-rouge">6</code> instead of <code class="language-plaintext highlighter-rouge">9</code>. Based on the results of this test, we can go correct our <code class="language-plaintext highlighter-rouge">calculator.py</code> code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's x? "</span><span class="p">))</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"x squared is"</span><span class="p">,</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">n</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice that we have changed the <code class="language-plaintext highlighter-rouge">+</code> operator to a <code class="language-plaintext highlighter-rouge">*</code> in the square function, returning it to a working state.</p>
+  </li>
+  <li data-marker="*">
+    <p>Re-running <code class="language-plaintext highlighter-rouge">pytest test_calculator.py</code>, notice how no errors are produced. Congratulations!</p>
+  </li>
+  <li data-marker="*">
+    <p>At the moment, it is not ideal that <code class="language-plaintext highlighter-rouge">pytest</code> will stop running after the first failed test. Again, let’s return our <code class="language-plaintext highlighter-rouge">calculator.py</code> code back to its broken state:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's x? "</span><span class="p">))</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"x squared is"</span><span class="p">,</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">n</span> <span class="o">+</span> <span class="n">n</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice that we have changed the <code class="language-plaintext highlighter-rouge">*</code> operator to a <code class="language-plaintext highlighter-rouge">+</code> in the square function, returning it to a broken state.</p>
+  </li>
+  <li data-marker="*">
+    <p>To improve our test code, let’s modify <code class="language-plaintext highlighter-rouge">test_calculator.py</code> to divide the code into different groups of tests:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">calculator</span> <span class="kn">import</span> <span class="n">square</span>
+
+
+<span class="k">def</span> <span class="nf">test_positive</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="nf">square</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span>
+    <span class="k">assert</span> <span class="nf">square</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">9</span>
+
+
+<span class="k">def</span> <span class="nf">test_negative</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="nf">square</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span>
+    <span class="k">assert</span> <span class="nf">square</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">9</span>
+
+
+<span class="k">def</span> <span class="nf">test_zero</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="nf">square</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+</code></pre></div>    </div>
+    <p>Notice that we have divided the same five tests into three different functions. Testing frameworks like <code class="language-plaintext highlighter-rouge">pytest</code> will run each function, even if there was a failure in one of them. Re-running <code class="language-plaintext highlighter-rouge">pytest test_calculator.py</code>, you will notice that many more errors are being displayed. More error output allows you to further explore what might be producing the problems within your code.</p>
+  </li>
+  <li data-marker="*">
+    <p>Having improved our test code, return your <code class="language-plaintext highlighter-rouge">calculator.py</code> code to fully working order:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's x? "</span><span class="p">))</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"x squared is"</span><span class="p">,</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">n</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice that we have changed the <code class="language-plaintext highlighter-rouge">+</code> operator to a <code class="language-plaintext highlighter-rouge">*</code> in the square function, returning it to a working state.</p>
+  </li>
+  <li data-marker="*">Re-running <code class="language-plaintext highlighter-rouge">pytest test_calculator.py</code>, you will notice that no errors are found.</li>
+  <li data-marker="*">In summary, it’s up to you as a coder to define as many test conditions as you see fit!</li>
+</ul>
+
+<p>You can learn more in Pytest’s documentation of <a href="https://docs.pytest.org/en/7.1.x/getting-started.html"><code class="language-plaintext highlighter-rouge">pytest</code></a>.</p>
+
+<h2 id="testing-strings">Testing Strings</h2>
+
+<ul>
+  <li data-marker="*">
+    <p>Going back in time, consider the following code <code class="language-plaintext highlighter-rouge">hello.py</code>:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your name? "</span><span class="p">)</span>
+    <span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">to</span><span class="o">=</span><span class="s">"world"</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"hello,"</span><span class="p">,</span> <span class="n">to</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice that we may wish to test the result of the <code class="language-plaintext highlighter-rouge">hello</code> function.</p>
+  </li>
+  <li data-marker="*">
+    <p>Consider the following code for <code class="language-plaintext highlighter-rouge">test_hello.py</code>:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">hello</span> <span class="kn">import</span> <span class="n">hello</span>
+
+
+<span class="k">def</span> <span class="nf">test_hello</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="nf">hello</span><span class="p">(</span><span class="s">"David"</span><span class="p">)</span> <span class="o">==</span> <span class="s">"hello, David"</span>
+    <span class="k">assert</span> <span class="nf">hello</span><span class="p">()</span> <span class="o">==</span> <span class="s">"hello, world"</span>
+</code></pre></div>    </div>
+    <p>Looking at this code, do you think that this approach to testing will work well? Why might this test not work well? Notice that the <code class="language-plaintext highlighter-rouge">hello</code> function in <code class="language-plaintext highlighter-rouge">hello.py</code> prints something: That is, it does not return a value!</p>
+  </li>
+  <li data-marker="*">
+    <p>We can change our <code class="language-plaintext highlighter-rouge">hello</code> function within <code class="language-plaintext highlighter-rouge">hello.py</code> as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your name? "</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">to</span><span class="o">=</span><span class="s">"world"</span><span class="p">):</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s">"hello, </span><span class="si">{</span><span class="n">to</span><span class="si">}</span><span class="s">"</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice that we changed our <code class="language-plaintext highlighter-rouge">hello</code> function to return a string. This effectively means that we can now use <code class="language-plaintext highlighter-rouge">pytest</code> to test the <code class="language-plaintext highlighter-rouge">hello</code> function.</p>
+  </li>
+  <li data-marker="*">
+    <p>Running <code class="language-plaintext highlighter-rouge">pytest test_hello.py</code>, our code will pass all tests!</p>
+  </li>
+  <li data-marker="*">
+    <p>As with our previous test case in this lesson, we can break out our tests separately:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">hello</span> <span class="kn">import</span> <span class="n">hello</span>
+
+
+<span class="k">def</span> <span class="nf">test_default</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="nf">hello</span><span class="p">()</span> <span class="o">==</span> <span class="s">"hello, world"</span>
+
+
+<span class="k">def</span> <span class="nf">test_argument</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="nf">hello</span><span class="p">(</span><span class="s">"David"</span><span class="p">)</span> <span class="o">==</span> <span class="s">"hello, David"</span>
+</code></pre></div>    </div>
+    <p>Notice that the above code separates our test into multiple functions such that they will all run, even if an error is produced.</p>
+  </li>
+</ul>
+
+<h2 id="organizing-tests-into-folders">Organizing Tests into Folders</h2>
+
+<ul>
+  <li data-marker="*">Unit testing code using multiple tests is so common that you have the ability to run a whole folder of tests with a single command.</li>
+  <li data-marker="*">First, in the terminal window, execute <code class="language-plaintext highlighter-rouge">mkdir test</code> to create a folder called <code class="language-plaintext highlighter-rouge">test</code>.</li>
+  <li data-marker="*">Then, to create a test within that folder, type in the terminal window <code class="language-plaintext highlighter-rouge">code test/hello.py</code>. Notice that <code class="language-plaintext highlighter-rouge">test/</code> instructs the terminal to create <code class="language-plaintext highlighter-rouge">hello.py</code> in the folder called <code class="language-plaintext highlighter-rouge">test</code>.</li>
+  <li data-marker="*">In the text editor window, modify the file to include the following code:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">hello</span> <span class="kn">import</span> <span class="n">hello</span>
+  
+  
+<span class="k">def</span> <span class="nf">test_default</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="nf">hello</span><span class="p">()</span> <span class="o">==</span> <span class="s">"hello, world"</span>
+  
+  
+<span class="k">def</span> <span class="nf">test_argument</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="nf">hello</span><span class="p">(</span><span class="s">"David"</span><span class="p">)</span> <span class="o">==</span> <span class="s">"hello, David"</span>
+</code></pre></div>    </div>
+    <p>Notice that we are creating a test just as we did before.</p>
+  </li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">pytest</code> will not allow us to run tests as a folder simply with this file (or a whole set of files) alone without a special <code class="language-plaintext highlighter-rouge">__init__</code> file. In your terminal window, create this file by typing <code class="language-plaintext highlighter-rouge">code test/__init__.py</code>. Note the <code class="language-plaintext highlighter-rouge">test/</code> as before, as well as the double underscores on either side of <code class="language-plaintext highlighter-rouge">init</code>. Even leaving this <code class="language-plaintext highlighter-rouge">__init__.py</code> file empty, <code class="language-plaintext highlighter-rouge">pytest</code> is informed that the whole folder containing <code class="language-plaintext highlighter-rouge">__init__.py</code> has tests that can be run.</li>
+  <li data-marker="*">Now, typing <code class="language-plaintext highlighter-rouge">pytest test</code> in the terminal, you can run the entire <code class="language-plaintext highlighter-rouge">test</code> folder of code.</li>
+</ul>
+
+<p>You can learn more in Pytest’s documentation of <a href="https://docs.pytest.org/en/7.1.x/explanation/pythonpath.html?highlight=folder#pytest-import-mechanisms-and-sys-path-pythonpath">import mechanisms</a>.</p>
+
+<h2 id="summing-up">Summing Up</h2>
+<p>Testing your code is a natural part of the programming process. Unit tests allow you to test specific aspects of your code. You can create your own programs that test your code. Alternatively, you can utilize frameworks like <code class="language-plaintext highlighter-rouge">pytest</code> to run your unit tests for you. In this lecture, you learned about…</p>
+
+<ul>
+  <li data-marker="*">Unit tests</li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">assert</code></li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">pytest</code></li>
+</ul>
+
+
+                </main>

@@ -1,0 +1,483 @@
+                <main class="col-lg">
+
+                    <h1 class="no_toc" id="lecture-2">Lecture 2</h1>
+
+<ul id="markdown-toc">
+  <li><a href="#loops" id="markdown-toc-loops">Loops</a></li>
+  <li><a href="#while-loops" id="markdown-toc-while-loops">While Loops</a></li>
+  <li><a href="#for-loops" id="markdown-toc-for-loops">For Loops</a></li>
+  <li><a href="#improving-with-user-input" id="markdown-toc-improving-with-user-input">Improving with User Input</a></li>
+  <li><a href="#more-about-lists" id="markdown-toc-more-about-lists">More About Lists</a></li>
+  <li><a href="#length" id="markdown-toc-length">Length</a></li>
+  <li><a href="#dictionaries" id="markdown-toc-dictionaries">Dictionaries</a></li>
+  <li><a href="#mario" id="markdown-toc-mario">Mario</a></li>
+  <li><a href="#summing-up" id="markdown-toc-summing-up">Summing Up</a></li>
+</ul>
+
+<h2 id="loops">Loops</h2>
+<ul>
+  <li data-marker="*">Essentially, loops are a way to do something over and over again.</li>
+  <li data-marker="*">Begin by typing <code class="language-plaintext highlighter-rouge">code cat.py</code> in the terminal window.</li>
+  <li data-marker="*">
+    <p>In the text editor, begin with the following code:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="s">"meow"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">"meow"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">"meow"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Running this code by typing <code class="language-plaintext highlighter-rouge">python cat.py</code>, you’ll notice that the program meows three times.</p>
+  </li>
+  <li data-marker="*">In developing as a programmer, you want to consider how one could improve areas of one’s code where one types the same thing over and over again. Imagine where one might want to “meow” 500 times. Would it be logical to type that same expression of <code class="language-plaintext highlighter-rouge">print("meow")</code> over and over again?</li>
+  <li data-marker="*">Loops enable you to create a block of code that executes over and over again.</li>
+</ul>
+
+<h2 id="while-loops">While Loops</h2>
+<ul>
+  <li data-marker="*">The <code class="language-plaintext highlighter-rouge">while</code> loop is nearly universal throughout all coding languages.</li>
+  <li data-marker="*">Such a loop will repeat a block of code over and over again.</li>
+  <li data-marker="*">
+    <p>In the text editor window, edit your code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">i</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="k">while</span> <span class="n">i</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"meow"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how even though this code will execute <code class="language-plaintext highlighter-rouge">print("meow")</code> multiple times, it will never stop! It will loop forever. <code class="language-plaintext highlighter-rouge">while</code> loops work by repeatedly asking if the condition of the loop has been fulfilled. In this case, the compiler is asking “does <code class="language-plaintext highlighter-rouge">i</code> not equal zero?” When you get stuck in a loop that executes forever, you can press <code class="language-plaintext highlighter-rouge">control-c</code> on your keyboard to break out of the loop.</p>
+  </li>
+  <li data-marker="*">
+    <p>To fix this loop that lasts forever, we can edit our code as follows</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">i</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="k">while</span> <span class="n">i</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+  <span class="nf">print</span><span class="p">(</span><span class="s">"meow"</span><span class="p">)</span>
+  <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+</code></pre></div>    </div>
+    <p>Notice that now our code executes properly, reducing <code class="language-plaintext highlighter-rouge">i</code> by <code class="language-plaintext highlighter-rouge">1</code> for each “iteration” through the loop. This term iteration has special significance within coding. By iteration, we mean one cycle through the loop. The first iteration is the “0th” iteration through the loop. The second is the “1st” iteration. In programming we count starting with 0, then 1, then 2.</p>
+  </li>
+  <li data-marker="*">
+    <p>We can further improve our code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+  <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">3</span><span class="p">:</span>
+      <span class="nf">print</span><span class="p">(</span><span class="s">"meow"</span><span class="p">)</span>
+      <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+</code></pre></div>    </div>
+    <p>Notice that when we code <code class="language-plaintext highlighter-rouge">i = i + 1</code> we assign the value of <code class="language-plaintext highlighter-rouge">i</code> from the right to the left. Above, we are starting <code class="language-plaintext highlighter-rouge">i</code> at one, like most humans count (1, 2, 3). If you execute the code above, you’ll see it meows three times. It’s best practice in programming to begin counting with zero.</p>
+  </li>
+  <li data-marker="*">
+    <p>We can improve our code, to start counting with zero:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"meow"</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</code></pre></div>    </div>
+    <p>Notice how changing the operator to <code class="language-plaintext highlighter-rouge">i &lt; 3</code> allows our code to function as intended. We begin by counting with 0 and it iterates through our loop three times, producing three meows. Also, notice how <code class="language-plaintext highlighter-rouge">i += 1</code> is the same as saying <code class="language-plaintext highlighter-rouge">i = i + 1</code>.</p>
+  </li>
+  <li data-marker="*">
+    <p>Our code at this point is illustrated as follows:</p>
+
+    <pre><code class="language-mermaid">flowchart TD
+  A([start]) --&gt; B[i = 0]
+  B --&gt; C{i &lt; 3}
+  C -- True --&gt; D["#quot;meow#quot;"]
+  D --&gt; E[i += 1]
+  E --&gt; C
+  C -- False --&gt; F([stop])
+</code></pre>
+
+    <p>Notice how our loop counts i up to, but not through <code class="language-plaintext highlighter-rouge">3</code>.</p>
+  </li>
+</ul>
+
+<h2 id="for-loops">For Loops</h2>
+<ul>
+  <li data-marker="*">A <code class="language-plaintext highlighter-rouge">for</code> loop is a different type of loop.</li>
+  <li data-marker="*">To best understand a <code class="language-plaintext highlighter-rouge">for</code> loop, it’s best to begin by talking about a new variable type called a <code class="language-plaintext highlighter-rouge">list</code> in Python. As in other areas of our lives, we can have a grocery list, a to-do list, etc.</li>
+  <li data-marker="*">
+    <p>A <code class="language-plaintext highlighter-rouge">for</code> loop iterates through a <code class="language-plaintext highlighter-rouge">list</code> of items. For example, in the text editor window, modify your <code class="language-plaintext highlighter-rouge">cat.py</code> code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"meow"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how clean this code is compared to your previous <code class="language-plaintext highlighter-rouge">while</code> loop code. In this code, <code class="language-plaintext highlighter-rouge">i</code> begins with <code class="language-plaintext highlighter-rouge">0</code>, meows, <code class="language-plaintext highlighter-rouge">i</code> is assigned <code class="language-plaintext highlighter-rouge">1</code>, meows, and, finally, <code class="language-plaintext highlighter-rouge">i</code> is assigned <code class="language-plaintext highlighter-rouge">2</code>, meows, and then ends.</p>
+  </li>
+  <li data-marker="*">
+    <p>While this code accomplishes what we want, there are some possibilities for improving our code for extreme cases. At first glance, our code looks great. However, what if you wanted to iterate up to a million? It’s best to create code that can work with such extreme cases. Accordingly, we can improve our code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"meow"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how <code class="language-plaintext highlighter-rouge">range(3)</code> provides back three values (<code class="language-plaintext highlighter-rouge">0</code>, <code class="language-plaintext highlighter-rouge">1</code>, and <code class="language-plaintext highlighter-rouge">2</code>) automatically. This code will execute and produce the intended effect, meowing three times.</p>
+  </li>
+  <li data-marker="*">
+    <p>Our code can be further improved. Notice how we never use <code class="language-plaintext highlighter-rouge">i</code> explicitly in our code. That is, while Python needs the <code class="language-plaintext highlighter-rouge">i</code> as a place to store the number of the iteration of the loop, we never use it for any other purpose. In Python, if such a variable does not have any other significance in our code, we can simply represent this variable as a single underscore <code class="language-plaintext highlighter-rouge">_</code>. Therefore, you can modify your code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"meow"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how changing the <code class="language-plaintext highlighter-rouge">i</code> to <code class="language-plaintext highlighter-rouge">_</code> has zero impact on the functioning of our program.</p>
+  </li>
+  <li data-marker="*">
+    <p>Our code can be further improved. To stretch your mind to the possibilities within Python, consider the following code:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="s">"meow"</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how it will meow three times, but the program will produce <code class="language-plaintext highlighter-rouge">meowmeowmeow</code> as the result. Consider: How could you create a line break at the end of each meow?</p>
+  </li>
+  <li data-marker="*">
+    <p>Indeed, you can edit your code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="s">"meow</span><span class="se">\n</span><span class="s">"</span> <span class="o">*</span> <span class="mi">3</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s">""</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how this code produces three meows, each on a separate line. By adding <code class="language-plaintext highlighter-rouge">end=""</code> and the <code class="language-plaintext highlighter-rouge">\n</code> we tell the compiler to add a line break at the end of each meow.</p>
+  </li>
+</ul>
+
+<h2 id="improving-with-user-input">Improving with User Input</h2>
+
+<ul>
+  <li data-marker="*">Perhaps we want to get input from our user. We can use loops as a way of validating the input of the user.</li>
+  <li data-marker="*">A common paradigm within Python is to use a <code class="language-plaintext highlighter-rouge">while</code> loop to validate the input of the user.</li>
+  <li data-marker="*">For example, let’s try prompting the user for a number greater than or equal 0:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's n? "</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">continue</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">break</span>
+</code></pre></div>    </div>
+  </li>
+  <li data-marker="*">Notice that we’ve introduced two new keywords in Python, <code class="language-plaintext highlighter-rouge">continue</code> and <code class="language-plaintext highlighter-rouge">break</code>. <code class="language-plaintext highlighter-rouge">continue</code> explicitly tells Python to go to the next iteration of a loop. <code class="language-plaintext highlighter-rouge">break</code>, on the other hand, tells Python to “break out” of a loop early, before it has finished all of its iterations. In this case, we’ll <code class="language-plaintext highlighter-rouge">continue</code> to the next iteration of the loop when <code class="language-plaintext highlighter-rouge">n</code> is less than 0—ultimately reprompting the user with “What’s n?”. If though, <code class="language-plaintext highlighter-rouge">n</code> is greater than or equal to 0, we’ll <code class="language-plaintext highlighter-rouge">break</code> out of the loop and allow the rest of our program to run.</li>
+  <li data-marker="*">
+    <p>It turns out that the <code class="language-plaintext highlighter-rouge">continue</code> keyword is redundant in this case. We can improve our code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's n? "</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">break</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"meow"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how this while loop will always run (forever) until <code class="language-plaintext highlighter-rouge">n</code> is greater than <code class="language-plaintext highlighter-rouge">0</code>. When <code class="language-plaintext highlighter-rouge">n</code> is greater than <code class="language-plaintext highlighter-rouge">0</code>, the loop breaks.</p>
+  </li>
+  <li data-marker="*">
+    <p>Bringing in our prior learning, we can use functions to further to improve our code:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">number</span> <span class="o">=</span> <span class="nf">get_number</span><span class="p">()</span>
+    <span class="nf">meow</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_number</span><span class="p">():</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's n? "</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">break</span>
+    <span class="k">return</span> <span class="n">n</span>
+
+
+<span class="k">def</span> <span class="nf">meow</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"meow"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how not only did we change your code to operate in multiple functions, but we also used a <code class="language-plaintext highlighter-rouge">return</code> statement to <code class="language-plaintext highlighter-rouge">return</code> the value of <code class="language-plaintext highlighter-rouge">n</code> back to the <code class="language-plaintext highlighter-rouge">main</code> function.</p>
+  </li>
+</ul>
+
+<h2 id="more-about-lists">More About Lists</h2>
+<ul>
+  <li data-marker="*">Consider the world of Hogwarts from the famed Harry Potter universe.</li>
+  <li data-marker="*">In the terminal, type <code class="language-plaintext highlighter-rouge">code hogwarts.py</code>.</li>
+  <li data-marker="*">
+    <p>In the text editor, code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">students</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Hermoine"</span><span class="p">,</span> <span class="s">"Harry"</span><span class="p">,</span> <span class="s">"Ron"</span><span class="p">]</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">students</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">students</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">students</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</code></pre></div>    </div>
+    <p>Notice how we have a <code class="language-plaintext highlighter-rouge">list</code> of students with their names as above. We then print the student who is at the 0th location, “Hermoine”. Each of the other students are printed as well.</p>
+  </li>
+  <li data-marker="*">
+    <p>Just as we illustrated previously, we can use a loop to iterate over the list. You can improve your code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">students</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Hermoine"</span><span class="p">,</span> <span class="s">"Harry"</span><span class="p">,</span> <span class="s">"Ron"</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">student</span> <span class="ow">in</span> <span class="n">students</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">student</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice that for each <code class="language-plaintext highlighter-rouge">student</code> in the <code class="language-plaintext highlighter-rouge">students</code> list, it will print the student as intended. You might wonder why we did not use the <code class="language-plaintext highlighter-rouge">_</code> designation as discussed prior. We choose not to do this because <code class="language-plaintext highlighter-rouge">student</code> is explicitly used in our code.</p>
+  </li>
+  <li data-marker="*">You can learn more in Python’s documentation of <a href="https://docs.python.org/3/tutorial/datastructures.html#more-on-lists">lists</a>.</li>
+</ul>
+
+<h2 id="length">Length</h2>
+<ul>
+  <li data-marker="*">We can utilize <code class="language-plaintext highlighter-rouge">len</code> as a way of checking the length of the <code class="language-plaintext highlighter-rouge">list</code> called <code class="language-plaintext highlighter-rouge">students</code>.</li>
+  <li data-marker="*">
+    <p>Imagine that you don’t simply want to print the name of the student, but also their position in the list. To accomplish this, you can edit your code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">students</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Hermoine"</span><span class="p">,</span> <span class="s">"Harry"</span><span class="p">,</span> <span class="s">"Ron"</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">students</span><span class="p">)):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">students</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</code></pre></div>    </div>
+    <p>Notice how executing this code results in not only getting the position of each student plus one using <code class="language-plaintext highlighter-rouge">i + 1</code>, but also prints the name of each student. <code class="language-plaintext highlighter-rouge">len</code> allow you to dynamically see how long the list of the students is regardless how much it grows.</p>
+  </li>
+  <li data-marker="*">You can learn more in Python’s documentation of <a href="https://docs.python.org/3/library/functions.html?highlight=len#len">len</a>.</li>
+</ul>
+
+<h2 id="dictionaries">Dictionaries</h2>
+<ul>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">dict</code>s or dictionaries is a data structure that allows you to associate keys with values.</li>
+  <li data-marker="*">Where a <code class="language-plaintext highlighter-rouge">list</code> is a list of multiple values, a <code class="language-plaintext highlighter-rouge">dict</code> associates a key with a value.</li>
+  <li data-marker="*">
+    <p>Considering the houses of Hogwarts, we might assign specific students to specific houses.</p>
+
+    <p><img src="cs50pWeek2Slide17.png" alt="Harry Potter Names." title="Harry Potter Names."></p>
+  </li>
+  <li data-marker="*">
+    <p>We could use <code class="language-plaintext highlighter-rouge">list</code>s alone to accomplish this:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">students</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Hermoine"</span><span class="p">,</span> <span class="s">"Harry"</span><span class="p">,</span> <span class="s">"Ron"</span><span class="p">,</span> <span class="s">"Draco"</span><span class="p">]</span>
+<span class="n">houses</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Gryffindor"</span><span class="p">,</span> <span class="s">"Gryffindor"</span><span class="p">,</span> <span class="s">"Griffindor"</span><span class="p">,</span> <span class="s">"Slytherin"</span><span class="p">]</span>
+</code></pre></div>    </div>
+    <p>Notice that we could promise that we will always keep these lists in order. The individual at the first position of <code class="language-plaintext highlighter-rouge">students</code> is associated with the house at the first position of the <code class="language-plaintext highlighter-rouge">houses</code> list, and so on. However, this can become quite cumbersome as our lists grow!</p>
+  </li>
+  <li data-marker="*">
+    <p>We can better our code using a <code class="language-plaintext highlighter-rouge">dict</code> as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">students</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"Hermoine"</span><span class="p">:</span> <span class="s">"Gryffindor"</span><span class="p">,</span>
+    <span class="s">"Harry"</span><span class="p">:</span> <span class="s">"Gryffindor"</span><span class="p">,</span>
+    <span class="s">"Ron"</span><span class="p">:</span> <span class="s">"Gryffindor"</span><span class="p">,</span>
+    <span class="s">"Draco"</span><span class="p">:</span> <span class="s">"Slytherin"</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">students</span><span class="p">[</span><span class="s">"Hermoine"</span><span class="p">])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">students</span><span class="p">[</span><span class="s">"Harry"</span><span class="p">])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">students</span><span class="p">[</span><span class="s">"Ron"</span><span class="p">])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">students</span><span class="p">[</span><span class="s">"Draco"</span><span class="p">])</span>
+</code></pre></div>    </div>
+    <p>Notice how we use <code class="language-plaintext highlighter-rouge">{}</code> curly braces to create a dictionary. Where <code class="language-plaintext highlighter-rouge">list</code>s use numbers to iterate through the list, <code class="language-plaintext highlighter-rouge">dict</code>s allow us to use words.</p>
+  </li>
+  <li data-marker="*">
+    <p>Run your code and make sure your output is as follows:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python hogwarts.py
+Gryffindor
+Gryffindor
+Gryffindor
+Slytherin
+</code></pre></div>    </div>
+  </li>
+  <li data-marker="*">
+    <p>We can improve our code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">students</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"Hermoine"</span><span class="p">:</span> <span class="s">"Gryffindor"</span><span class="p">,</span>
+    <span class="s">"Harry"</span><span class="p">:</span> <span class="s">"Gryffindor"</span><span class="p">,</span>
+    <span class="s">"Ron"</span><span class="p">:</span> <span class="s">"Gryffindor"</span><span class="p">,</span>
+    <span class="s">"Draco"</span><span class="p">:</span> <span class="s">"Slytherin"</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="k">for</span> <span class="n">student</span> <span class="ow">in</span> <span class="n">students</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">student</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how executing this code, the for loop will only iterate through all the keys, resulting in a list of the names of the students. How could we print out both values and keys?</p>
+  </li>
+  <li data-marker="*">
+    <p>Modify your code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">students</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"Hermoine"</span><span class="p">:</span> <span class="s">"Gryffindor"</span><span class="p">,</span>
+    <span class="s">"Harry"</span><span class="p">:</span> <span class="s">"Gryffindor"</span><span class="p">,</span>
+    <span class="s">"Ron"</span><span class="p">:</span> <span class="s">"Gryffindor"</span><span class="p">,</span>
+    <span class="s">"Draco"</span><span class="p">:</span> <span class="s">"Slytherin"</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="k">for</span> <span class="n">student</span> <span class="ow">in</span> <span class="n">students</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">student</span><span class="p">,</span> <span class="n">students</span><span class="p">[</span><span class="n">student</span><span class="p">])</span>
+</code></pre></div>    </div>
+    <p>Notice how <code class="language-plaintext highlighter-rouge">students[student]</code> will go to each student’s key and find the value of the their house. Execute your code and you’ll notice how the output is a bit messy.</p>
+  </li>
+  <li data-marker="*">
+    <p>We can clean up the print function by improving our code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">students</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"Hermoine"</span><span class="p">:</span> <span class="s">"Gryffindor"</span><span class="p">,</span>
+    <span class="s">"Harry"</span><span class="p">:</span> <span class="s">"Gryffindor"</span><span class="p">,</span>
+    <span class="s">"Ron"</span><span class="p">:</span> <span class="s">"Gryffindor"</span><span class="p">,</span>
+    <span class="s">"Draco"</span><span class="p">:</span> <span class="s">"Slytherin"</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="k">for</span> <span class="n">student</span> <span class="ow">in</span> <span class="n">students</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">student</span><span class="p">,</span> <span class="n">students</span><span class="p">[</span><span class="n">student</span><span class="p">],</span> <span class="n">sep</span><span class="o">=</span><span class="s">", "</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how this creates a clean separation of a <code class="language-plaintext highlighter-rouge">, </code> between each item printed.</p>
+  </li>
+  <li data-marker="*">
+    <p>If you execute <code class="language-plaintext highlighter-rouge">python hogwarts.py</code>, you should see the following:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python hogwarts.py
+Hermoine, Gryffindor
+Harry, Gryffindor
+Ron, Gryffindor
+Draco, Slytherin
+</code></pre></div>    </div>
+  </li>
+  <li data-marker="*">
+    <p>What if we have more information about our students? How could we associate more data with each of the students?</p>
+
+    <p><img src="cs50pWeek2Slide18.png" alt="Harry Potter Names." title="Harry Potter Names."></p>
+  </li>
+  <li data-marker="*">
+    <p>You can imagine wanting to have lots of data associated multiple things with one key. Enhance your code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">students</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"Hermoine"</span><span class="p">,</span> <span class="s">"house"</span><span class="p">:</span> <span class="s">"Gryffindor"</span><span class="p">,</span> <span class="s">"patronus"</span><span class="p">:</span> <span class="s">"Otter"</span><span class="p">},</span>
+    <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"Harry"</span><span class="p">,</span> <span class="s">"house"</span><span class="p">:</span> <span class="s">"Gryffindor"</span><span class="p">,</span> <span class="s">"patronus"</span><span class="p">:</span> <span class="s">"Stag"</span><span class="p">},</span>
+    <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"Ron"</span><span class="p">,</span> <span class="s">"house"</span><span class="p">:</span> <span class="s">"Gryffindor"</span><span class="p">,</span> <span class="s">"patronus"</span><span class="p">:</span> <span class="s">"Jack Russell terrier"</span><span class="p">},</span>
+    <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"Draco"</span><span class="p">,</span> <span class="s">"house"</span><span class="p">:</span> <span class="s">"Slytherin"</span><span class="p">,</span> <span class="s">"patronus"</span><span class="p">:</span> <span class="bp">None</span><span class="p">},</span>
+<span class="p">]</span>
+</code></pre></div>    </div>
+    <p>Notice how this code creates a <code class="language-plaintext highlighter-rouge">list</code> of <code class="language-plaintext highlighter-rouge">dict</code>s. The <code class="language-plaintext highlighter-rouge">list</code> called <code class="language-plaintext highlighter-rouge">students</code> has four <code class="language-plaintext highlighter-rouge">dicts</code> within it: One for each student. Also, notice that Python has a special <code class="language-plaintext highlighter-rouge">None</code> designation where there is no value associated with a key.</p>
+  </li>
+  <li data-marker="*">
+    <p>Now, you have access to a whole host of interesting data about these students. Now, further modify you code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">students</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"Hermoine"</span><span class="p">,</span> <span class="s">"house"</span><span class="p">:</span> <span class="s">"Gryffindor"</span><span class="p">,</span> <span class="s">"patronus"</span><span class="p">:</span> <span class="s">"Otter"</span><span class="p">},</span>
+    <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"Harry"</span><span class="p">,</span> <span class="s">"house"</span><span class="p">:</span> <span class="s">"Gryffindor"</span><span class="p">,</span> <span class="s">"patronus"</span><span class="p">:</span> <span class="s">"Stag"</span><span class="p">},</span>
+    <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"Ron"</span><span class="p">,</span> <span class="s">"house"</span><span class="p">:</span> <span class="s">"Gryffindor"</span><span class="p">,</span> <span class="s">"patronus"</span><span class="p">:</span> <span class="s">"Jack Russell terrier"</span><span class="p">},</span>
+    <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"Draco"</span><span class="p">,</span> <span class="s">"house"</span><span class="p">:</span> <span class="s">"Slytherin"</span><span class="p">,</span> <span class="s">"patronus"</span><span class="p">:</span> <span class="bp">None</span><span class="p">},</span>
+<span class="p">]</span>
+
+<span class="k">for</span> <span class="n">student</span> <span class="ow">in</span> <span class="n">students</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">student</span><span class="p">[</span><span class="s">"name"</span><span class="p">],</span> <span class="n">student</span><span class="p">[</span><span class="s">"house"</span><span class="p">],</span> <span class="n">student</span><span class="p">[</span><span class="s">"patronus"</span><span class="p">],</span> <span class="n">sep</span><span class="o">=</span><span class="s">", "</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how the <code class="language-plaintext highlighter-rouge">for</code> loop will iterate through each of the <code class="language-plaintext highlighter-rouge">dict</code>s inside the <code class="language-plaintext highlighter-rouge">list</code> called <code class="language-plaintext highlighter-rouge">students</code>.</p>
+  </li>
+  <li data-marker="*">You can learn more in Python’s Documentation of <a href="https://docs.python.org/3/tutorial/datastructures.html#dictionaries"><code class="language-plaintext highlighter-rouge">dict</code>s</a>.</li>
+</ul>
+
+<h2 id="mario">Mario</h2>
+<ul>
+  <li data-marker="*">
+    <p>Remember that the classic game Mario has a hero jumping over bricks. Let’s create a textual representation of this game.</p>
+
+    <p><img src="cs50pWeek2Slide21.png" alt="Mario Block." title="Mario Block."></p>
+  </li>
+  <li data-marker="*">
+    <p>Begin coding as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="s">"#"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">"#"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">"#"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how we are copying and pasting the same code over and over again.</p>
+  </li>
+  <li data-marker="*">
+    <p>Consider how we could better the code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"#"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how this accomplishes essentially what we want to create.</p>
+  </li>
+  <li data-marker="*">
+    <p>Consider: Could we further abstract for solving more sophisticated problems later with this code? Modify your code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="nf">print_column</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">print_column</span><span class="p">(</span><span class="n">height</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">height</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"#"</span><span class="p">)</span>
+
+
+<span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice how our column can grow as much as we want without any hard coding.</p>
+  </li>
+  <li data-marker="*">
+    <p>Now, let’s try to print a row horizontally. Modify your code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="nf">print_row</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">print_row</span><span class="p">(</span><span class="n">width</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"?"</span> <span class="o">*</span> <span class="n">width</span><span class="p">)</span>
+
+
+<span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice how we now have code that can create left to right blocks.</p>
+  </li>
+  <li data-marker="*">
+    <p>Examining the slide below, notice how Mario has both rows and columns of blocks.</p>
+
+    <p><img src="cs50pWeek2Slide24.png" alt="Mario Underground." title="Mario Underground."></p>
+  </li>
+  <li data-marker="*">
+    <p>Consider, how could we implement both rows and columns within our code? Modify your code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="nf">print_square</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">print_square</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
+
+    <span class="c1"># For each row in square
+</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
+
+        <span class="c1"># For each brick in row
+</span>        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
+
+            <span class="c1">#  Print brick
+</span>            <span class="nf">print</span><span class="p">(</span><span class="s">"#"</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s">""</span><span class="p">)</span>
+
+        <span class="c1"># Print blank line
+</span>        <span class="nf">print</span><span class="p">()</span>
+
+
+<span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice that we have an outer loop addresses each row in the square. Then, we have an inner loop that prints a brick in each row. Finally, we have a <code class="language-plaintext highlighter-rouge">print</code> statement that prints a blank line.</p>
+  </li>
+  <li data-marker="*">
+    <p>We can further abstract away our code:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="nf">print_square</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">print_square</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
+        <span class="nf">print_row</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">print_row</span><span class="p">(</span><span class="n">width</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"#"</span> <span class="o">*</span> <span class="n">width</span><span class="p">)</span>
+
+
+<span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="summing-up">Summing Up</h2>
+<p>You now have another power in your growing list of your Python abilities. In this lecture we addressed…</p>
+
+<ul>
+  <li data-marker="*">Loops</li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">while</code></li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">for</code></li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">len</code></li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">list</code></li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">dict</code></li>
+</ul>
+
+
+                </main>

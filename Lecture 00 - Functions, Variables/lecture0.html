@@ -1,0 +1,588 @@
+                <main class="col-lg">
+
+                    <h1 class="no_toc" id="lecture-0">Lecture 0</h1>
+
+<ul id="markdown-toc">
+  <li><a href="#creating-code-with-python" id="markdown-toc-creating-code-with-python">Creating Code with Python</a></li>
+  <li><a href="#functions" id="markdown-toc-functions">Functions</a></li>
+  <li><a href="#bugs" id="markdown-toc-bugs">Bugs</a></li>
+  <li><a href="#improving-your-first-python-program" id="markdown-toc-improving-your-first-python-program">Improving Your First Python Program</a>    <ul>
+      <li><a href="#variables" id="markdown-toc-variables">Variables</a></li>
+      <li><a href="#comments" id="markdown-toc-comments">Comments</a></li>
+      <li><a href="#pseudocode" id="markdown-toc-pseudocode">Pseudocode</a></li>
+    </ul>
+  </li>
+  <li><a href="#further-improving-your-first-python-program" id="markdown-toc-further-improving-your-first-python-program">Further Improving Your First Python Program</a></li>
+  <li><a href="#strings-and-paremeters" id="markdown-toc-strings-and-paremeters">Strings and Paremeters</a>    <ul>
+      <li><a href="#a-small-problem-with-quotation-marks" id="markdown-toc-a-small-problem-with-quotation-marks">A small problem with quotation marks</a></li>
+    </ul>
+  </li>
+  <li><a href="#formatting-strings" id="markdown-toc-formatting-strings">Formatting Strings</a></li>
+  <li><a href="#more-on-strings" id="markdown-toc-more-on-strings">More on Strings</a></li>
+  <li><a href="#integers-or-int" id="markdown-toc-integers-or-int">Integers or int</a></li>
+  <li><a href="#readability-wins" id="markdown-toc-readability-wins">Readability Wins</a></li>
+  <li><a href="#float-basics" id="markdown-toc-float-basics">Float Basics</a></li>
+  <li><a href="#more-on-floats" id="markdown-toc-more-on-floats">More on Floats</a></li>
+  <li><a href="#def" id="markdown-toc-def">Def</a></li>
+  <li><a href="#returning-values" id="markdown-toc-returning-values">Returning Values</a></li>
+  <li><a href="#summing-up" id="markdown-toc-summing-up">Summing Up</a></li>
+</ul>
+
+<h2 id="creating-code-with-python">Creating Code with Python</h2>
+<ul>
+  <li data-marker="*">VS Code is a special type of text editor that is called a compiler. At the top, you’ll notice a text editor and, at the bottom you will see a terminal where you can execute commands.</li>
+  <li data-marker="*">In the terminal, you can execute <code class="language-plaintext highlighter-rouge">code hello.py</code> to start coding.</li>
+  <li data-marker="*">In the text editor above, you can type <code class="language-plaintext highlighter-rouge">print("hello, world")</code>. This is a famous canonical program that nearly all coders write during their learning process.</li>
+  <li data-marker="*">In the terminal window, you can execute commands. To run this program, you are going to need to move your cursor to the bottom of the screen, clicking in the terminal window. You can now type a second command in the terminal window. Next to the dollar sign, type <code class="language-plaintext highlighter-rouge">python hello.py</code> and press the enter key on your keyboard.</li>
+  <li data-marker="*">Recall, computers really only understand zeros and ones. Therefore, when you run <code class="language-plaintext highlighter-rouge">python hello.py</code>, python will interpret the text that you created in <code class="language-plaintext highlighter-rouge">hello.py</code> and translate it into the zeros and ones that the computer can understand.</li>
+  <li data-marker="*">The result of running the <code class="language-plaintext highlighter-rouge">python hello.py</code> program is <code class="language-plaintext highlighter-rouge">hello, world</code>.</li>
+  <li data-marker="*">Congrats! You just created your first program.</li>
+</ul>
+
+<h2 id="functions">Functions</h2>
+<ul>
+  <li data-marker="*">Functions are verbs or actions that the computer or computer language will already know how to perform.</li>
+  <li data-marker="*">In your <code class="language-plaintext highlighter-rouge">hello.py</code> program, the <code class="language-plaintext highlighter-rouge">print</code> function knows how to print to the terminal window.</li>
+  <li data-marker="*">The <code class="language-plaintext highlighter-rouge">print</code> function takes arguments. In this case, <code class="language-plaintext highlighter-rouge">"hello, world"</code> are the arguments that the <code class="language-plaintext highlighter-rouge">print</code> function takes.</li>
+</ul>
+
+<h2 id="bugs">Bugs</h2>
+<ul>
+  <li data-marker="*">Bugs are a natural part of coding. These are mistakes, problems for you to solve! Don’t get discouraged! This is part of the process of becoming a great programmer.</li>
+  <li data-marker="*">Imagine in our <code class="language-plaintext highlighter-rouge">hello.py</code> program that accidentally typed <code class="language-plaintext highlighter-rouge">print("hello, world"</code> notice that we missed the final <code class="language-plaintext highlighter-rouge">)</code> required by the compiler. If I purposefully make this mistake, you’ll the compiler will output an error in the terminal window!</li>
+  <li data-marker="*">Often, the error messages will inform you of your mistake and provide you clues on how to fix them. However, there will be many times that the compiler is not this kind.</li>
+</ul>
+
+<h2 id="improving-your-first-python-program">Improving Your First Python Program</h2>
+<ul>
+  <li data-marker="*">We can personalize your first Python program.</li>
+  <li data-marker="*">
+    <p>In our text editor in <code class="language-plaintext highlighter-rouge">hello.py</code> we can add another function. <code class="language-plaintext highlighter-rouge">input</code> is a function that takes a prompt as an argument. We can edit our code to say</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">input</span><span class="p">(</span><span class="s">"What's your name? "</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">"hello, world"</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li data-marker="*">This edit alone, however, will not allow your program to output what your user inputs. For that, we will need to introduce you to variables</li>
+</ul>
+
+<h3 id="variables">Variables</h3>
+<ul>
+  <li data-marker="*">A variable is just a container for a value within your own program.</li>
+  <li data-marker="*">
+    <p>In your program, you can introduce your own variable in your program by editing it to read</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your name? "</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">"hello, world"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice that this equal <code class="language-plaintext highlighter-rouge">=</code> sign in the middle of <code class="language-plaintext highlighter-rouge">name = input("What's your name? ")</code> has a special role in programming. This equal sign literally assigns what is on the right to what is on the left. Therefore, the value returned by <code class="language-plaintext highlighter-rouge">input("What's your name? ")</code> is assigned to <code class="language-plaintext highlighter-rouge">name</code>.</p>
+  </li>
+  <li data-marker="*">
+    <p>If you edit your code as follows, you will notice an error</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your name? "</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">"hello, name"</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li data-marker="*">The program will return <code class="language-plaintext highlighter-rouge">hello, name</code> in the terminal window regardless of what the user types.</li>
+  <li data-marker="*">
+    <p>Further editing our code, you could type</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your name? "</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">"hello,"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li data-marker="*">
+    <p>The result in the terminal window would be</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">What</span><span class="s">'s your name? David
+hello
+David
+</span></code></pre></div>    </div>
+  </li>
+  <li data-marker="*">
+    <p>We are getting closer to the result we might intend!</p>
+  </li>
+  <li data-marker="*">You can learn more in Python’s documentation on <a href="https://docs.python.org/3/library/datatypes.html">data types</a>.</li>
+</ul>
+
+<h3 id="comments">Comments</h3>
+<ul>
+  <li data-marker="*">Comments are a way for programmers to track what they are doing in their programs and even inform others about their intentions for a block of code. In short, they are notes for yourself and others that will see your code!</li>
+  <li data-marker="*">
+    <p>You can add comments to your program to be able to see what it is that your program is doing. You might edit your code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Ask the user for their name
+</span><span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your name? "</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">"hello,"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li data-marker="*">Comments can also serve as to-do list for you.</li>
+</ul>
+
+<h3 id="pseudocode">Pseudocode</h3>
+<ul>
+  <li data-marker="*">
+    <p>Pseudocode is an important type of comment that becomes a special type of to-do list, especially when you don’t understand how to accomplish a coding task. For example, in your code, you might edit your code to say:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Ask the user for their name
+</span><span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your name? "</span><span class="p">)</span>
+
+<span class="c1"># Print hello
+</span><span class="nf">print</span><span class="p">(</span><span class="s">"hello,"</span><span class="p">)</span>
+
+<span class="c1"># Print the name inputted
+</span><span class="nf">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="further-improving-your-first-python-program">Further Improving Your First Python Program</h2>
+<ul>
+  <li data-marker="*">
+    <p>We can further edit our code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Ask the user for their name
+</span><span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your name? "</span><span class="p">)</span>
+
+<span class="c1"># Print hello and the inputted name
+</span><span class="nf">print</span><span class="p">(</span><span class="s">"hello, "</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li data-marker="*">It turns out that some functions take many arguments.</li>
+  <li data-marker="*">
+    <p>We can use a comma <code class="language-plaintext highlighter-rouge">,</code> to pass in multiple arguments by editing our code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Ask the user for their name
+</span><span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your name? "</span><span class="p">)</span>
+
+<span class="c1"># Print hello and the inputted name
+</span><span class="nf">print</span><span class="p">(</span><span class="s">"hello,"</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>The output in the terminal, if we typed “David” we would be <code class="language-plaintext highlighter-rouge">hello, David</code>. Success.</p>
+  </li>
+</ul>
+
+<h2 id="strings-and-paremeters">Strings and Paremeters</h2>
+<ul>
+  <li data-marker="*">A string, known as a <code class="language-plaintext highlighter-rouge">str</code> in Python, is a sequence of text.</li>
+  <li data-marker="*">
+    <p>Rewinding a bit in our code back to the following, there was a visual side effect of having the result appear on multiple lines:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Ask the user for their name
+</span><span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your name? "</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">"hello,"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li data-marker="*">Functions take arguments that influence their behavior. If we look at the documentation for <a href="https://docs.python.org/3/library/functions.html#print"><code class="language-plaintext highlighter-rouge">print</code></a> you’ll notice we can learn a lot about the arguments that the print function takes.</li>
+  <li data-marker="*">Looking at this documentation, you’ll learn that the print function automatically include a piece of code <code class="language-plaintext highlighter-rouge">end='\n'. This </code>\n<code class="language-plaintext highlighter-rouge"> indicates that the print function will automatically create a line break when run. The print function takes an argument called </code>end` and the default is to create a new line.</li>
+  <li data-marker="*">However, we can technically provide an argument for <code class="language-plaintext highlighter-rouge">end</code> ourselves such that a new line is not created!</li>
+  <li data-marker="*">
+    <p>We can modify our code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Ask the user for their name
+</span><span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your name? "</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">"hello,"</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s">""</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>By providing <code class="language-plaintext highlighter-rouge">end=""</code> we are over-writing the default value of <code class="language-plaintext highlighter-rouge">end</code> such that it never creates a new line after this first print statement. Providing the name as “David”, the output in the terminal window will be <code class="language-plaintext highlighter-rouge">hello, David</code>.</p>
+  </li>
+  <li data-marker="*">
+    <p>Parameters, therefore, are arguments that can be taken by a function.</p>
+  </li>
+  <li data-marker="*">You can learn more in Python’s documentation on <a href="https://docs.python.org/3/library/functions.html#print"><code class="language-plaintext highlighter-rouge">print</code></a>.</li>
+</ul>
+
+<h3 id="a-small-problem-with-quotation-marks">A small problem with quotation marks</h3>
+<ul>
+  <li data-marker="*">Notice how adding quotation marks as part of your string is challenging.</li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">print("hello,"friend"")</code> will not work and the compiler will throw an error.</li>
+  <li data-marker="*">Generally, there are two approaches to fixing this. First, you could simply change the quotes to single quote marks.</li>
+  <li data-marker="*">Another, more commonly used approach would be code as <code class="language-plaintext highlighter-rouge">print("hello, \"friend\"")</code>. The backslashes tell the compiler that the following character should be considered a quotation mark in the string and avoid a compiler error.</li>
+</ul>
+
+<h2 id="formatting-strings">Formatting Strings</h2>
+<ul>
+  <li data-marker="*">
+    <p>Probably the most elegant way to use strings would be as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Ask the user for their name
+</span><span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your name? "</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice the <code class="language-plaintext highlighter-rouge">f</code> in <code class="language-plaintext highlighter-rouge">print(f"hello, {name}")</code>. This <code class="language-plaintext highlighter-rouge">f</code> is a special indicator to Python to treat this string a special way, different than previous approaches we have illustrated in this lecture. Expect that you will be using this style of strings quite frequently in this course.</p>
+  </li>
+</ul>
+
+<h2 id="more-on-strings">More on Strings</h2>
+<ul>
+  <li data-marker="*">You should never expect your user will cooperate as intended. Therefore, you will need to ensure that the input of your user is corrected or checked.</li>
+  <li data-marker="*">It turns out that built into strings is the ability to remove whitespace from a string.</li>
+  <li data-marker="*">
+    <p>By utilizing the method <code class="language-plaintext highlighter-rouge">strip</code> on <code class="language-plaintext highlighter-rouge">name</code> as <code class="language-plaintext highlighter-rouge">name = name.strip()</code>, it will strip all the whitespaces on the left and right of the users input. You can modify your code to be:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Ask the user for their name
+</span><span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your name? "</span><span class="p">)</span>
+
+<span class="c1"># Remove whitespace from the str
+</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span>
+
+<span class="c1"># Print the output
+</span><span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Rerunning this program, regardless of how many spaces you type before or after the name, it will strip off all the whitespace.</p>
+  </li>
+  <li data-marker="*">
+    <p>Using the <code class="language-plaintext highlighter-rouge">title</code> method, it would title case the user’s name:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Ask the user for their name
+</span><span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your name? "</span><span class="p">)</span>
+
+<span class="c1"># Remove whitespace from the str
+</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span>
+
+<span class="c1"># Capitalize the first letter of each word
+</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">.</span><span class="nf">title</span><span class="p">()</span>
+
+<span class="c1"># Print the output
+</span><span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li data-marker="*">By this point, you might be very tired of typing <code class="language-plaintext highlighter-rouge">python</code> repeatedly in the terminal window. You cause us the up arrow of your keyboard to recall the most recent terminal commands you have made.</li>
+  <li data-marker="*">
+    <p>Notice that you can modify your code to be more efficient:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Ask the user for their name
+</span><span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your name? "</span><span class="p">)</span>
+
+<span class="c1"># Remove whitespace from the str and capitalize the first letter of each word
+</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">.</span><span class="nf">strip</span><span class="p">().</span><span class="nf">title</span><span class="p">()</span>
+
+<span class="c1"># Print the output
+</span><span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>This creates the same result as your previous code.</p>
+  </li>
+  <li data-marker="*">
+    <p>We could even go further!</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Ask the user for their name, remove whitespace from the str and capitalize the first letter of each word
+</span><span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your name? "</span><span class="p">).</span><span class="nf">strip</span><span class="p">().</span><span class="nf">title</span><span class="p">()</span>
+
+<span class="c1"># Print the output
+</span><span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li data-marker="*">You can learn more about strings in Python’s documentation on <a href="https://docs.python.org/3/library/stdtypes.html#str"><code class="language-plaintext highlighter-rouge">str</code></a></li>
+</ul>
+
+<h2 id="integers-or-int">Integers or int</h2>
+<ul>
+  <li data-marker="*">In Python, an integer is referred to as an <code class="language-plaintext highlighter-rouge">int</code>.</li>
+  <li data-marker="*">In the world of mathematics, we are familiar with +, -, *, /, and % operators. That last operator <code class="language-plaintext highlighter-rouge">%</code> or modulo operator may not be very familiar to you.</li>
+  <li data-marker="*">You don’t have to use the text editor window in your compiler to run Python code. Down in your terminal, you can run <code class="language-plaintext highlighter-rouge">python</code> alone. You will be presented with <code class="language-plaintext highlighter-rouge">&gt;&gt;&gt;</code> in the terminal window. You can then run live, interactive code. You could type <code class="language-plaintext highlighter-rouge">1+1</code> and it will run that calculation. This mode will not commonly be used during this course.</li>
+  <li data-marker="*">Opening up VS Code again, we can type <code class="language-plaintext highlighter-rouge">code calculator.py</code> in the terminal. This will create a new file in which we will create our own calculator.</li>
+  <li data-marker="*">
+    <p>First, we can declare a few variables.</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="n">z</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Naturally, when we run <code class="language-plaintext highlighter-rouge">python calculator.py</code> we get the result in the terminal window of <code class="language-plaintext highlighter-rouge">3</code>. We can make this more interactive using the <code class="language-plaintext highlighter-rouge">input</code> function.</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's x? "</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's y? "</span><span class="p">)</span>
+
+<span class="n">z</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li data-marker="*">Running this program, we discover that the output is incorrect as <code class="language-plaintext highlighter-rouge">12</code>. Why might this be?</li>
+  <li data-marker="*">
+    <p>Prior, we have seen how the <code class="language-plaintext highlighter-rouge">+</code> sign concatenates two strings. Because your input from your keyboard on your computer comes into the compiler as text, it is treated a string. We, therefore, need to convert this input from a string to an integer. We can do so as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's x? "</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's y? "</span><span class="p">)</span>
+
+<span class="n">z</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="nf">int</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>The result is now correct. The use of <code class="language-plaintext highlighter-rouge">int(x)</code>, is called “casting” where a value is temporarily changed from one type of variable (in this case a string) to another (here, an integer).</p>
+  </li>
+  <li data-marker="*">
+    <p>We can further improve our program as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's x? "</span><span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's y? "</span><span class="p">))</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>This illustrates that you can run functions on functions. The most inner function is run first, and then the outer one is run. First, the <code class="language-plaintext highlighter-rouge">input</code> function is run. Then, the <code class="language-plaintext highlighter-rouge">int</code> function.</p>
+  </li>
+  <li data-marker="*">You can learn more in Python’s Documenation of <a href="https://docs.python.org/3/library/functions.html?highlight=float#int"><code class="language-plaintext highlighter-rouge">int</code></a>.</li>
+</ul>
+
+<h2 id="readability-wins">Readability Wins</h2>
+<ul>
+  <li data-marker="*">When deciding on your approach to a coding task, remember that one could make a reasonable argument for many approaches to the same problem.</li>
+  <li data-marker="*">Regardless of what approach you take to a programming task, remember that your code must be readable. You should use comments to give yourself and others clues about what your code is doing. Further, you should create code in a way that is readable.</li>
+</ul>
+
+<h2 id="float-basics">Float Basics</h2>
+<ul>
+  <li data-marker="*">A floating point value is a real number that has a decimal point in it, such as <code class="language-plaintext highlighter-rouge">0.52</code>.</li>
+  <li data-marker="*">
+    <p>You can change your code to support floats as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="nf">float</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's x? "</span><span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nf">float</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's y? "</span><span class="p">))</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>This change allows your user to enter <code class="language-plaintext highlighter-rouge">1.2</code> and <code class="language-plaintext highlighter-rouge">3.4</code> to present a total of <code class="language-plaintext highlighter-rouge">4.6</code>.</p>
+  </li>
+  <li data-marker="*">
+    <p>Let’s imagine, however, that you want to round the total to the nearest integer. Looking at the Python documentation for <code class="language-plaintext highlighter-rouge">round</code> you’ll see that the available arguments are <code class="language-plaintext highlighter-rouge">round(number[n, ndigits])</code>. Those square brackets indicate that something optional can be specified by the programmer. Therefore, you could do <code class="language-plaintext highlighter-rouge">round(n)</code> to round a digit to its nearest integer. Alternatively, you could code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Get the user's input
+</span><span class="n">x</span> <span class="o">=</span> <span class="nf">float</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's x? "</span><span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nf">float</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's y? "</span><span class="p">))</span>
+
+<span class="c1"># Create a rounded result
+</span><span class="n">z</span> <span class="o">=</span> <span class="nf">round</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># Print the result
+</span><span class="nf">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>The output will be rounded to the nearest integer.</p>
+  </li>
+  <li data-marker="*">
+    <p>What if we wanted to format the output of long numbers? For example, rather than seeing <code class="language-plaintext highlighter-rouge">1000</code>, you may wish to see <code class="language-plaintext highlighter-rouge">1,000</code>. You could modify your code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Get the user's input
+</span><span class="n">x</span> <span class="o">=</span> <span class="nf">float</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's x? "</span><span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nf">float</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's y? "</span><span class="p">))</span>
+
+<span class="c1"># Create a rounded result
+</span><span class="n">z</span> <span class="o">=</span> <span class="nf">round</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># Print the formatted result
+</span><span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">z</span><span class="si">:</span><span class="p">,</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Though quite cryptic, that <code class="language-plaintext highlighter-rouge">print(f"{z:,}")</code> creates a scenario where the outputted <code class="language-plaintext highlighter-rouge">z</code> will include commas where the result could look like <code class="language-plaintext highlighter-rouge">1,000</code> or <code class="language-plaintext highlighter-rouge">2,500</code>.</p>
+  </li>
+</ul>
+
+<h2 id="more-on-floats">More on Floats</h2>
+<ul>
+  <li data-marker="*">
+    <p>How can we round floating point values? First, modify your code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Get the user's input
+</span><span class="n">x</span> <span class="o">=</span> <span class="nf">float</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's x? "</span><span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nf">float</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's y? "</span><span class="p">))</span>
+
+<span class="c1"># Calculate the result
+</span><span class="n">z</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="n">y</span>
+
+<span class="c1"># Print the result
+</span><span class="nf">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>When inputting <code class="language-plaintext highlighter-rouge">2</code> as x and <code class="language-plaintext highlighter-rouge">3</code> as y, the result z is <code class="language-plaintext highlighter-rouge">0.6666666666</code> seemingly going on to infinite as we might expect.</p>
+  </li>
+  <li data-marker="*">
+    <p>Let’s imagine that we want to round this down, we could modify our code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Get the user's input
+</span><span class="n">x</span> <span class="o">=</span> <span class="nf">float</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's x? "</span><span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nf">float</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's y? "</span><span class="p">))</span>
+
+<span class="c1"># Calculate the result and round
+</span><span class="n">z</span> <span class="o">=</span> <span class="nf">round</span><span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="n">y</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Print the result
+</span><span class="nf">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>As we might expect, this will round the result to the nearest two decimal points.</p>
+  </li>
+  <li data-marker="*">
+    <p>We could also use <code class="language-plaintext highlighter-rouge">fstring</code> to format the output as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Get the user's input
+</span><span class="n">x</span> <span class="o">=</span> <span class="nf">float</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's x? "</span><span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nf">float</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's y? "</span><span class="p">))</span>
+
+<span class="c1"># Calculate the result
+</span><span class="n">z</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="n">y</span>
+
+<span class="c1"># Print the result
+</span><span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">z</span><span class="si">:</span><span class="p">.</span><span class="mi">2</span><span class="n">f</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>This cryptic <code class="language-plaintext highlighter-rouge">fstring</code> code displays the same as our prior rounding strategy.</p>
+  </li>
+  <li data-marker="*">
+    <p>You can learn more in Python’s documentation of <a href="https://docs.python.org/3/library/functions.html?highlight=float#float"><code class="language-plaintext highlighter-rouge">float</code></a>.</p>
+  </li>
+</ul>
+
+<h2 id="def">Def</h2>
+<ul>
+  <li data-marker="*">Wouldn’t it be nice to create our own functions?</li>
+  <li data-marker="*">
+    <p>Let’s bring back our final code of <code class="language-plaintext highlighter-rouge">hello.py</code> by typing <code class="language-plaintext highlighter-rouge">code hello.py</code> into the terminal window. Your starting code should look as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Ask the user for their name, remove whitespace from the str and capitalize the first letter of each word
+</span><span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your name? "</span><span class="p">).</span><span class="nf">strip</span><span class="p">().</span><span class="nf">title</span><span class="p">()</span>
+
+<span class="c1"># Print the output
+</span><span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>We can better our code to create our own special function that says “hello” for us!</p>
+  </li>
+  <li data-marker="*">
+    <p>Erasing all our code in our text editor, let’s start from scratch:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your name? "</span><span class="p">)</span>
+<span class="nf">hello</span><span class="p">()</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Attempting to run this code, your compiler will throw an error. After all, there is no defined function for <code class="language-plaintext highlighter-rouge">hello</code>.</p>
+  </li>
+  <li data-marker="*">
+    <p>We can create our own function called <code class="language-plaintext highlighter-rouge">hello</code> as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"hello"</span><span class="p">)</span>
+
+
+<span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your name? "</span><span class="p">)</span>
+<span class="nf">hello</span><span class="p">()</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice that everything under <code class="language-plaintext highlighter-rouge">def hello()</code> is indented. Python is an indented language. It uses indentation to understand what is part of the above function. Therefore, everything in the <code class="language-plaintext highlighter-rouge">hello</code> function must be indented. When something is not indented, it treats it as if it is not inside the <code class="language-plaintext highlighter-rouge">hello</code> function. Running <code class="language-plaintext highlighter-rouge">python hello.py</code> in the terminal window, you’ll see that your output is not exactly as you may want.</p>
+  </li>
+  <li data-marker="*">
+    <p>We can further improve our code:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1"># Create our own function
+</span><span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">to</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"hello,"</span><span class="p">,</span> <span class="n">to</span><span class="p">)</span>
+
+
+<span class="c1"># Output using our own function
+</span><span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your name? "</span><span class="p">)</span>
+<span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Here, in the first lines, you are creating your <code class="language-plaintext highlighter-rouge">hello</code> function. This time, however, you are telling the compiler that this function takes a single parameter: a variable called <code class="language-plaintext highlighter-rouge">to</code>. Therefore, when you call <code class="language-plaintext highlighter-rouge">hello(name)</code> the computer passes <code class="language-plaintext highlighter-rouge">name</code> into the <code class="language-plaintext highlighter-rouge">hello</code> function as <code class="language-plaintext highlighter-rouge">to</code>. This is how we pass values into functions. Very useful! Running <code class="language-plaintext highlighter-rouge">python hello.py</code> in the terminal window, you’ll see that the output is much closer to our ideal presented earlier in this lecture.</p>
+  </li>
+  <li data-marker="*">
+    <p>We can change our code to add a default value to <code class="language-plaintext highlighter-rouge">hello</code>:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Create our own function
+</span><span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">to</span><span class="o">=</span><span class="s">"world"</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"hello,"</span><span class="p">,</span> <span class="n">to</span><span class="p">)</span>
+
+
+<span class="c1"># Output using our own function
+</span><span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your name? "</span><span class="p">)</span>
+<span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+<span class="c1"># Output without passing the expected arguments
+</span><span class="nf">hello</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Test out your code yourself.  Notice how the first <code class="language-plaintext highlighter-rouge">hello</code> will behave as you might expect and the second hello, which is not passed a value, will by default output <code class="language-plaintext highlighter-rouge">hello, world</code>.</p>
+  </li>
+  <li data-marker="*">
+    <p>We don’t have to have our function at the start of our program. We can move it down, but we need to tell the compiler that we have a <code class="language-plaintext highlighter-rouge">main</code> function and we have a separate <code class="language-plaintext highlighter-rouge">hello</code> function.</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+
+    <span class="c1"># Output using our own function
+</span>    <span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your name? "</span><span class="p">)</span>
+    <span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="c1"># Output without passing the expected arguments
+</span>    <span class="nf">hello</span><span class="p">()</span>
+
+
+<span class="c1"># Create our own function
+</span><span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">to</span><span class="o">=</span><span class="s">"world"</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"hello,"</span><span class="p">,</span> <span class="n">to</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>This alone, however, will create an error of sorts. If we run <code class="language-plaintext highlighter-rouge">python hello.py</code> nothing happens! The reason for this is that nothing in this code is actually calling the <code class="language-plaintext highlighter-rouge">main</code> function and bringing our program to life.</p>
+  </li>
+  <li data-marker="*">
+    <p>The following very small modification will call the <code class="language-plaintext highlighter-rouge">main</code> function and restore our program to working order:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+
+    <span class="c1"># Output using our own function
+</span>    <span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your name? "</span><span class="p">)</span>
+    <span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="c1"># Output without passing the expected arguments
+</span>    <span class="nf">hello</span><span class="p">()</span>
+
+
+<span class="c1"># Create our own function
+</span><span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">to</span><span class="o">=</span><span class="s">"world"</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"hello,"</span><span class="p">,</span> <span class="n">to</span><span class="p">)</span>
+
+
+<span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="returning-values">Returning Values</h2>
+<ul>
+  <li data-marker="*">You can imagine many scenarios where you don’t just want a function to perform an action, but also to return a value back to the main function. For example, rather than simply printing the calculation of <code class="language-plaintext highlighter-rouge">x + y</code>, you may want a function to return the value of this calculation back to another part of your program. This “passing back” of a value we call a <code class="language-plaintext highlighter-rouge">return</code> value.</li>
+  <li data-marker="*">
+    <p>Returning to our <code class="language-plaintext highlighter-rouge">calculator.py</code> code by typing <code class="language-plaintext highlighter-rouge">code calculator.py</code>. Erase all code there. Rework the code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's x? "</span><span class="p">))</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"x squared is"</span><span class="p">,</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">n</span>
+
+
+<span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Effectively, <code class="language-plaintext highlighter-rouge">x</code> is passed to <code class="language-plaintext highlighter-rouge">square</code>. Then, the calculation of <code class="language-plaintext highlighter-rouge">x * x</code> is returned back to the main function.</p>
+  </li>
+</ul>
+
+<h2 id="summing-up">Summing Up</h2>
+<p>Through the work of this single lecture, you have learned abilities that you will use countless times in your own programs. You have learned about…</p>
+<ul>
+  <li data-marker="*">Creating your first programs in Python;</li>
+  <li data-marker="*">Functions;</li>
+  <li data-marker="*">Bugs;</li>
+  <li data-marker="*">Variables;</li>
+  <li data-marker="*">Comments;</li>
+  <li data-marker="*">Pseudocode;</li>
+  <li data-marker="*">Strings;</li>
+  <li data-marker="*">Parameters;</li>
+  <li data-marker="*">Formatted Strings;</li>
+  <li data-marker="*">Integers;</li>
+  <li data-marker="*">Principles of readability;</li>
+  <li data-marker="*">Floats;</li>
+  <li data-marker="*">Creating your own functions; and</li>
+  <li data-marker="*">Return values.</li>
+</ul>
+
+
+                </main>

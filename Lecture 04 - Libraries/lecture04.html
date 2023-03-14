@@ -1,0 +1,319 @@
+                <main class="col-lg">
+
+                    <h1 class="no_toc" id="lecture-4">Lecture 4</h1>
+
+<ul id="markdown-toc">
+  <li><a href="#libraries" id="markdown-toc-libraries">Libraries</a></li>
+  <li><a href="#random" id="markdown-toc-random">Random</a></li>
+  <li><a href="#statistics" id="markdown-toc-statistics">Statistics</a></li>
+  <li><a href="#command-line-arguments" id="markdown-toc-command-line-arguments">Command-Line Arguments</a></li>
+  <li><a href="#slice" id="markdown-toc-slice"><code class="language-plaintext highlighter-rouge">slice</code></a></li>
+  <li><a href="#packages" id="markdown-toc-packages">Packages</a></li>
+  <li><a href="#apis" id="markdown-toc-apis">APIs</a></li>
+  <li><a href="#making-your-own-libraries" id="markdown-toc-making-your-own-libraries">Making Your Own Libraries</a></li>
+  <li><a href="#summing-up" id="markdown-toc-summing-up">Summing Up</a></li>
+</ul>
+
+<h2 id="libraries">Libraries</h2>
+
+<ul>
+  <li data-marker="*">Generally, libraries are bits of code written by you or others can you can use in your program.</li>
+  <li data-marker="*">Python allows you to share functions or features with others as “modules”.</li>
+  <li data-marker="*">If you copy and paste code from an old project, chances are you can create such a module or library that you could bring into your new project.</li>
+</ul>
+
+<h2 id="random">Random</h2>
+<ul>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">random</code> is a library that comes with Python that you could import into your own project.</li>
+  <li data-marker="*">It’s easier as a coder to stand on the shoulders of prior coders.</li>
+  <li data-marker="*">So, how do you load a module into your own program? You can use the word <code class="language-plaintext highlighter-rouge">import</code> in your program.</li>
+  <li data-marker="*">Inside the <code class="language-plaintext highlighter-rouge">random</code> module, there is a built-in function called <code class="language-plaintext highlighter-rouge">random.choice(seq)</code>. <code class="language-plaintext highlighter-rouge">random</code> is the module you are importing. Inside that module, there is the <code class="language-plaintext highlighter-rouge">choice</code> function. That function takes into it a <code class="language-plaintext highlighter-rouge">seq</code> or sequence that is a list.</li>
+  <li data-marker="*">
+    <p>In your terminal window type <code class="language-plaintext highlighter-rouge">code generate.py</code>. In your text editor, code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">random</span>
+
+<span class="n">coin</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">([</span><span class="s">"heads"</span><span class="p">,</span> <span class="s">"tails"</span><span class="p">])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">coin</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice that the list within <code class="language-plaintext highlighter-rouge">choice</code> has square braces, quotes, and a comma. Since you have passed in two items, Python does the math and gives a 50% chance for heads and tails. Running your code, you will notice that this code, indeed, does function well!</p>
+  </li>
+  <li data-marker="*">
+    <p>We can improve our code. <code class="language-plaintext highlighter-rouge">from</code> allows us to be very specific about what we’d like to import. Prior, our <code class="language-plaintext highlighter-rouge">import</code> line of code is bringing the entire contents of the functions of <code class="language-plaintext highlighter-rouge">random</code>. However, what if we want to only load a small part of a module? Modify your code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">random</span> <span class="kn">import</span> <span class="n">choice</span>
+
+<span class="n">coin</span> <span class="o">=</span> <span class="nf">choice</span><span class="p">([</span><span class="s">"heads"</span><span class="p">,</span> <span class="s">"tails"</span><span class="p">])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">coin</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice that we now can import just the <code class="language-plaintext highlighter-rouge">choice</code> function of <code class="language-plaintext highlighter-rouge">random</code>. From that point forward, we no longer need to code <code class="language-plaintext highlighter-rouge">random.choice</code>. We can now only code <code class="language-plaintext highlighter-rouge">choice</code> alone. <code class="language-plaintext highlighter-rouge">choice</code> is loaded explicitly into our program. This saves system resources and potentially can make our code run faster!</p>
+  </li>
+  <li data-marker="*">
+    <p>Moving on, consider the function <code class="language-plaintext highlighter-rouge">random.randint(a, b)</code>. This function will generate a random number between <code class="language-plaintext highlighter-rouge">a</code> and <code class="language-plaintext highlighter-rouge">b</code>. Modify your code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">random</span>
+
+<span class="n">number</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="nf">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice that our code will randomly generate a number between <code class="language-plaintext highlighter-rouge">1</code> and <code class="language-plaintext highlighter-rouge">10</code>.</p>
+  </li>
+  <li data-marker="*">
+    <p>We can introduce into our card <code class="language-plaintext highlighter-rouge">random.shuffle(x)</code> where it will shuffle a list into a random order.</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">random</span>
+
+<span class="n">cards</span> <span class="o">=</span> <span class="p">[</span><span class="s">"jack"</span><span class="p">,</span> <span class="s">"queen"</span><span class="p">,</span> <span class="s">"king"</span><span class="p">]</span>
+<span class="n">random</span><span class="p">.</span><span class="nf">shuffle</span><span class="p">(</span><span class="n">cards</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">card</span> <span class="ow">in</span> <span class="n">cards</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice that <code class="language-plaintext highlighter-rouge">random.shuffle</code> will shuffle the cards in place. Unlike other functions, it will not return a value. Instead, it will take the <code class="language-plaintext highlighter-rouge">cards</code> list and shuffle them inside that list. Run your code a few times to see the code functioning.</p>
+  </li>
+  <li data-marker="*">
+    <p>We now have these three ways above to generate random information.</p>
+  </li>
+  <li data-marker="*">You can learn more in Python’s documentation of <a href="https://docs.python.org/3/library/random.html"><code class="language-plaintext highlighter-rouge">random</code></a>.</li>
+</ul>
+
+<h2 id="statistics">Statistics</h2>
+
+<ul>
+  <li data-marker="*">Python comes with a built-in <code class="language-plaintext highlighter-rouge">statistics</code> library. How might we use this module?</li>
+  <li data-marker="*">
+    <p><code class="language-plaintext highlighter-rouge">average</code> is a function of this library that is quite useful. In your terminal window, type <code class="language-plaintext highlighter-rouge">code average.py</code>. In the text editor window, modify your code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">statistics</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">statistics</span><span class="p">.</span><span class="nf">mean</span><span class="p">([</span><span class="mi">100</span><span class="p">,</span> <span class="mi">90</span><span class="p">]))</span>
+</code></pre></div>    </div>
+    <p>Notice that we imported a different library called <code class="language-plaintext highlighter-rouge">statistics</code>. The <code class="language-plaintext highlighter-rouge">mean</code> function takes a list of values. This will print the average of these values. In your terminal window, type <code class="language-plaintext highlighter-rouge">python average.py</code>.</p>
+  </li>
+  <li data-marker="*">Consider the possibilities of using the <code class="language-plaintext highlighter-rouge">statistics</code> module in your own programs.</li>
+  <li data-marker="*">You can learn more in Python’s documentation of <a href="https://docs.python.org/3/library/statistics.html"><code class="language-plaintext highlighter-rouge">statistics</code></a>.</li>
+</ul>
+
+<h2 id="command-line-arguments">Command-Line Arguments</h2>
+<ul>
+  <li data-marker="*">So far, we have been providing all values within the program that we have created. What if we wanted to be able to take input from the command-line? For example, rather than typing <code class="language-plaintext highlighter-rouge">python average.py</code> in the terminal, what if we wanted to be able to type <code class="language-plaintext highlighter-rouge">python average.py 100 90</code> and be able to get the average between <code class="language-plaintext highlighter-rouge">100</code> and <code class="language-plaintext highlighter-rouge">90</code>?</li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">sys</code> is a module that allows us to take arguments at the command line.</li>
+  <li data-marker="*">
+    <p><code class="language-plaintext highlighter-rouge">argv</code> is a function within the <code class="language-plaintext highlighter-rouge">sys</code> module that allows us to learn about what the user typed in at the command line. Notice how you will see <code class="language-plaintext highlighter-rouge">sys.argv</code> utilized in the code below. In the terminal window, type <code class="language-plaintext highlighter-rouge">code name.py</code>. In the text editor, code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">sys</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="s">"hello, my name is"</span><span class="p">,</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>    </div>
+    <p>Notice that the program is going to look at what the user typed in the command line. Currently, if you type <code class="language-plaintext highlighter-rouge">python name.py David</code> into the terminal window, you will see <code class="language-plaintext highlighter-rouge">hello, my name is David</code>. Notice that <code class="language-plaintext highlighter-rouge">sys.argv[1]</code> is where <code class="language-plaintext highlighter-rouge">David</code> is being stored. Why is that? Well, in prior lessons, you might remember that lists start at the <code class="language-plaintext highlighter-rouge">0</code>th element. What do you think is held currently in <code class="language-plaintext highlighter-rouge">sys.argv[0]</code>? If you guessed <code class="language-plaintext highlighter-rouge">name.py</code>, you would be correct!</p>
+  </li>
+  <li data-marker="*">
+    <p>There is a small problem with our program as it stands. What if the user does not type in the name at the command line? Try it yourself. Type <code class="language-plaintext highlighter-rouge">python name.py</code> into the terminal window. An error <code class="language-plaintext highlighter-rouge">list index out of range</code> will be presented by the compiler. The reason for this is that there is nothing at <code class="language-plaintext highlighter-rouge">sys.argv[1]</code> because nothing was typed! Here’s how we can protect our program from this type of error:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">sys</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"hello, my name is"</span><span class="p">,</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">except</span> <span class="nb">IndexError</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Too few arguments"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice that the user will now be prompted with a useful hint about how to make the program work if they forget to type in a name. However, could we be more defensive to ensure the user inputs the right values?</p>
+  </li>
+  <li data-marker="*">
+    <p>Our program can be improved as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">sys</span>
+
+<span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Too few arguments"</span><span class="p">)</span>
+<span class="k">elif</span> <span class="nf">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Too many arguments"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"hello, my name is"</span><span class="p">,</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>    </div>
+    <p>Notice how if you test your code, you will see how these exceptions are handled, providing the user with more refined advice. Even if the user types in too many or too few arguments, the user is provided clear instructions about how to fix the issue.</p>
+  </li>
+  <li data-marker="*">
+    <p>Right now, our code is logically correct. However, there is something very nice about keeping our error checking separate from the remainder of our code. How could we separate out our error handling? Modify your code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">sys</span>
+
+<span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="n">sys</span><span class="p">.</span><span class="nf">exit</span><span class="p">(</span><span class="s">"Too few arguments"</span><span class="p">)</span>
+<span class="k">elif</span> <span class="nf">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="n">sys</span><span class="p">.</span><span class="nf">exit</span><span class="p">(</span><span class="s">"Too many arguments"</span><span class="p">)</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="s">"hello, my name is"</span><span class="p">,</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>    </div>
+    <p>Notice how we are using a built-in function of <code class="language-plaintext highlighter-rouge">sys</code> called <code class="language-plaintext highlighter-rouge">exit</code> that allows us to exit the program if an error was introduced by the user. We can rest assured now that the program will never execute the final line of code and trigger an error. Therefore, <code class="language-plaintext highlighter-rouge">sys.argv</code> provides a way by which users can introduce information from the command line. <code class="language-plaintext highlighter-rouge">sys.exit</code> provides a means by which the program can exit if an error arises.</p>
+  </li>
+  <li data-marker="*">You can learn more in Python’s documentation of <a href="https://docs.python.org/3/library/sys.html"><code class="language-plaintext highlighter-rouge">sys</code></a>.</li>
+</ul>
+
+<h2 id="slice"><code class="language-plaintext highlighter-rouge">slice</code></h2>
+<ul>
+  <li data-marker="*">
+    <p><code class="language-plaintext highlighter-rouge">slice</code> is a command that allows us to take a <code class="language-plaintext highlighter-rouge">list</code> and tell the compiler where we want the compiler to consider the start of the <code class="language-plaintext highlighter-rouge">list</code> and the end of the <code class="language-plaintext highlighter-rouge">list</code>. For example, modify your code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">sys</span>
+
+<span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="n">sys</span><span class="p">.</span><span class="nf">exit</span><span class="p">(</span><span class="s">"Too few arguments"</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"hello, my name is"</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice that if you type <code class="language-plaintext highlighter-rouge">python name.py David Carter Rongxin</code> into the terminal window, the compiler will output not just the intended output of the names, but also <code class="language-plaintext highlighter-rouge">hello, my name is name.py</code>. How then could we ensure that the compiler ignores the first element of the list where <code class="language-plaintext highlighter-rouge">name.py</code> is currently being stored?</p>
+  </li>
+  <li data-marker="*">
+    <p><code class="language-plaintext highlighter-rouge">slice</code> can be employed in our code to start the list somewhere different! Modify your code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">sys</span>
+
+<span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="n">sys</span><span class="p">.</span><span class="nf">exit</span><span class="p">(</span><span class="s">"Too few arguments"</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"hello, my name is"</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice that rather than starting the list at <code class="language-plaintext highlighter-rouge">0</code>, we use square brackets to tell the compiler to start at <code class="language-plaintext highlighter-rouge">1</code> and go to the end using the <code class="language-plaintext highlighter-rouge">1:</code> argument. Running this code, you’ll notice that we can improve our code using relatively simple syntax.</p>
+  </li>
+</ul>
+
+<h2 id="packages">Packages</h2>
+<ul>
+  <li data-marker="*">One of the reasons Python is so popular is that there are numerous powerful third-party libraries that add functionality. We call these third-party libraries, implemented as a folder, “packages”.</li>
+  <li data-marker="*">PyPI is a repository or directory of all available third-party packages currently available.</li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">cowsay</code> is a well-known package that allows a cow to talk to the user.</li>
+  <li data-marker="*">Python has a package manager called <code class="language-plaintext highlighter-rouge">pip</code> that allows you to install packages quickly onto your system.</li>
+  <li data-marker="*">In the terminal window, you can install the <code class="language-plaintext highlighter-rouge">cowsay</code> package by typing <code class="language-plaintext highlighter-rouge">pip install cowsay</code>. After a bit of output, you can now go about using this package in your code.</li>
+  <li data-marker="*">
+    <p>In your terminal window type <code class="language-plaintext highlighter-rouge">code say.py</code>. In the text editor, code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">cowsay</span>
+<span class="kn">import</span> <span class="n">sys</span>
+
+<span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="n">cowsay</span><span class="p">.</span><span class="nf">cow</span><span class="p">(</span><span class="s">"hello, "</span> <span class="o">+</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>    </div>
+    <p>Notice that the program first checks that the user inputted at least two arguments at the command line. Then, the cow should speak to the user. Type <code class="language-plaintext highlighter-rouge">python say.py David</code> and you’ll see a cow saying “hello” to David.</p>
+  </li>
+  <li data-marker="*">
+    <p>Further modify your code:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">cowsay</span>
+<span class="kn">import</span> <span class="n">sys</span>
+
+<span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="n">cowsay</span><span class="p">.</span><span class="nf">trex</span><span class="p">(</span><span class="s">"hello, "</span> <span class="o">+</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>    </div>
+    <p>Notice that a t-rex is now saying “hello”.</p>
+  </li>
+  <li data-marker="*">You now can see how you could install third-party packages.</li>
+  <li data-marker="*">You can learn more on PyPI’s entry for <a href="https://pypi.org/project/cowsay/"><code class="language-plaintext highlighter-rouge">cowsay</code></a></li>
+  <li data-marker="*">You can find other third-party packages at <a href="https://pypi.org/">PyPI</a></li>
+</ul>
+
+<h2 id="apis">APIs</h2>
+<ul>
+  <li data-marker="*">APIs or “application program interfaces” allow you to connect to the code of others.</li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">requests</code> is a package that allows your program to behave as a web browser would.</li>
+  <li data-marker="*">In your terminal, type <code class="language-plaintext highlighter-rouge">pip install requests</code>. Then, type <code class="language-plaintext highlighter-rouge">code itunes.py</code>.</li>
+  <li data-marker="*">It turns out that Apple iTunes has its own API that you can access in your programs. In your internet browser, you can visit <a href="https://itunes.apple.com/search?entity=song&amp;limit=1&amp;term=weezer">https://itunes.apple.com/search?entity=song&amp;limit=1&amp;term=weezer</a> and a text file will be downloaded. David constructed this URL by reading Apple’s API documentation. Notice how this query is looking for a <code class="language-plaintext highlighter-rouge">song</code>, with a <code class="language-plaintext highlighter-rouge">limit</code> of one result, that relates to the <code class="language-plaintext highlighter-rouge">term</code> called <code class="language-plaintext highlighter-rouge">weezer</code>. Looking at this text file that is downloaded, you might find the format to be similar to that we’ve programmed previously in Python.</li>
+  <li data-marker="*">The format in the downloaded text file is called JSON, a text-based format that is used to exchange text-based data between applications. Literally, Apple is providing a JSON file that we could interpret in our own Python program.</li>
+  <li data-marker="*">
+    <p>In the terminal window, type <code class="language-plaintext highlighter-rouge">code itunes.py</code>. Code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">requests</span>
+<span class="kn">import</span> <span class="n">sys</span>
+
+<span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="n">sys</span><span class="p">.</span><span class="nf">exit</span><span class="p">()</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s">"https://itunes.apple.com/search?entity=song&amp;limit=1&amp;term="</span> <span class="o">+</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="nf">json</span><span class="p">())</span>
+</code></pre></div>    </div>
+    <p>Notice how the returned value of <code class="language-plaintext highlighter-rouge">requests.get</code> will be stored in <code class="language-plaintext highlighter-rouge">response</code>. David, having read the Apple documentation about this API, knows that what is returned is a JSON file. Running <code class="language-plaintext highlighter-rouge">python itunes.py weezer</code>, you will see the JSON file returned by Apple. However, the JSON response is converted by Python into a dictionary. Looking at the output, it can be quite dizzying!</p>
+  </li>
+  <li data-marker="*">
+    <p>It turns out that Python has a built-in JSON library that can help us interpret the data received. Modify your code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">json</span>
+<span class="kn">import</span> <span class="n">requests</span>
+<span class="kn">import</span> <span class="n">sys</span>
+
+<span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="n">sys</span><span class="p">.</span><span class="nf">exit</span><span class="p">()</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s">"https://itunes.apple.com/search?entity=song&amp;limit=1&amp;term="</span> <span class="o">+</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="nf">dumps</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="nf">json</span><span class="p">(),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+</code></pre></div>    </div>
+    <p>Notice that <code class="language-plaintext highlighter-rouge">json.dumps</code> is implemented such that it utilizes <code class="language-plaintext highlighter-rouge">indent</code> to make the output more readable. Running <code class="language-plaintext highlighter-rouge">python itunes.py weezer</code>, you will see the same JSON file. However, this time, it is much more readable. Notice now that you will see a dictionary called <code class="language-plaintext highlighter-rouge">results</code> inside the output. Inside that dictionary called <code class="language-plaintext highlighter-rouge">results</code> there are numerous keys present. Look at the <code class="language-plaintext highlighter-rouge">trackName</code> value in the output. What track name do you see in your results?</p>
+  </li>
+  <li data-marker="*">
+    <p>How could we simply output the name of just that track name? Modify your code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">json</span>
+<span class="kn">import</span> <span class="n">requests</span>
+<span class="kn">import</span> <span class="n">sys</span>
+
+<span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="n">sys</span><span class="p">.</span><span class="nf">exit</span><span class="p">()</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s">"https://itunes.apple.com/search?entity=song&amp;limit=50&amp;term="</span> <span class="o">+</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">o</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">json</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">o</span><span class="p">[</span><span class="s">"results"</span><span class="p">]:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s">"trackName"</span><span class="p">])</span>
+</code></pre></div>    </div>
+    <p>Notice how we are taking the result of <code class="language-plaintext highlighter-rouge">response.json()</code> and storing it in <code class="language-plaintext highlighter-rouge">o</code> (as in the lowercase letter). Then, we are iterating through the <code class="language-plaintext highlighter-rouge">results</code> in <code class="language-plaintext highlighter-rouge">o</code> and printing each <code class="language-plaintext highlighter-rouge">trackName</code>. Also notice how we have increased the limit number of results to <code class="language-plaintext highlighter-rouge">50</code>. Run your program. See the results.</p>
+  </li>
+  <li data-marker="*">You can learn more about <code class="language-plaintext highlighter-rouge">requests</code> through the <a href="https://docs.python-requests.org/">library’s documentation</a>.</li>
+  <li data-marker="*">You can learn more about JSON in Python’s documentation of <a href="https://docs.python.org/3/library/json.html">JSON</a>.</li>
+</ul>
+
+<h2 id="making-your-own-libraries">Making Your Own Libraries</h2>
+<ul>
+  <li data-marker="*">You have the ability as a Python programmer to create your own library!</li>
+  <li data-marker="*">Imagine situations where you may want to re-use bits of code time and time again or even share them with others!</li>
+  <li data-marker="*">
+    <p>We have been writing lots of code to say “hello” so far in this course. Let’s create a package to allow us to say “hello” and “goodbye”. In your terminal window, type <code class="language-plaintext highlighter-rouge">code sayings.py</code>. In the text editor, code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">goodbye</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"goodbye, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice that this code in and of itself does not do anything for the user. However, if a programmer were to import this package into their own program, the abilities created by the functions above could be implemented in their code.</p>
+  </li>
+  <li data-marker="*">
+    <p>Let’s see how we could implement code utilizing this package that we created. In the terminal window, type <code class="language-plaintext highlighter-rouge">code say.py</code>. In this new file in your text editor, type the following:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">sys</span>
+
+<span class="kn">from</span> <span class="n">saying</span> <span class="kn">import</span> <span class="n">goodbye</span>
+
+<span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="nf">goodbye</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>    </div>
+    <p>Notice that this code imports the abilities of <code class="language-plaintext highlighter-rouge">goodbye</code> from the <code class="language-plaintext highlighter-rouge">sayings</code> package. If the user inputed at least two arguments at the command line, it will say “goodbye” along with the string inputed at the command line.</p>
+  </li>
+</ul>
+
+<h2 id="summing-up">Summing Up</h2>
+<p>Libraries extend the abilities of Python. Some libraries are included by default with Python and simply need to be imported. Others are third-party packages that need to be installed using <code class="language-plaintext highlighter-rouge">pip</code>. You can make your own packages for use by yourself or others! In this lecture, you learned about…</p>
+
+<ul>
+  <li data-marker="*">Libraries</li>
+  <li data-marker="*">Random</li>
+  <li data-marker="*">Statistics</li>
+  <li data-marker="*">Command-Line Arguments</li>
+  <li data-marker="*">Slice</li>
+  <li data-marker="*">Packages</li>
+  <li data-marker="*">APIs</li>
+  <li data-marker="*">Making Your Own Libraries</li>
+</ul>
+
+
+                </main>
