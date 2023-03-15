@@ -1,0 +1,705 @@
+<!DOCTYPE html><html lang="en-us"><head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, width=device-width"><meta property="og:description" content="An introduction to programming using Python, a popular language for general-purpose programming, data science, web programming, and more.">
+
+        <meta property="og:image" content="https://prod-discovery.edx-cdn.org/media/course/image/2cc794d0-316d-42f7-bbfd-25c34e4cd5df-033e46d516c0.small.png"><meta property="og:title" content="Lecture 7 - CS50's Introduction to Programming with Python">
+
+        <link href="../../favicon.ico?1678165156" rel="icon">
+
+        <!-- https://fonts.google.com/specimen/PT+Sans?query=PT+Sans&selection.family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700 -->
+        <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+
+        <!-- https://getbootstrap.com/docs/ -->
+        <script src="../../assets/jquery/dist/jquery.min.js?1678165156"></script>
+        <script src="../../assets/bootstrap/dist/js/bootstrap.bundle.min.js?1678165156"></script>
+
+        <!-- https://bootstrap-table.com/docs/getting-started/introduction/ -->
+        <link href="../../assets/bootstrap-table/dist/bootstrap-table.min.css?1678165156" rel="stylesheet">
+        <script src="../../assets/bootstrap-table/dist/bootstrap-table.min.js?1678165156"></script>
+        <script src="../../assets/bootstrap-table/dist/extensions/mobile/bootstrap-table-mobile.min.js?1678165156"></script>
+
+        <!-- https://fontawesome.com/how-to-use/on-the-web/referencing-icons/basic-use -->
+        <link href="../../assets/@fortawesome/fontawesome-free/css/all.min.css?1678165156" rel="stylesheet">
+
+        <!-- https://moment.github.io/luxon/ -->
+        <script src="../../assets/luxon.min.js?1678165156"></script>
+
+        <!-- http://docs.mathjax.org/ -->
+        <!-- https://www.jsdelivr.com/package/npm/mathjax?path=es5 -->
+        <!-- http://docs.mathjax.org/en/latest/options/output/chtml.html?highlight=displayAlign#the-configuration-block -->
+        <script>
+            MathJax = {
+               chtml: {
+                    displayAlign: "left"
+                }
+            };
+        </script>
+        <script crossorigin="anonymous" integrity="sha256-z47L98YXVhVIaY0uyDzt675P5Ea+w3RsPh9VD5NuoTY=" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-chtml.js"></script>
+
+        <!-- https://github.com/verlok/vanilla-lazyload -->
+        <!-- https://www.jsdelivr.com/package/npm/vanilla-lazyload -->
+        <!-- https://www.jsdelivr.com/package/npm/intersection-observer -->
+        <script crossorigin="anonymous" integrity="sha256-v3MXDIY3uujDKO0h37NoglNDp6uwq+4EmM0EkH99Uuo=" src="https://cdn.jsdelivr.net/npm/intersection-observer@0.12.2/intersection-observer.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-sO6HPavoXo796Zp/bq6ts4qHOoEqfydXEXSX5NojP48=" src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js"></script>
+
+        <!-- https://github.com/davidjbradshaw/iframe-resizer -->
+        <!-- https://www.jsdelivr.com/package/npm/iframe-resizer?path=js -->
+        <script crossorigin="anonymous" integrity="sha256-oBWDuxBG1C5U0t3xjmZZ1UAlt9sKeSRk26KiVy4jxpY=" src="https://cdn.jsdelivr.net/npm/iframe-resizer@4.3.2/js/iframeResizer.min.js"></script>
+
+        <!-- https://github.com/scratchblocks/scratchblocks/releases -->
+        <script src="../../assets/scratchblocks.min.js?1678165156"></script>
+
+        <!-- https://mermaid-js.github.io/ -->
+        <!-- https://www.jsdelivr.com/package/npm/mermaid -->
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@9.3.0/dist/mermaid.min.js" integrity="sha256-QdTG1YTLLTwD3b95jLqFxpQX9uYuJMNAtVZgwKX4oYU=" crossorigin="anonymous"></script>
+
+        <!-- https://github.com/twitter/twemoji -->
+        <script src="../../assets/twemoji.min.js?1678165156"></script>
+
+        
+
+        <link href="../../assets/page.css?1678165156" rel="stylesheet">
+        <script src="../../assets/jekyll-theme-cs50.js?1678165156"></script>
+
+        <script>
+            window.CS50 = {
+                local: {"day":"numeric","hour":"numeric","minute":"numeric","month":"long","timeZoneName":"short","weekday":"long","year":"numeric"},
+                locale: "en",
+                tz: "America/New_York"
+            };
+        </script>
+
+        <title>Lecture 7 - CS50's Introduction to Programming with Python</title>
+
+
+    </head>
+
+    <body class="invisible">
+
+        <div class="alert fixed-top mb-0 rounded-0" data-alert="success dismissible" data-hash="7effc11d8ee370d9f3e0a53f1b0b1824" id="alert" role="alert">
+            <button aria-label="Close" class="btn-close d-none" data-bs-dismiss="alert" type="button"></button><p>Interested in <a href="../../#how-to-take-this-course">a verified certificate or a professional certificate</a>?</p></div>
+        
+
+        <div class="container-fluid">
+
+            <div class="row">
+
+                <aside class="col-lg">
+ 
+                    <header><h1 data-id="cs50s-introduction-to-programming-with-python"><a href="../..">CS50’s Introduction to Programming with Python</a></h1>
+
+<p>OpenCourseWare</p>
+
+<p><a class="pr-1 small" href="https://cs50.harvard.edu/donate">Donate<i aria-hidden="true" class="fas fa-external-link-alt ps-2"></i></a></p>
+
+<p><a href="https://cs.harvard.edu/malan/">David J. Malan</a>
+<br>
+<a href="mailto:malan@harvard.edu">malan@harvard.edu</a>
+<br>
+<a class="mr-1" href="https://www.clubhouse.com/@davidjmalan"><i aria-hidden="true" class="fas fa-hand-paper" title="Clubhouse"></i><span class="sr-only">Clubhouse</span></a>
+<a class="mr-1" href="https://www.facebook.com/dmalan"><i aria-hidden="true" class="fab fa-facebook-f" title="Facebook"></i><span class="sr-only">Facebook</span></a>
+<a class="mr-1" href="https://github.com/dmalan"><i aria-hidden="true" class="fab fa-github" title="GitHub"></i><span class="sr-only">GitHub</span></a>
+<a class="mr-1" href="https://www.instagram.com/davidjmalan/"><i aria-hidden="true" class="fab fa-instagram" title="Instagram"></i><span class="sr-only">Instagram</span></a>
+<a class="mr-1" href="https://www.linkedin.com/in/malan/"><i aria-hidden="true" class="fab fa-linkedin" title="LinkedIn"></i><span class="sr-only">LinkedIn</span></a>
+<a class="mr-1" href="https://orcid.org/0000-0001-5338-2522"><i aria-hidden="true" class="fab fa-orcid" title="ORCID"></i><span class="sr-only">ORCID</span></a>
+<a class="mr-1" href="https://www.quora.com/profile/David-J-Malan"><i aria-hidden="true" class="fab fa-quora" title="Quora"></i><span class="sr-only">Quora</span></a>
+<a class="mr-1" href="https://www.reddit.com/user/davidjmalan"><i aria-hidden="true" class="fab fa-reddit-alien" title="Reddit"></i><span class="sr-only">Reddit</span></a>
+<a class="mr-1" href="https://www.tiktok.com/@davidjmalan"><i aria-hidden="true" class="fab fa-tiktok" title="TikTok"></i><span class="sr-only">TikTok</span></a>
+<a class="mr-1" href="https://davidjmalan.t.me/"><i aria-hidden="true" class="fab fa-telegram" title="Telegram"></i><span class="sr-only">Telegram</span></a>
+<a class="mr-1" href="https://twitter.com/davidjmalan"><i aria-hidden="true" class="fab fa-twitter" title="Twitter"></i><span class="sr-only">Twitter</span></a></p></header>
+
+                    
+
+                    <button aria-controls="nav" aria-expanded="false" class="btn btn-sm collapsed d-lg-none" data-bs-target="aside > nav" data-bs-toggle="collapse">
+                        Menu
+                    </button>
+
+                    <nav class="collapse d-lg-block" id="nav"><hr>
+
+<ul>
+  <li data-marker="*"><a href="https://cs50.harvard.edu/x/puzzles/"><i class="fas fa-puzzle-piece pe-2"></i>CS50x Puzzle Day 2023</a></li>
+</ul>
+
+<hr>
+
+<ol start="0">
+  <li><a href="../../weeks/0/">Functions, Variables</a></li>
+  <li><a href="../../weeks/1/">Conditionals</a></li>
+  <li><a href="../../weeks/2/">Loops</a></li>
+  <li><a href="../../weeks/3/">Exceptions</a></li>
+  <li><a href="../../weeks/4/">Libraries</a></li>
+  <li><a href="../../weeks/5/">Unit Tests</a></li>
+  <li><a href="../../weeks/6/">File I/O</a></li>
+  <li><a href="../../weeks/7/">Regular Expressions</a></li>
+  <li><a href="../../weeks/8/">Object-Oriented Programming</a></li>
+  <li><a href="../../weeks/9/">Et Cetera</a></li>
+</ol>
+
+<hr>
+
+<ul>
+  <li data-marker="*"><a href="../../honesty/">Academic Honesty</a></li>
+  <li data-marker="*"><a href="../../certificate/">CS50 Certificate</a></li>
+  <li data-marker="*"><a href="../../faqs/">FAQs</a></li>
+  <li data-marker="*"><a href="https://cs50.me/cs50p">Gradebook</a></li>
+  <li data-marker="*"><a href="../../shorts/">Shorts</a></li>
+</ul>
+
+<hr>
+
+<ul>
+  <li data-marker="*"><a href="https://cs50.edx.org/ed">Ed Discussion</a> for Q&amp;A</li>
+  <li data-marker="*" class="small"><a href="https://us.edstem.org/quickstart/ed-discussion.pdf">Quick Start Guide</a></li>
+</ul>
+
+<hr>
+
+<ul class="small">
+  <li data-marker="*"><a href="https://apps.apple.com/us/app/cs50/id1631064453">Apple TV</a></li>
+  <li data-marker="*"><a href="https://cs50.edx.org/python">edX</a></li>
+  <li data-marker="*"><a href="https://play.google.com/store/apps/details?id=edu.harvard.cs50.googletv">Google TV</a></li>
+  <li data-marker="*"><a href="https://youtube.com/playlist?list=PLhQjrBD2T3817j24-GogXmWqO5Q5vYy0V">YouTube</a></li>
+</ul>
+
+<hr>
+
+<ul class="small">
+  <li data-marker="*"><a href="https://cs50.statuspage.io/">Status Page</a></li>
+</ul>
+
+<hr>
+
+<ul>
+  <li data-marker="*"><a href="../../communities/"><strong>Communities</strong></a></li>
+  <li data-marker="*" class="small"><a href="https://www.clubhouse.com/club/cs50">Clubhouse</a></li>
+  <li data-marker="*" class="small"><a href="https://discord.gg/cs50">Discord</a> <span class="badge bg-light ms-1 py-1 rounded-pill text-dark">Q&amp;A</span></li>
+  <li data-marker="*" class="small"><a href="https://cs50.edx.org/ed">Ed</a> <span class="badge bg-light ms-1 py-1 rounded-pill text-dark">Q&amp;A</span></li>
+  <li data-marker="*" class="small"><a href="https://www.facebook.com/groups/cs50/">Facebook Group</a> <span class="badge bg-light ms-1 py-1 rounded-pill text-dark">Q&amp;A</span></li>
+  <li data-marker="*" class="small"><a href="https://www.facebook.com/cs50/">Facebook Page</a></li>
+  <li data-marker="*" class="small"><a href="https://github.com/cs50">GitHub</a></li>
+  <li data-marker="*" class="small"><a href="https://gitter.im/cs50/x">Gitter</a> <span class="badge bg-light ms-1 py-1 rounded-pill text-dark">Q&amp;A</span></li>
+  <li data-marker="*" class="small"><a href="https://instagram.com/cs50">Instagram</a></li>
+  <li data-marker="*" class="small"><a href="https://www.linkedin.com/groups/7437240/">LinkedIn Group</a></li>
+  <li data-marker="*" class="small"><a href="https://www.linkedin.com/school/CS50/">LinkedIn Page</a></li>
+  <li data-marker="*" class="small"><a href="https://cs50.medium.com/">Medium</a></li>
+  <li data-marker="*" class="small"><a href="https://www.quora.com/topic/CS50">Quora</a></li>
+  <li data-marker="*" class="small"><a href="https://www.reddit.com/r/cs50/">Reddit</a> <span class="badge bg-light ms-1 py-1 rounded-pill text-dark">Q&amp;A</span></li>
+  <li data-marker="*" class="small"><a href="https://cs50.edx.org/slack">Slack</a> <span class="badge bg-light ms-1 py-1 rounded-pill text-dark">Q&amp;A</span></li>
+  <li data-marker="*" class="small"><a href="https://www.snapchat.com/add/cs50">Snapchat</a></li>
+  <li data-marker="*" class="small"><a href="https://soundcloud.com/cs50">SoundCloud</a></li>
+  <li data-marker="*" class="small"><a href="https://cs50.stackexchange.com/">Stack Exchange</a> <span class="badge bg-light ms-1 py-1 rounded-pill text-dark">Q&amp;A</span></li>
+  <li data-marker="*" class="small"><a href="https://www.tiktok.com/@cs50">TikTok</a></li>
+  <li data-marker="*" class="small"><a href="https://twitter.com/cs50">Twitter</a></li>
+  <li data-marker="*" class="small"><a href="http://www.youtube.com/subscription_center?add_user=cs50tv">YouTube</a></li>
+</ul>
+
+<hr>
+
+<p><a href="https://cs50.harvardshop.com/"><img src="https://i.imgur.com/GGMdcKt.png" alt="Harvard Shop"></a></p>
+
+<hr>
+
+<p><a href="../../license/" class="small"><i class="fab fa-creative-commons me-1"></i>License</a></p></nav>
+
+                    <footer></footer>
+
+                </aside>
+
+                <main class="col-lg">
+
+                    <h1 class="no_toc" id="lecture-7">Lecture 7</h1>
+
+<ul id="markdown-toc">
+  <li><a href="#regular-expressions" id="markdown-toc-regular-expressions">Regular Expressions</a></li>
+  <li><a href="#case-sensitivity" id="markdown-toc-case-sensitivity">Case Sensitivity</a></li>
+  <li><a href="#cleaning-up-user-input" id="markdown-toc-cleaning-up-user-input">Cleaning Up User Input</a></li>
+  <li><a href="#extracting-user-input" id="markdown-toc-extracting-user-input">Extracting User Input</a></li>
+  <li><a href="#summing-up" id="markdown-toc-summing-up">Summing Up</a></li>
+</ul>
+
+<h2 id="regular-expressions">Regular Expressions</h2>
+
+<ul>
+  <li data-marker="*">Regular expressions or “regexes” will enable us to examine patterns within our code. For example, we might want to validate that an email address is formatted correctly. Regular expressions will enable us to examine expressions in this fashion.</li>
+  <li data-marker="*">To begin, type <code class="language-plaintext highlighter-rouge">code validate.py</code> in the terminal window. Then, code as follows in the text editor:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">email</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your email? "</span><span class="p">).</span><span class="nf">strip</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="s">"@"</span> <span class="ow">in</span> <span class="n">email</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Valid"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Invalid"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice that <code class="language-plaintext highlighter-rouge">strip</code> will remove whitespace at the beginning or end of the input. Running this program, you will see that as long as an <code class="language-plaintext highlighter-rouge">@</code> symbol is inputted, the program will regard the input as valid.</p>
+  </li>
+  <li data-marker="*">You can imagine, however, that one could input <code class="language-plaintext highlighter-rouge">@@</code> alone and the input could be regarded as valid. We could regard an email address as having at least one <code class="language-plaintext highlighter-rouge">@</code> and a <code class="language-plaintext highlighter-rouge">.</code> somewhere within it. Modify your code as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">email</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your email? "</span><span class="p">).</span><span class="nf">strip</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="s">"@"</span> <span class="ow">in</span> <span class="n">email</span> <span class="ow">and</span> <span class="s">"."</span> <span class="ow">in</span> <span class="n">email</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Valid"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Invalid"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice that while this works as expected, our user could be adversarial, typing simply <code class="language-plaintext highlighter-rouge">@.</code> would result in the program returning <code class="language-plaintext highlighter-rouge">valid</code>.</p>
+  </li>
+  <li data-marker="*">We can improve the logic of our program as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">email</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your email? "</span><span class="p">).</span><span class="nf">strip</span><span class="p">()</span>
+
+<span class="n">username</span><span class="p">,</span> <span class="n">domain</span> <span class="o">=</span> <span class="n">email</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s">"@"</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">username</span> <span class="ow">and</span> <span class="s">"."</span> <span class="ow">in</span> <span class="n">domain</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Valid"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Invalid"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how the <code class="language-plaintext highlighter-rouge">strip</code> method is used to determine if <code class="language-plaintext highlighter-rouge">username</code> exists and if <code class="language-plaintext highlighter-rouge">.</code> is inside the <code class="language-plaintext highlighter-rouge">domain</code> variable. Running this program, a standard email address typed in by you could be considered <code class="language-plaintext highlighter-rouge">valid</code>. Typing in <code class="language-plaintext highlighter-rouge">malan@harvard</code> alone, you’ll find that the program regards this input as <code class="language-plaintext highlighter-rouge">invalid</code>.</p>
+  </li>
+  <li data-marker="*">We can be even more precise, modifying our code as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">email</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your email? "</span><span class="p">).</span><span class="nf">strip</span><span class="p">()</span>
+
+<span class="n">username</span><span class="p">,</span> <span class="n">domain</span> <span class="o">=</span> <span class="n">email</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s">"@"</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">username</span> <span class="ow">and</span> <span class="n">domain</span><span class="p">.</span><span class="nf">endswith</span><span class="p">(</span><span class="s">".edu"</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Valid"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Invalid"</span><span class="p">)</span>
+
+</code></pre></div>    </div>
+    <p>Notice how the <code class="language-plaintext highlighter-rouge">endswith</code> method will check to see if <code class="language-plaintext highlighter-rouge">domain</code> contains <code class="language-plaintext highlighter-rouge">.edu</code>. Still, however, a nefarious user could still break our code. For example, a user could type in <code class="language-plaintext highlighter-rouge">malan@.edu</code> and it would be considered valid.</p>
+  </li>
+  <li data-marker="*">Indeed, we could keep iterating upon this code ourselves. However, it turns out that Python has an existing library called <code class="language-plaintext highlighter-rouge">re</code> that has a number of built-in functions that can validate user inputs against patterns.</li>
+  <li data-marker="*">One of the most versatile functions within the library <code class="language-plaintext highlighter-rouge">re</code> is <code class="language-plaintext highlighter-rouge">search</code>.</li>
+  <li data-marker="*">The <code class="language-plaintext highlighter-rouge">search</code> library follows the signature <code class="language-plaintext highlighter-rouge">re.search(pattern, string, flags=0)</code>. Following this signature, we can modify our code as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">re</span>
+
+<span class="n">email</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your email? "</span><span class="p">).</span><span class="nf">strip</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">re</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="s">"@"</span><span class="p">,</span> <span class="n">email</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Valid"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Invalid"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice this does not increase the functionality of our program at all. In fact, it is somewhat a step back.</p>
+  </li>
+  <li data-marker="*">
+    <p>We can further our program’s functionality. However, we need to advance our vocabulary around <code class="language-plaintext highlighter-rouge">validation</code>. It turns out that in the world of regular expressions there are certain symbols that allow us to identify patterns. At this point, we have only been checking for specific pieces of text like <code class="language-plaintext highlighter-rouge">@</code>. It so happens that many special symbols can be passed to the compiler for the purpose of engaging in validation. A non-exhaustive list of those patterns is as follows:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.   any character except a new line
+*   0 or more repetitions
++   1 or more repetitions
+?   0 or 1 repetition
+{m} m repetitions
+{m,n} m-n repetitions
+</code></pre></div>    </div>
+  </li>
+  <li data-marker="*">Implementing this inside of our code, modify yours as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">re</span>
+
+<span class="n">email</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your email? "</span><span class="p">).</span><span class="nf">strip</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">re</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="s">".+@.+"</span><span class="p">,</span> <span class="n">email</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Valid"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Invalid"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice that we don’t care what the username or domain is. What we care about is the pattern. <code class="language-plaintext highlighter-rouge">.+</code> is used to determine if anything is to the left of the email address and if anything is to the right of the email address. Running your code, typing in <code class="language-plaintext highlighter-rouge">malan@</code>, you’ll notice that the input is regarded as <code class="language-plaintext highlighter-rouge">invalid</code> as we would hope.</p>
+  </li>
+  <li data-marker="*">
+    <p>Had we used a regular expression <code class="language-plaintext highlighter-rouge">.*@.*</code> in our code above, you can visualize this as follows:
+<img src="cs50pWeek7Slide8.png" alt="State Machine." title="cs50pWeek7Slide8.png" class="w-50"></p>
+
+    <p>Notice the depiction of the <code class="language-plaintext highlighter-rouge">state machine</code> of our regular expression. On the left, the compiler begins evaluating the statement from left to right. Once we reach <code class="language-plaintext highlighter-rouge">q1</code> or question 1, the compiler reads time and time again based on the expression handed to it. Then, the state is changed looking now at <code class="language-plaintext highlighter-rouge">q2</code> or the second question being validated. Again, the arrow indicates how the expression will be evaluated time and time again based upon our programming. Then, as depicted by the double circle, the final state of state machine is reached.</p>
+  </li>
+  <li data-marker="*">
+    <p>Considering the regular expression we used in our code, <code class="language-plaintext highlighter-rouge">.+@.+</code>, you can visualize it as follows:
+<img src="cs50pWeek7Slide10.png" alt="State Machine." title="cs50pWeek7Slide10.png" class="w-50"></p>
+
+    <p>Notice how <code class="language-plaintext highlighter-rouge">q1</code> is any character provided by the user, including ‘q2’ as 1 or more repetitions of characters. This is followed by the ‘@’ symbol. Then, <code class="language-plaintext highlighter-rouge">q3</code> looks for any character provided by the user, including <code class="language-plaintext highlighter-rouge">q4</code> as 1 or more repetitions of characters.</p>
+  </li>
+  <li data-marker="*">The <code class="language-plaintext highlighter-rouge">re</code> and <code class="language-plaintext highlighter-rouge">re.search</code> functions and ones like them look for patterns.</li>
+  <li data-marker="*">Continuing our improvement of this code, we could improve our code as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">re</span>
+
+<span class="n">email</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your email? "</span><span class="p">).</span><span class="nf">strip</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">re</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="s">".+@.+.edu"</span><span class="p">,</span> <span class="n">email</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Valid"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Invalid"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice, however, that one could type in <code class="language-plaintext highlighter-rouge">malan@harvard?edu</code> and it could be considered valid. Why is this the case? You might recognize that in the language of validation, a <code class="language-plaintext highlighter-rouge">.</code> means any character!</p>
+  </li>
+  <li data-marker="*">We can modify our code as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">re</span>
+
+<span class="n">email</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your email? "</span><span class="p">).</span><span class="nf">strip</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">re</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="s">".+@.+\.edu"</span><span class="p">,</span> <span class="n">email</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Valid"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Invalid"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how we utilize the “escape character” or <code class="language-plaintext highlighter-rouge">\</code> as a way of regarding the <code class="language-plaintext highlighter-rouge">.</code> as part of our string instead of our validation expression. Testing your code, you will notice that <code class="language-plaintext highlighter-rouge">malan@harvard.edu</code> is regarded as valid, where <code class="language-plaintext highlighter-rouge">malan@harvard?edu</code> is invalid.</p>
+  </li>
+  <li data-marker="*">Now that we’re using escape characters, it’s a good time to introduce “raw strings”. In Python, raw strings are strings that <em>don’t</em> format special characters—instead, each character is taken at face-value. Imagine <code class="language-plaintext highlighter-rouge">\n</code>, for example. We’ve seen in an earlier lecture how, in a regular string, these two characters become one: a special newline character. In a raw string, however, <code class="language-plaintext highlighter-rouge">\n</code> is treated not as <code class="language-plaintext highlighter-rouge">\n</code>, the special character, but as a single <code class="language-plaintext highlighter-rouge">\</code> and a single <code class="language-plaintext highlighter-rouge">n</code>. Placing an <code class="language-plaintext highlighter-rouge">r</code> in front of a string tells the Python interpreter to treat the string as a raw string, similar to how placing an <code class="language-plaintext highlighter-rouge">f</code> in front of a string tells the Python interpreter to treat the string as a format string:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">re</span>
+
+<span class="n">email</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your email? "</span><span class="p">).</span><span class="nf">strip</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">re</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="sa">r</span><span class="s">".+@.+\.edu"</span><span class="p">,</span> <span class="n">email</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Valid"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Invalid"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Now we’ve ensured the Python interpreter won’t treat <code class="language-plaintext highlighter-rouge">\.</code> as a special character. Instead, simply as a <code class="language-plaintext highlighter-rouge">\</code> followed by a <code class="language-plaintext highlighter-rouge">.</code>—which, in regular expression terms, means matching a literal “.”.</p>
+  </li>
+  <li data-marker="*">You can imagine still how our users could create problems for us! For example, you could type in a sentence such as <code class="language-plaintext highlighter-rouge">My email address is malan@harvard.edu</code> and this whole sentence would be considered valid. We can be even more precise in our coding.</li>
+  <li data-marker="*">It just so happens we have more special symbols at our disposal in validation:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>^   matches the start of the string
+$   matches the end of the string or just before the newline at the end of the string
+</code></pre></div>    </div>
+  </li>
+  <li data-marker="*">We can modify our code using our added vocabulary as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">re</span>
+
+<span class="n">email</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your email? "</span><span class="p">).</span><span class="nf">strip</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">re</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="sa">r</span><span class="s">"^.+@.+\.edu$"</span><span class="p">,</span> <span class="n">email</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Valid"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Invalid"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice this has the effect of looking for this exact pattern matching to the start and end of the expression being validated. Typing in a sentence such as <code class="language-plaintext highlighter-rouge">My email address is malan@harvard.edu</code> now is regarded as invalid.</p>
+  </li>
+  <li data-marker="*">We propose we can do even better! Even though we are now looking for the username at the start of the string, the <code class="language-plaintext highlighter-rouge">@</code> symbol, and the domain name at the end, we could type in as many <code class="language-plaintext highlighter-rouge">@</code> symbols as we wish! <code class="language-plaintext highlighter-rouge">malan@@@harvard.edu</code> is considered valid!</li>
+  <li data-marker="*">We can add to our vocabulary as follows:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[]    set of characters
+[^]   complementing the set
+</code></pre></div>    </div>
+  </li>
+  <li data-marker="*">Using these newfound abilities, we can modify our expression as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">re</span>
+
+<span class="n">email</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your email? "</span><span class="p">).</span><span class="nf">strip</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">re</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="sa">r</span><span class="s">"^[^@]+@[^@]+\.edu$"</span><span class="p">,</span> <span class="n">email</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Valid"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Invalid"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice that <code class="language-plaintext highlighter-rouge">^</code> means to match at the start of the string. All the way at the end of our expression, <code class="language-plaintext highlighter-rouge">$</code> means to match at the end of the string. <code class="language-plaintext highlighter-rouge">[^@]+</code> means any character except an <code class="language-plaintext highlighter-rouge">@</code>. Then, we have a literal <code class="language-plaintext highlighter-rouge">@</code>. <code class="language-plaintext highlighter-rouge">[^@]+\.edu</code> means any character except an <code class="language-plaintext highlighter-rouge">@</code> followed by an expression ending in <code class="language-plaintext highlighter-rouge">.edu</code>. Typing in <code class="language-plaintext highlighter-rouge">malan@@@harvard.edu</code> is now regarded as invalid.</p>
+  </li>
+  <li data-marker="*">We can still improve this regular expression further. It turns out there are certain requirements for what an email address can be! Currently, our validation expression is far too accomodating. We might only want to allow for characters normally used in a sentence. We can modify our code as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">re</span>
+
+<span class="n">email</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your email? "</span><span class="p">).</span><span class="nf">strip</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">re</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="sa">r</span><span class="s">"^[a-zA-Z0-9_]+@[a-zA-Z0-9_].+\.edu$"</span><span class="p">,</span> <span class="n">email</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Valid"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Invalid"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice that <code class="language-plaintext highlighter-rouge">[a-zA-Z0-9_]</code> tells the validation that characters must be between <code class="language-plaintext highlighter-rouge">a</code> and <code class="language-plaintext highlighter-rouge">z</code>, between <code class="language-plaintext highlighter-rouge">A</code> and <code class="language-plaintext highlighter-rouge">Z</code>, between <code class="language-plaintext highlighter-rouge">0</code> and <code class="language-plaintext highlighter-rouge">9</code> and potentially include an <code class="language-plaintext highlighter-rouge">_</code> symbol. Testing the input, you’ll find that many potential user mistakes can be indicated.</p>
+  </li>
+  <li data-marker="*">Thankfully, common patterns have been built into regular expressions by hard-working programmers. In this case, you can modify your code as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">re</span>
+
+<span class="n">email</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your email? "</span><span class="p">).</span><span class="nf">strip</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">re</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="sa">r</span><span class="s">"^\w+@\w.+\.edu$"</span><span class="p">,</span> <span class="n">email</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Valid"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Invalid"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice that <code class="language-plaintext highlighter-rouge">\w</code> is the same as <code class="language-plaintext highlighter-rouge">[a-zA-Z0-9_]</code>. Thanks, hard-working programmers!</p>
+  </li>
+  <li data-marker="*">Here are some additional patterns we can add to our vocabulary:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>\d    decimal digit
+\D    not a decimal digit
+\s    whitespace characters
+\S    not a whitespace character
+\w    word character, as well as numbers and the underscore
+\W    not a word character
+</code></pre></div>    </div>
+  </li>
+  <li data-marker="*">Now, we know that there are not simply <code class="language-plaintext highlighter-rouge">.edu</code> email addresses. We could modify our code as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">re</span>
+
+<span class="n">email</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your email? "</span><span class="p">).</span><span class="nf">strip</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">re</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="sa">r</span><span class="s">"^\w+@\w.+\.(com|edu|gov|net|org)$"</span><span class="p">,</span> <span class="n">email</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Valid"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Invalid"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice that the <code class="language-plaintext highlighter-rouge">|</code> has the impact of an <code class="language-plaintext highlighter-rouge">or</code> in our expression.</p>
+  </li>
+  <li data-marker="*">Adding even more symbols to our vocabulary, here are some more to consider:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A|B     either A or B
+(...)   a group
+(?:...) non-capturing version
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="case-sensitivity">Case Sensitivity</h2>
+
+<ul>
+  <li data-marker="*">To illustrate how you might address issues around case sensitivity, where there is a difference between <code class="language-plaintext highlighter-rouge">EDU</code> and <code class="language-plaintext highlighter-rouge">edu</code> and the like, let’s rewind our code to the following:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">re</span>
+
+<span class="n">email</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your email? "</span><span class="p">).</span><span class="nf">strip</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">re</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="sa">r</span><span class="s">"^\w+@\w.+\.edu$"</span><span class="p">,</span> <span class="n">email</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Valid"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Invalid"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how we have removed the <code class="language-plaintext highlighter-rouge">|</code> statements provided previously.</p>
+  </li>
+  <li data-marker="*">Recall that within the <code class="language-plaintext highlighter-rouge">re.search</code> function, there is a parameter for <code class="language-plaintext highlighter-rouge">flags</code>.</li>
+  <li data-marker="*">Some built-in flag variables are:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>re.IGNORECASE
+re.MULTILINE
+re.DOTALL
+</code></pre></div>    </div>
+    <p>Consider how you might use these in your code.</p>
+  </li>
+  <li data-marker="*">Therefore, we can change our code as follows.
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">re</span>
+
+<span class="n">email</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your email? "</span><span class="p">).</span><span class="nf">strip</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">re</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="sa">r</span><span class="s">"^\w+@\w.+\.edu$"</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">re</span><span class="p">.</span><span class="n">IGNORECASE</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Valid"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Invalid"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how we added a third parameter <code class="language-plaintext highlighter-rouge">re.IGNORECASE</code>. Running this program with <code class="language-plaintext highlighter-rouge">MALAN@HARVARD.EDU</code>, the input is now considered valid.</p>
+  </li>
+  <li data-marker="*">Consider the following email address <code class="language-plaintext highlighter-rouge">malan@cs50.harvard.edu</code>. Using our code above, this would be considered invalid. Why might that be?</li>
+  <li data-marker="*">Since there is an additional <code class="language-plaintext highlighter-rouge">.</code>, the program considers this invalid.</li>
+  <li data-marker="*">It turns out that we can, looking at our vocabulary from before, we can group together ideas.
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A|B     either A or B
+(...)   a group
+(?:...) non-caputuring version
+</code></pre></div>    </div>
+  </li>
+  <li data-marker="*">We can modify our code as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">re</span>
+
+<span class="n">email</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your email? "</span><span class="p">).</span><span class="nf">strip</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">re</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="sa">r</span><span class="s">"^\w+@(\w+\.)?\w+\.edu$"</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">re</span><span class="p">.</span><span class="n">IGNORECASE</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Valid"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Invalid"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how the <code class="language-plaintext highlighter-rouge">(\w+\.)?</code> communicates to the compiler that this new expression can be there once or not at all. Hence, both <code class="language-plaintext highlighter-rouge">malan@cs50.harvard.edu</code> and <code class="language-plaintext highlighter-rouge">malan@harvard.edu</code> are considered valid.</p>
+  </li>
+  <li data-marker="*">
+    <p>Interestingly enough, the edits we have done so far to our code do not fully encompass all the checking that could be done to ensure a valid email address. Indeed, here is the full expression that one would have to type to ensure that a valid email is inputted:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>^[a-zA-Z0-9.!#$%&amp;'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$
+</code></pre></div>    </div>
+  </li>
+  <li data-marker="*">
+    <p>There are other functions within the <code class="language-plaintext highlighter-rouge">re</code> library you might find useful. <code class="language-plaintext highlighter-rouge">re.match</code> and <code class="language-plaintext highlighter-rouge">re.fullmatch</code> are ones you might find exceedingly useful.</p>
+  </li>
+  <li data-marker="*">You can learn more in Python’s documentation of <a href="https://docs.python.org/3/library/re.html">re</a>.</li>
+</ul>
+
+<h2 id="cleaning-up-user-input">Cleaning Up User Input</h2>
+
+<ul>
+  <li data-marker="*">You should never expect your users to always follow your hopes for clean input. Indeed, users will often violate your intentions as a programmer.</li>
+  <li data-marker="*">There are ways to clean up your data.</li>
+  <li data-marker="*">In the terminal window, type <code class="language-plaintext highlighter-rouge">code format.py</code>. Then, in the text-editor, code as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your name? "</span><span class="p">).</span><span class="nf">strip</span><span class="p">()</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice that we have created, essentially, a “hello world” program. Running this program and typing in <code class="language-plaintext highlighter-rouge">David</code>, it works well! However, typing in <code class="language-plaintext highlighter-rouge">Malan, David</code> notice how the program does not function as intended. How could we modify our program to clean up this input?</p>
+  </li>
+  <li data-marker="*">Modify your code as follows.
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your name? "</span><span class="p">).</span><span class="nf">strip</span><span class="p">()</span>
+<span class="k">if</span> <span class="s">","</span> <span class="ow">in</span> <span class="n">name</span><span class="p">:</span>
+    <span class="n">last</span><span class="p">,</span> <span class="n">first</span> <span class="o">=</span> <span class="n">name</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s">", "</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">first</span><span class="si">}</span><span class="s"> </span><span class="si">{</span><span class="n">last</span><span class="si">}</span><span class="s">"</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how <code class="language-plaintext highlighter-rouge">last, first = name.split(", ")</code> is run if there is a <code class="language-plaintext highlighter-rouge">,</code> in the name. Then, the name is standardized as first and last. Running our code, typing in <code class="language-plaintext highlighter-rouge">Malan, David</code>, you can see how this program does clean up at least one scenario where a user types in something unexpected.</p>
+  </li>
+  <li data-marker="*">You might notice that typing in <code class="language-plaintext highlighter-rouge">Malan,David</code> with no space causes the compiler to throw an error. Since we now know some regular expression syntax, let’s apply that to our code:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">re</span>
+
+<span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your name? "</span><span class="p">).</span><span class="nf">strip</span><span class="p">()</span>
+<span class="n">matches</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="sa">r</span><span class="s">"^(.+), (.+)$"</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">matches</span><span class="p">:</span>
+    <span class="n">last</span><span class="p">,</span> <span class="n">first</span> <span class="o">=</span> <span class="n">matches</span><span class="p">.</span><span class="nf">groups</span><span class="p">()</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">first</span><span class="si">}</span><span class="s"> </span><span class="si">{</span><span class="n">last</span><span class="si">}</span><span class="s">"</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice that <code class="language-plaintext highlighter-rouge">re.search</code> can return a set of matches that are extracted from the user’s input. If matches are returned by <code class="language-plaintext highlighter-rouge">re.search</code>. Running this program, typing in <code class="language-plaintext highlighter-rouge">David Malan</code> notice how the <code class="language-plaintext highlighter-rouge">if</code> condition is not run and the name is returned. If you run the program by typing <code class="language-plaintext highlighter-rouge">Malan, David</code>, the name is also returned properly.</p>
+  </li>
+  <li data-marker="*">It just so happens that we can request specific groups back using <code class="language-plaintext highlighter-rouge">matches.group</code>. We can modify our code as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">re</span>
+
+<span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your name? "</span><span class="p">).</span><span class="nf">strip</span><span class="p">()</span>
+<span class="n">matches</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="sa">r</span><span class="s">"^(.+), (.+)$"</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">matches</span><span class="p">:</span>
+    <span class="n">last</span> <span class="o">=</span> <span class="n">matches</span><span class="p">.</span><span class="nf">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">first</span> <span class="o">=</span> <span class="n">matches</span><span class="p">.</span><span class="nf">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">first</span><span class="si">}</span><span class="s"> </span><span class="si">{</span><span class="n">last</span><span class="si">}</span><span class="s">"</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how, in this implementation, <code class="language-plaintext highlighter-rouge">group</code> is not plural (there is no <code class="language-plaintext highlighter-rouge">s</code>).</p>
+  </li>
+  <li data-marker="*">Our code can be further tightened as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">re</span>
+
+<span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your name? "</span><span class="p">).</span><span class="nf">strip</span><span class="p">()</span>
+<span class="n">matches</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="sa">r</span><span class="s">"^(.+), (.+)$"</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">matches</span><span class="p">:</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">matches</span><span class="p">.</span><span class="nf">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="n">matches</span><span class="p">.</span><span class="nf">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how <code class="language-plaintext highlighter-rouge">group(2)</code> and <code class="language-plaintext highlighter-rouge">group(1)</code> are concatenated together with a space. The first group is that which is left of the comma. The second group is that which is right of the comma.</p>
+  </li>
+  <li data-marker="*">Recognize still that typing in <code class="language-plaintext highlighter-rouge">Malan,David</code> with no space will still break our code. Therefore, we can make the following modification:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">re</span>
+
+<span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your name? "</span><span class="p">).</span><span class="nf">strip</span><span class="p">()</span>
+<span class="n">matches</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="sa">r</span><span class="s">"^(.+), *(.+)$"</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">matches</span><span class="p">:</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">matches</span><span class="p">.</span><span class="nf">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="n">matches</span><span class="p">.</span><span class="nf">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice the addition of the <code class="language-plaintext highlighter-rouge">*</code> in our validation statement. This code will now accept and properly process <code class="language-plaintext highlighter-rouge">Malan,David</code>. Further, it will properly handle `     David,Malan<code class="language-plaintext highlighter-rouge"> with many spaces in front of </code>David`.</p>
+  </li>
+  <li data-marker="*">It is very common to utilize <code class="language-plaintext highlighter-rouge">re.search</code> as we have in the previous examples, where <code class="language-plaintext highlighter-rouge">matches</code> is on a line of code after. However, we can combine these statements:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">re</span>
+
+<span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your name? "</span><span class="p">).</span><span class="nf">strip</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">matches</span> <span class="p">:</span><span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="sa">r</span><span class="s">"^(.+), *(.+)$"</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">matches</span><span class="p">.</span><span class="nf">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="n">matches</span><span class="p">.</span><span class="nf">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how we combine two lines of our code. The walrus <code class="language-plaintext highlighter-rouge">:=</code> operator assigns a value from right to left and allows us to ask a boolean question at the same time. Turn your head sideways and you’ll see why this is called a walrus operator.</p>
+  </li>
+  <li data-marker="*">You can learn more in Python’s documentation of <a href="https://docs.python.org/3/library/re.html">re</a>.</li>
+</ul>
+
+<h2 id="extracting-user-input">Extracting User Input</h2>
+
+<ul>
+  <li data-marker="*">So far, we have validated the user’s input and cleaned up the user’s input.</li>
+  <li data-marker="*">Now, let’s extract some specific information from user input. In the terminal window, type <code class="language-plaintext highlighter-rouge">code twitter.py</code> and code as follows in the text editor window:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">url</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"URL: "</span><span class="p">).</span><span class="nf">strip</span><span class="p">()</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice that if we type in <code class="language-plaintext highlighter-rouge">https://twitter.com/davidjmalan</code>, it shows exactly what the user typed. However, how would we be able to extract just the username and ignore the rest of the URL?</p>
+  </li>
+  <li data-marker="*">You can imagine how we would simply be able to get rid of the beginning of the standard Twitter URL. We can attempt this as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">url</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"URL: "</span><span class="p">).</span><span class="nf">strip</span><span class="p">()</span>
+
+<span class="n">username</span> <span class="o">=</span> <span class="n">url</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="s">"https://twitter.com/"</span><span class="p">,</span> <span class="s">""</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Username: </span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how the <code class="language-plaintext highlighter-rouge">replace</code> method allows us to find one item and replace it with another. In this case, we are finding part of the URL and replacing it with nothing. Typing in the full URL <code class="language-plaintext highlighter-rouge">https://twitter.com/davidjmalan</code>, the program effectively outputs the username. However, what are some shortcomings of this current program?</p>
+  </li>
+  <li data-marker="*">What if the user simply typed <code class="language-plaintext highlighter-rouge">twitter.com</code> instead of including the <code class="language-plaintext highlighter-rouge">https://</code> and the like? You can imagine many scenarios where the user may input or neglect to input parts of the URL that would create strange output by this program. To improve this program, we can code as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">url</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"URL: "</span><span class="p">).</span><span class="nf">strip</span><span class="p">()</span>
+
+<span class="n">username</span> <span class="o">=</span> <span class="n">url</span><span class="p">.</span><span class="nf">removeprefix</span><span class="p">(</span><span class="s">"https://twitter.com/"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Username: </span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how we utilize the <code class="language-plaintext highlighter-rouge">removeprefix</code> method. This method will remove the beginning of a string.</p>
+  </li>
+  <li data-marker="*">Regular expressions simply allow us to succinctly express the patterns and goals.</li>
+  <li data-marker="*">Within the <code class="language-plaintext highlighter-rouge">re</code> library, there is a method called <code class="language-plaintext highlighter-rouge">sub</code>. This method allows us to substitute a pattern with something else.</li>
+  <li data-marker="*">The signature of the <code class="language-plaintext highlighter-rouge">sub</code> method is as follows
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>re.sub(pattern, repl, string, count=0, flags=0)
+</code></pre></div>    </div>
+    <p>Notice how <code class="language-plaintext highlighter-rouge">pattern</code> refers to the regular expression we are looking for. Then, there is a <code class="language-plaintext highlighter-rouge">repl</code> string that we can replace the pattern with. Finally, there is the <code class="language-plaintext highlighter-rouge">string</code> that we want to do the substitution on.</p>
+  </li>
+  <li data-marker="*">Implementing this method in our code, we can modify our program as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">re</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"URL: "</span><span class="p">).</span><span class="nf">strip</span><span class="p">()</span>
+
+<span class="n">username</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nf">sub</span><span class="p">(</span><span class="sa">r</span><span class="s">"https://twitter.com/"</span><span class="p">,</span> <span class="s">""</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Username: </span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how executing this program and inputting <code class="language-plaintext highlighter-rouge">https://twitter.com/davidjmalan</code> produces the correct outcome. However, there are some problems still present in our code.</p>
+  </li>
+  <li data-marker="*">The protocol, subdomain, and the possibility that the user inputted any part of the URL after the username are all reasons that this code is still not ideal. We can further address these shortcomings as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">re</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"URL: "</span><span class="p">).</span><span class="nf">strip</span><span class="p">()</span>
+
+<span class="n">username</span> <span class="n">re</span><span class="p">.</span><span class="nf">sub</span><span class="p">(</span><span class="sa">r</span><span class="s">"^(https?://)?(www\.)?twitter\.com/"</span><span class="p">,</span> <span class="s">""</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Username: </span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how the <code class="language-plaintext highlighter-rouge">^</code> caret was added to the url. Notice also how the <code class="language-plaintext highlighter-rouge">.</code> could be interpreted improperly by the compiler. Therefore, we escape it using a <code class="language-plaintext highlighter-rouge">\</code> to make it <code class="language-plaintext highlighter-rouge">\.</code> For the purpose of tolerating both <code class="language-plaintext highlighter-rouge">http</code> and <code class="language-plaintext highlighter-rouge">https</code>, we add a <code class="language-plaintext highlighter-rouge">?</code> to the end of <code class="language-plaintext highlighter-rouge">https?</code>, making the <code class="language-plaintext highlighter-rouge">s</code> optional. Further, to accommodate <code class="language-plaintext highlighter-rouge">www</code> we add <code class="language-plaintext highlighter-rouge">(www\.)?</code> to our code. Finally, just in case the user decides to leave out the protocol altogether, the <code class="language-plaintext highlighter-rouge">http://</code> or <code class="language-plaintext highlighter-rouge">https://</code> is made optional using <code class="language-plaintext highlighter-rouge">(https?://)</code>.</p>
+  </li>
+  <li data-marker="*">Still, we are blindly expecting that what the user inputted a url that, indeed, has a username.</li>
+  <li data-marker="*">Using our knowledge of <code class="language-plaintext highlighter-rouge">re.search</code>, we can further improve our code.
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">re</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"URL: "</span><span class="p">).</span><span class="nf">strip</span><span class="p">()</span>
+
+<span class="n">matches</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="sa">r</span><span class="s">"^https?://(www\.)?twitter\.com/(.+)$"</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">re</span><span class="p">.</span><span class="n">IGNORECASE</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">matches</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Username:"</span><span class="p">,</span> <span class="n">matches</span><span class="p">.</span><span class="nf">group</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</code></pre></div>    </div>
+    <p>Notice how we are searching for the regular expression above in the string provided by the user. In particular, we are capturing that which appears at the end of the URL using <code class="language-plaintext highlighter-rouge">(.+)$</code> regular expression. Therefore, if the user fails to input a URL without a username, no input will be presented.</p>
+  </li>
+  <li data-marker="*">Even further tightening up our program, we can utilize our <code class="language-plaintext highlighter-rouge">:=</code> operator as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">re</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"URL: "</span><span class="p">).</span><span class="nf">strip</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">matches</span> <span class="p">:</span><span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="sa">r</span><span class="s">"^https?://(?:www\.)?twitter\.com/(.+)$"</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">re</span><span class="p">.</span><span class="n">IGNORECASE</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Username:"</span><span class="p">,</span> <span class="n">matches</span><span class="p">.</span><span class="nf">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</code></pre></div>    </div>
+    <p>Notice that the <code class="language-plaintext highlighter-rouge">?:</code> tells the compiler it does not have to capture what is in that spot in our regular expression.</p>
+  </li>
+  <li data-marker="*">Still, we can be more explicit to ensure that the username inputted is correct. Using Twitter’s documentation, we can add the following to our regular expression:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">re</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"URL: "</span><span class="p">).</span><span class="nf">strip</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">matches</span> <span class="p">:</span><span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="sa">r</span><span class="s">"^https?://(?:www\.)?twitter\.com/([a-z0-9_]+)"</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">re</span><span class="p">.</span><span class="n">IGNORECASE</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Username:"</span><span class="p">,</span> <span class="n">matches</span><span class="p">.</span><span class="nf">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</code></pre></div>    </div>
+    <p>Notice that the <code class="language-plaintext highlighter-rouge">[a-z0-9_]+</code> tells the compiler to only expect <code class="language-plaintext highlighter-rouge">a-z</code>, <code class="language-plaintext highlighter-rouge">0-9</code>, and <code class="language-plaintext highlighter-rouge">_</code> as part of the regular expression. The <code class="language-plaintext highlighter-rouge">+</code> indicates that we are expecting one or more characters.</p>
+  </li>
+  <li data-marker="*">You can learn more in Python’s documentation of <a href="https://docs.python.org/3/library/re.html">re</a>.</li>
+</ul>
+
+<h2 id="summing-up">Summing Up</h2>
+<p>Now, you’ve learned a whole new language of regular expressions that can be utilized to validate, clean up, and extract user input.</p>
+
+<ul>
+  <li data-marker="*">Regular Expressions</li>
+  <li data-marker="*">Case Sensitivity</li>
+  <li data-marker="*">Cleaning Up User Input</li>
+  <li data-marker="*">Extracting User Input</li>
+</ul>
+
+
+                </main>
+
+            </div>
+
+        </div>
+
+        
+ 
+        <script src="../../assets/page.js?1678165156"></script>
+
+    
+
+
+</body></html>
