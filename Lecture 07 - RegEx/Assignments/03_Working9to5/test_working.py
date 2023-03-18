@@ -19,3 +19,4 @@ def test_invalid_inputs():
         convert("9 AM - 5 PM")
         convert("09:00 AM - 17:00 PM")
         convert("from 1:00 PM up to 2:00 PM")
+        convert("9:00     AM  to    5:00    PM")
