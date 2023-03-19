@@ -1,0 +1,723 @@
+                <main class="col-lg">
+
+                    <h1 class="no_toc" id="lecture-8">Lecture 8</h1>
+
+<ul id="markdown-toc">
+  <li><a href="#object-oriented-programming" id="markdown-toc-object-oriented-programming">Object-Oriented Programming</a></li>
+  <li><a href="#classes" id="markdown-toc-classes">Classes</a></li>
+  <li><a href="#raise" id="markdown-toc-raise"><code class="language-plaintext highlighter-rouge">raise</code></a></li>
+  <li><a href="#decorators" id="markdown-toc-decorators">Decorators</a></li>
+  <li><a href="#connecting-to-previous-work-in-this-course" id="markdown-toc-connecting-to-previous-work-in-this-course">Connecting to Previous Work in this Course</a></li>
+  <li><a href="#class-methods" id="markdown-toc-class-methods">Class Methods</a></li>
+  <li><a href="#static-methods" id="markdown-toc-static-methods">Static Methods</a></li>
+  <li><a href="#inheritance" id="markdown-toc-inheritance">Inheritance</a></li>
+  <li><a href="#inheritance-and-exceptions" id="markdown-toc-inheritance-and-exceptions">Inheritance and Exceptions</a></li>
+  <li><a href="#operator-overloading" id="markdown-toc-operator-overloading">Operator Overloading</a></li>
+  <li><a href="#summing-up" id="markdown-toc-summing-up">Summing Up</a></li>
+</ul>
+
+<h2 id="object-oriented-programming">Object-Oriented Programming</h2>
+
+<ul>
+  <li data-marker="*">There are different paradigms of programming. As you learn other languages, you will start recognizing patterns like these.</li>
+  <li data-marker="*">Up until this point, you have worked procedurally step-by-step.</li>
+  <li data-marker="*">Object-oriented programming (OOP) is a compelling solution to programming-related problems.</li>
+  <li data-marker="*">To begin, type <code class="language-plaintext highlighter-rouge">code student.py</code> in the terminal window and code as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"Name: "</span><span class="p">)</span>
+<span class="n">house</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"House: "</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s"> from </span><span class="si">{</span><span class="n">house</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice that this program follows a procedural, step-by-step paradigm: Much like you have seen in prior parts of this course.</p>
+  </li>
+  <li data-marker="*">Drawing on our work from previous weeks, we can create functions to abstract away parts of this program.
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="nf">get_name</span><span class="p">()</span>
+    <span class="n">house</span> <span class="o">=</span> <span class="nf">get_house</span><span class="p">()</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s"> from </span><span class="si">{</span><span class="n">house</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_name</span><span class="p">():</span>
+    <span class="k">return</span> <span class="nf">input</span><span class="p">(</span><span class="s">"Name: "</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_house</span><span class="p">():</span>
+    <span class="k">return</span> <span class="nf">input</span><span class="p">(</span><span class="s">"House: "</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice how <code class="language-plaintext highlighter-rouge">get_name</code> and <code class="language-plaintext highlighter-rouge">get_house</code> abstract away some of the needs of our <code class="language-plaintext highlighter-rouge">main</code> function. Further, notice how the final lines of the code above tell the compiler to run the <code class="language-plaintext highlighter-rouge">main</code> function.</p>
+  </li>
+  <li data-marker="*">We can further simplify our program by storing the student as a <code class="language-plaintext highlighter-rouge">tuple</code>. A <code class="language-plaintext highlighter-rouge">tuple</code> is a sequences of values. Unlike a <code class="language-plaintext highlighter-rouge">list</code>, a <code class="language-plaintext highlighter-rouge">tuple</code> can’t be modified. In spirit, we are returning two values.
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">name</span><span class="p">,</span> <span class="n">house</span> <span class="o">=</span> <span class="nf">get_student</span><span class="p">()</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s"> from </span><span class="si">{</span><span class="n">house</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_student</span><span class="p">():</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"Name: "</span><span class="p">)</span>
+    <span class="n">house</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"House: "</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">name</span><span class="p">,</span> <span class="n">house</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice how <code class="language-plaintext highlighter-rouge">get_student</code> returns <code class="language-plaintext highlighter-rouge">name, house</code>.</p>
+  </li>
+  <li data-marker="*">Packing that <code class="language-plaintext highlighter-rouge">tuple</code>, such that we are able to return both items to a variable called <code class="language-plaintext highlighter-rouge">student</code>, we can modify our code as follows.
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">student</span> <span class="o">=</span> <span class="nf">get_student</span><span class="p">()</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">student</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s"> from </span><span class="si">{</span><span class="n">student</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_student</span><span class="p">():</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"Name: "</span><span class="p">)</span>
+    <span class="n">house</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"House: "</span><span class="p">)</span>
+    <span class="nf">return </span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">house</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice that <code class="language-plaintext highlighter-rouge">(name, house)</code> explicitly tells anyone reading our code that we are returning two values within one. Further, notice how we can index into <code class="language-plaintext highlighter-rouge">tuple</code>s using <code class="language-plaintext highlighter-rouge">student[0]</code> or <code class="language-plaintext highlighter-rouge">student[1]</code>.</p>
+  </li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">tuple</code>s are immutable, meaning we cannot change those values. Immutability is a way by which we can program defensively.
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">student</span> <span class="o">=</span> <span class="nf">get_student</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">student</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">"Padma"</span><span class="p">:</span>
+        <span class="n">student</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s">"Ravenclaw"</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">student</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s"> from </span><span class="si">{</span><span class="n">student</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_student</span><span class="p">():</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"Name: "</span><span class="p">)</span>
+    <span class="n">house</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"House: "</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">name</span><span class="p">,</span> <span class="n">house</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice that this code produces an error. Since <code class="language-plaintext highlighter-rouge">tuple</code>s are immutable, we’re not able to reassign the value of <code class="language-plaintext highlighter-rouge">student[1]</code>.</p>
+  </li>
+  <li data-marker="*">If we wanted to provide our fellow programmers flexibility, we could utilize a <code class="language-plaintext highlighter-rouge">list</code> as follows.
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">student</span> <span class="o">=</span> <span class="nf">get_student</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">student</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">"Padma"</span><span class="p">:</span>
+        <span class="n">student</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s">"Ravenclaw"</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">student</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s"> from </span><span class="si">{</span><span class="n">student</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_student</span><span class="p">():</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"Name: "</span><span class="p">)</span>
+    <span class="n">house</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"House: "</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">name</span><span class="p">,</span> <span class="n">house</span><span class="p">]</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Note the lists are mutable. That is, the order of <code class="language-plaintext highlighter-rouge">house</code> and <code class="language-plaintext highlighter-rouge">name</code> can be switched by a programmer. You might decide to utilize this in some cases where you want to provide more flexibility at the cost of the security of your code. After all, if the order of those values is changeable, programmers that work with you could make mistakes down the road.</p>
+  </li>
+  <li data-marker="*">A dictionary could also be utilized in this implementation. Recall that dictionaries provide a key-value pair.
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">student</span> <span class="o">=</span> <span class="nf">get_student</span><span class="p">()</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">student</span><span class="p">[</span><span class="s">'name'</span><span class="p">]</span><span class="si">}</span><span class="s"> from </span><span class="si">{</span><span class="n">student</span><span class="p">[</span><span class="s">'house'</span><span class="p">]</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_student</span><span class="p">():</span>
+    <span class="n">student</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">student</span><span class="p">[</span><span class="s">"name"</span><span class="p">]</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"Name: "</span><span class="p">)</span>
+    <span class="n">student</span><span class="p">[</span><span class="s">"house"</span><span class="p">]</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"House: "</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">student</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice in this case, two key-value pairs are returned. An advantage of this approach is that we can index into this dictionary using the keys.</p>
+  </li>
+  <li data-marker="*">Still, our code can be further improved. Notice that there is an unneeded variable. We can remove <code class="language-plaintext highlighter-rouge">student = {}</code> because we don’t need to create an empty dictionary.
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">student</span> <span class="o">=</span> <span class="nf">get_student</span><span class="p">()</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">student</span><span class="p">[</span><span class="s">'name'</span><span class="p">]</span><span class="si">}</span><span class="s"> from </span><span class="si">{</span><span class="n">student</span><span class="p">[</span><span class="s">'house'</span><span class="p">]</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_student</span><span class="p">():</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"Name: "</span><span class="p">)</span>
+    <span class="n">house</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"House: "</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="s">"house"</span><span class="p">:</span> <span class="n">house</span><span class="p">}</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice we can utilize <code class="language-plaintext highlighter-rouge">{}</code> braces in the <code class="language-plaintext highlighter-rouge">return</code> statement to create the dictionary and return it all in the same line.</p>
+  </li>
+  <li data-marker="*">We can provide our special case with Padma in our dictionary version of our code.
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">student</span> <span class="o">=</span> <span class="nf">get_student</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">student</span><span class="p">[</span><span class="s">"name"</span><span class="p">]</span> <span class="o">==</span> <span class="s">"Padma"</span><span class="p">:</span>
+        <span class="n">student</span><span class="p">[</span><span class="s">"house"</span><span class="p">]</span> <span class="o">=</span> <span class="s">"Ravenclaw"</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">student</span><span class="p">[</span><span class="s">'name'</span><span class="p">]</span><span class="si">}</span><span class="s"> from </span><span class="si">{</span><span class="n">student</span><span class="p">[</span><span class="s">'house'</span><span class="p">]</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_student</span><span class="p">():</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"Name: "</span><span class="p">)</span>
+    <span class="n">house</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"House: "</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="s">"house"</span><span class="p">:</span> <span class="n">house</span><span class="p">}</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice how, similar in spirit to our previous iterations of this code, we can utilize the key names to index into our student dictionary.</p>
+  </li>
+</ul>
+
+<h2 id="classes">Classes</h2>
+
+<ul>
+  <li data-marker="*">Classes are a way by which, in object-oriented programming, we can create our own type of data and give them names.</li>
+  <li data-marker="*">A class is like a mold for a type of data – where we can invent our own data type and give them a name.</li>
+  <li data-marker="*">We can modify our code as follows to implement our own class called <code class="language-plaintext highlighter-rouge">Student</code>:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Student</span><span class="p">:</span>
+    <span class="p">...</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">student</span> <span class="o">=</span> <span class="nf">get_student</span><span class="p">()</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">student</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s"> from </span><span class="si">{</span><span class="n">student</span><span class="p">.</span><span class="n">house</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_student</span><span class="p">():</span>
+    <span class="n">student</span> <span class="o">=</span> <span class="nc">Student</span><span class="p">()</span>
+    <span class="n">student</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"Name: "</span><span class="p">)</span>
+    <span class="n">student</span><span class="p">.</span><span class="n">house</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"House: "</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">student</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice by convention that <code class="language-plaintext highlighter-rouge">Student</code> is capitalized. Further, notice the <code class="language-plaintext highlighter-rouge">...</code> simply means that we will later return to finish that portion of our code. Further, notice that in <code class="language-plaintext highlighter-rouge">get_student</code>, we can create a <code class="language-plaintext highlighter-rouge">student</code> of class <code class="language-plaintext highlighter-rouge">Student</code> using the syntax <code class="language-plaintext highlighter-rouge">student = Student()</code>. Further, notice that we utilize “dot notation” to access attributes of this variable <code class="language-plaintext highlighter-rouge">student</code> of class <code class="language-plaintext highlighter-rouge">Student</code>.</p>
+  </li>
+  <li data-marker="*">Any time you create a class and you utilize that blueprint to create something, you create what is called an “object” or an “instance”. In the case of our code, <code class="language-plaintext highlighter-rouge">student</code> is an object.</li>
+  <li data-marker="*">Further, we can lay some groundwork for the attributes that are expected inside an object whose class is <code class="language-plaintext highlighter-rouge">Student</code>. We can modify our code as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Student</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">house</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">house</span> <span class="o">=</span> <span class="n">house</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">student</span> <span class="o">=</span> <span class="nf">get_student</span><span class="p">()</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">student</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s"> from </span><span class="si">{</span><span class="n">student</span><span class="p">.</span><span class="n">house</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_student</span><span class="p">():</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"Name: "</span><span class="p">)</span>
+    <span class="n">house</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"House: "</span><span class="p">)</span>
+    <span class="n">student</span> <span class="o">=</span> <span class="nc">Student</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">house</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">student</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice that within <code class="language-plaintext highlighter-rouge">Student</code>, we standardize the attributes of this class. We can create a function within <code class="language-plaintext highlighter-rouge">class Student</code>, called a “method”, that determines the behavior of an object of class <code class="language-plaintext highlighter-rouge">Student</code>. Within this function, it takes the <code class="language-plaintext highlighter-rouge">name</code> and <code class="language-plaintext highlighter-rouge">house</code> passed to it and assigns these variables to this object. Further, notice how the constructor <code class="language-plaintext highlighter-rouge">student = Student(name, house)</code> calls this function within the <code class="language-plaintext highlighter-rouge">Student</code> class and creates a <code class="language-plaintext highlighter-rouge">student</code>. <code class="language-plaintext highlighter-rouge">self</code> refers to the current object that was just created.</p>
+  </li>
+  <li data-marker="*">We can simplify our code as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Student</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">house</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">house</span> <span class="o">=</span> <span class="n">house</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">student</span> <span class="o">=</span> <span class="nf">get_student</span><span class="p">()</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">student</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s"> from </span><span class="si">{</span><span class="n">student</span><span class="p">.</span><span class="n">house</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_student</span><span class="p">():</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"Name: "</span><span class="p">)</span>
+    <span class="n">house</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"House: "</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nc">Student</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">house</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice how <code class="language-plaintext highlighter-rouge">return Student(name, house)</code> simplifies the previous iteration of our code where the constructor statement was run on its own line.</p>
+  </li>
+  <li data-marker="*">You can learn more in Python’s documentation of <a href="https://docs.python.org/3/tutorial/classes.html">classes</a>.</li>
+</ul>
+
+<h2 id="raise"><code class="language-plaintext highlighter-rouge">raise</code></h2>
+
+<ul>
+  <li data-marker="*">Object-oriented program encourages you to encapusulate all the functionality of a class within the class definition. What if something goes wrong? What if someone tries to type in something random? What if someone tries to create a student without a name? Modify your code as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Student</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">house</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="nc">ValueError</span><span class="p">(</span><span class="s">"Missing name"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">house</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s">"Gryffindor"</span><span class="p">,</span> <span class="s">"Hufflepuff"</span><span class="p">,</span> <span class="s">"Ravenclaw"</span><span class="p">,</span> <span class="s">"Slytherin"</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="nc">ValueError</span><span class="p">(</span><span class="s">"Invalid house"</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">house</span> <span class="o">=</span> <span class="n">house</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">student</span> <span class="o">=</span> <span class="nf">get_student</span><span class="p">()</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">student</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s"> from </span><span class="si">{</span><span class="n">student</span><span class="p">.</span><span class="n">house</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_student</span><span class="p">():</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"Name: "</span><span class="p">)</span>
+    <span class="n">house</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"House: "</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nc">Student</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">house</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice how we check now that a name is provided and a proper house is designated. It turns out we can create our own exceptions that alerts the programmer to a potential error created by the user called <code class="language-plaintext highlighter-rouge">raise</code>. In the case above, we raise <code class="language-plaintext highlighter-rouge">ValueError</code> with a specific error message.</p>
+  </li>
+  <li data-marker="*">It just so happens that Python allows you to create a specific function by which you can print the attributes of an object. Modify your code as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Student</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">house</span><span class="p">,</span> <span class="n">patronus</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="nc">ValueError</span><span class="p">(</span><span class="s">"Missing name"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">house</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s">"Gryffindor"</span><span class="p">,</span> <span class="s">"Hufflepuff"</span><span class="p">,</span> <span class="s">"Ravenclaw"</span><span class="p">,</span> <span class="s">"Slytherin"</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="nc">ValueError</span><span class="p">(</span><span class="s">"Invalid house"</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">house</span> <span class="o">=</span> <span class="n">house</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">patronus</span> <span class="o">=</span> <span class="n">patronus</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">self</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s"> from </span><span class="si">{</span><span class="n">self</span><span class="p">.</span><span class="n">house</span><span class="si">}</span><span class="s">"</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">student</span> <span class="o">=</span> <span class="nf">get_student</span><span class="p">()</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">student</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_student</span><span class="p">():</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"Name: "</span><span class="p">)</span>
+    <span class="n">house</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"House: "</span><span class="p">)</span>
+    <span class="n">patronus</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"Patronus: "</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nc">Student</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">house</span><span class="p">,</span> <span class="n">patronus</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice how <code class="language-plaintext highlighter-rouge">def __str__(self)</code> provides a means by which a student is returned when called. Therefore, you can now, as the programmer, print an object, its attributes, or almost anything you desire related to that object.</p>
+  </li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">__str__</code> is a built-in method that comes with Python classes. It just so happens that we can create our own methods for a class as well! Modify your code as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Student</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">house</span><span class="p">,</span> <span class="n">patronus</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="nc">ValueError</span><span class="p">(</span><span class="s">"Missing name"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">house</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s">"Gryffindor"</span><span class="p">,</span> <span class="s">"Hufflepuff"</span><span class="p">,</span> <span class="s">"Ravenclaw"</span><span class="p">,</span> <span class="s">"Slytherin"</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="nc">ValueError</span><span class="p">(</span><span class="s">"Invalid house"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">patronus</span> <span class="ow">and</span> <span class="n">patronus</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s">"Stag"</span><span class="p">,</span> <span class="s">"Otter"</span><span class="p">,</span> <span class="s">"Jack Russell terrier"</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="nc">ValueError</span><span class="p">(</span><span class="s">"Invalid patronus"</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">house</span> <span class="o">=</span> <span class="n">house</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">patronus</span> <span class="o">=</span> <span class="n">patronus</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">self</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s"> from </span><span class="si">{</span><span class="n">self</span><span class="p">.</span><span class="n">house</span><span class="si">}</span><span class="s">"</span>
+
+    <span class="k">def</span> <span class="nf">charm</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="n">match</span> <span class="n">self</span><span class="p">.</span><span class="n">patronus</span><span class="p">:</span>
+            <span class="n">case</span> <span class="s">"Stag"</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s">"🐴"</span>
+            <span class="n">case</span> <span class="s">"Otter"</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s">"🦦"</span>
+            <span class="n">case</span> <span class="s">"Jack Russell terrier"</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s">"🐶"</span>
+            <span class="n">case</span> <span class="n">_</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s">"🪄"</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">student</span> <span class="o">=</span> <span class="nf">get_student</span><span class="p">()</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Expecto Patronum!"</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">student</span><span class="p">.</span><span class="nf">charm</span><span class="p">())</span>
+
+
+<span class="k">def</span> <span class="nf">get_student</span><span class="p">():</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"Name: "</span><span class="p">)</span>
+    <span class="n">house</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"House: "</span><span class="p">)</span>
+    <span class="n">patronus</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"Patronus: "</span><span class="p">)</span> <span class="ow">or</span> <span class="bp">None</span>
+    <span class="k">return</span> <span class="nc">Student</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">house</span><span class="p">,</span> <span class="n">patronus</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice how we define our own method <code class="language-plaintext highlighter-rouge">charm</code>. Unlike dictionaries, classes can have built-in functions called methods. In this case, we define our <code class="language-plaintext highlighter-rouge">charm</code> method where specific cases have specific results. Further, notice that Python has the ability to utilize emojis directly in our code.</p>
+  </li>
+  <li data-marker="*">Before moving forward, let us remove our patronus code. Modify your code as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Student</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">house</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="nc">ValueError</span><span class="p">(</span><span class="s">"Invalid name"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">house</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s">"Gryffindor"</span><span class="p">,</span> <span class="s">"Hufflepuff"</span><span class="p">,</span> <span class="s">"Ravenclaw"</span><span class="p">,</span> <span class="s">"Slytherin"</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="nc">ValueError</span><span class="p">(</span><span class="s">"Invalid house"</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">house</span> <span class="o">=</span> <span class="n">house</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">self</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s"> from </span><span class="si">{</span><span class="n">self</span><span class="p">.</span><span class="n">house</span><span class="si">}</span><span class="s">"</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">student</span> <span class="o">=</span> <span class="nf">get_student</span><span class="p">()</span>
+    <span class="n">student</span><span class="p">.</span><span class="n">house</span> <span class="o">=</span> <span class="s">"Number Four, Privet Drive"</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">student</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_student</span><span class="p">():</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"Name: "</span><span class="p">)</span>
+    <span class="n">house</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"House: "</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nc">Student</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">house</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice how we have only two methods: <code class="language-plaintext highlighter-rouge">__init__</code> and <code class="language-plaintext highlighter-rouge">__str__</code>.</p>
+  </li>
+</ul>
+
+<h2 id="decorators">Decorators</h2>
+
+<ul>
+  <li data-marker="*">Properties can be utilized to harden our code. In Python, we define properties using function “decorators”, which begin with <code class="language-plaintext highlighter-rouge">@</code>. Modify your code as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Student</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">house</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="nc">ValueError</span><span class="p">(</span><span class="s">"Invalid name"</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">house</span> <span class="o">=</span> <span class="n">house</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">self</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s"> from </span><span class="si">{</span><span class="n">self</span><span class="p">.</span><span class="n">house</span><span class="si">}</span><span class="s">"</span>
+
+    <span class="c1"># Getter for house
+</span>    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">house</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="n">_house</span>
+
+    <span class="c1"># Setter for house
+</span>    <span class="nd">@house.setter</span>
+    <span class="k">def</span> <span class="nf">house</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">house</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">house</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s">"Gryffindor"</span><span class="p">,</span> <span class="s">"Hufflepuff"</span><span class="p">,</span> <span class="s">"Ravenclaw"</span><span class="p">,</span> <span class="s">"Slytherin"</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="nc">ValueError</span><span class="p">(</span><span class="s">"Invalid house"</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">_house</span> <span class="o">=</span> <span class="n">house</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">student</span> <span class="o">=</span> <span class="nf">get_student</span><span class="p">()</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">student</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_student</span><span class="p">():</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"Name: "</span><span class="p">)</span>
+    <span class="n">house</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"House: "</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nc">Student</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">house</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice how we’ve written <code class="language-plaintext highlighter-rouge">@property</code> above a function called <code class="language-plaintext highlighter-rouge">house</code>. Doing so defines <code class="language-plaintext highlighter-rouge">house</code> as a property of our class. With <code class="language-plaintext highlighter-rouge">house</code> as a property, we gain the ability to define how some attribute of our class, <code class="language-plaintext highlighter-rouge">_house</code>, should be set and retrieved. Indeed, we can now define a function called a “setter”, via <code class="language-plaintext highlighter-rouge">@house.setter</code>, which will be called whenever the house property is set—for example, with <code class="language-plaintext highlighter-rouge">student.house = "Gryffindor"</code>. Here, we’ve made our setter validate values of <code class="language-plaintext highlighter-rouge">house</code> for us. Notice how we raise a <code class="language-plaintext highlighter-rouge">ValueError</code> if the value of <code class="language-plaintext highlighter-rouge">house</code> is not any of the Harry Potter houses, otherwise, we’ll use <code class="language-plaintext highlighter-rouge">house</code> to update the value of <code class="language-plaintext highlighter-rouge">_house</code>. Why <code class="language-plaintext highlighter-rouge">_house</code> and not <code class="language-plaintext highlighter-rouge">house</code>? <code class="language-plaintext highlighter-rouge">house</code> is a property of our class, with functions via which a user attempts to set our class attribute. <code class="language-plaintext highlighter-rouge">_house</code> is that class attribute itself. The leading underscore, <code class="language-plaintext highlighter-rouge">_</code>, indicates to users they need not (and indeed, shouldn’t!) modify this value directly. <code class="language-plaintext highlighter-rouge">_house</code> should <em>only</em> be set through the <code class="language-plaintext highlighter-rouge">house</code> setter. Notice how the <code class="language-plaintext highlighter-rouge">house</code> property simply returns that value of <code class="language-plaintext highlighter-rouge">_house</code>, our class attribute that has presumably been validated using our <code class="language-plaintext highlighter-rouge">house</code> setter. When a user calls <code class="language-plaintext highlighter-rouge">student.house</code>, they’re getting the value of <code class="language-plaintext highlighter-rouge">_house</code> through our <code class="language-plaintext highlighter-rouge">house</code> “getter”.</p>
+  </li>
+  <li data-marker="*">In addition to the name of the house, we can protect the name of our student as well. Modify your code as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Student</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">house</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">house</span> <span class="o">=</span> <span class="n">house</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">self</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s"> from </span><span class="si">{</span><span class="n">self</span><span class="p">.</span><span class="n">house</span><span class="si">}</span><span class="s">"</span>
+
+    <span class="c1"># Getter for name
+</span>    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="n">_name</span>
+
+    <span class="c1"># Setter for name
+</span>    <span class="nd">@name.setter</span>
+    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="nc">ValueError</span><span class="p">(</span><span class="s">"Invalid name"</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">name</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">house</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="n">_house</span>
+
+    <span class="nd">@house.setter</span>
+    <span class="k">def</span> <span class="nf">house</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">house</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">house</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s">"Gryffindor"</span><span class="p">,</span> <span class="s">"Hufflepuff"</span><span class="p">,</span> <span class="s">"Ravenclaw"</span><span class="p">,</span> <span class="s">"Slytherin"</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="nc">ValueError</span><span class="p">(</span><span class="s">"Invalid house"</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">_house</span> <span class="o">=</span> <span class="n">house</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">student</span> <span class="o">=</span> <span class="nf">get_student</span><span class="p">()</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">student</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_student</span><span class="p">():</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"Name: "</span><span class="p">)</span>
+    <span class="n">house</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"House: "</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nc">Student</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">house</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice how, much like the previous code, we provide a getter and setter for the name.</p>
+  </li>
+  <li data-marker="*">You can learn more in Python’s documentation of <a href="https://docs.python.org/3/tutorial/classes.html">methods</a>.</li>
+</ul>
+
+<h2 id="connecting-to-previous-work-in-this-course">Connecting to Previous Work in this Course</h2>
+
+<ul>
+  <li data-marker="*">While not explicitly stated in past portions of this course, you have been using classes and objects the whole way through.</li>
+  <li data-marker="*">If you dig into the documentation of <code class="language-plaintext highlighter-rouge">int</code>, you’ll see that it is a class with a constructor. It’s a blueprint for creating objects of type <code class="language-plaintext highlighter-rouge">int</code>. You can learn more in Python’s documentation of <a href="https://docs.python.org/3/library/functions.html#int"><code class="language-plaintext highlighter-rouge">int</code></a>.</li>
+  <li data-marker="*">Strings too are also a class. If you have used <code class="language-plaintext highlighter-rouge">str.lower()</code>, you were using a method that came within the <code class="language-plaintext highlighter-rouge">str</code> class. You can learn more in Python’s documentation of <a href="https://docs.python.org/3/library/stdtypes.html#str"><code class="language-plaintext highlighter-rouge">str</code></a>.</li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">list</code> is also a class. Looking at that documentation for <code class="language-plaintext highlighter-rouge">list</code>, you can see the methods that are contained therein, like <code class="language-plaintext highlighter-rouge">list.append()</code>. You can learn more in Python’s documentation of <a href="https://docs.python.org/3/library/stdtypes.html#list"><code class="language-plaintext highlighter-rouge">list</code></a>.</li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">dict</code> is also a class within Python. You can learn more in Python’s documentation of <a href="https://docs.python.org/3/library/stdtypes.html#dict"><code class="language-plaintext highlighter-rouge">dict</code></a>.</li>
+  <li data-marker="*">To see how you have been using classes all along, go to your console and type <code class="language-plaintext highlighter-rouge">code type.py</code> and then code as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="nf">type</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span>
+</code></pre></div>    </div>
+    <p>Notice how by executing this code, it will display that the class of <code class="language-plaintext highlighter-rouge">50</code> is <code class="language-plaintext highlighter-rouge">int</code>.</p>
+  </li>
+  <li data-marker="*">We can also apply this to <code class="language-plaintext highlighter-rouge">str</code> as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="nf">type</span><span class="p">(</span><span class="s">"hello, world"</span><span class="p">))</span>
+</code></pre></div>    </div>
+    <p>Notice how executing this code will indicate this is of the class <code class="language-plaintext highlighter-rouge">str</code>.</p>
+  </li>
+  <li data-marker="*">We can also apply this to <code class="language-plaintext highlighter-rouge">list</code> as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="nf">type</span><span class="p">([]))</span>
+</code></pre></div>    </div>
+    <p>Notice how executing this code will indicate this is of the class <code class="language-plaintext highlighter-rouge">list</code>.</p>
+  </li>
+  <li data-marker="*">We can also apply this to a <code class="language-plaintext highlighter-rouge">list</code> using the name of Python’s built-in <code class="language-plaintext highlighter-rouge">list</code> class as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="nf">type</span><span class="p">(</span><span class="nf">list</span><span class="p">()))</span>
+</code></pre></div>    </div>
+    <p>Notice how executing this code will indicate this is of the class <code class="language-plaintext highlighter-rouge">list</code>.</p>
+  </li>
+  <li data-marker="*">We can also apply this to <code class="language-plaintext highlighter-rouge">dict</code> as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="nf">type</span><span class="p">({}))</span>
+</code></pre></div>    </div>
+    <p>Notice how executing this code will indicate this is of the class <code class="language-plaintext highlighter-rouge">dict</code>.</p>
+  </li>
+  <li data-marker="*">We can also apply this to a <code class="language-plaintext highlighter-rouge">dict</code> using the name of Python’s built in <code class="language-plaintext highlighter-rouge">dict</code> class as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="nf">type</span><span class="p">(</span><span class="nf">dict</span><span class="p">()))</span>
+</code></pre></div>    </div>
+    <p>Notice how executing this code will indicate this is of the class <code class="language-plaintext highlighter-rouge">dict</code>.</p>
+  </li>
+</ul>
+
+<h2 id="class-methods">Class Methods</h2>
+
+<ul>
+  <li data-marker="*">Sometimes, we want to add functionality to a class itself, not to instances of that class.</li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">@classmethod</code> is a function that we can use to add functionality to a class as a whole.</li>
+  <li data-marker="*">Here’s an example of <em>not</em> using a class method. In your terminal window, type <code class="language-plaintext highlighter-rouge">code hat.py</code> and code as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">random</span>
+
+
+<span class="k">class</span> <span class="nc">Hat</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">houses</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Gryffindor"</span><span class="p">,</span> <span class="s">"Hufflepuff"</span><span class="p">,</span> <span class="s">"Ravenclaw"</span><span class="p">,</span> <span class="s">"Slytherin"</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">sort</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s">"is in"</span><span class="p">,</span> <span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">houses</span><span class="p">))</span>
+
+
+<span class="n">hat</span> <span class="o">=</span> <span class="nc">Hat</span><span class="p">()</span>
+<span class="n">hat</span><span class="p">.</span><span class="nf">sort</span><span class="p">(</span><span class="s">"Harry"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how when we pass the name of the student to the sorting hat, it will tell us what house is assigned to the student. Notice that <code class="language-plaintext highlighter-rouge">hat = Hat()</code> instantiates a <code class="language-plaintext highlighter-rouge">hat</code>. The <code class="language-plaintext highlighter-rouge">sort</code> functionality is always handled by the <em>instance</em> of the class <code class="language-plaintext highlighter-rouge">Hat</code>. By executing <code class="language-plaintext highlighter-rouge">hat.sort("Harry")</code>, we pass the name of the student to the <code class="language-plaintext highlighter-rouge">sort</code> method of the particular instance of <code class="language-plaintext highlighter-rouge">Hat</code>, which we’ve called <code class="language-plaintext highlighter-rouge">hat</code>.</p>
+  </li>
+  <li data-marker="*">We may want, though, to run the <code class="language-plaintext highlighter-rouge">sort</code> function without creating a particular instance of the sorting hat (there’s only one, after all!). We can modify our code as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">random</span>
+
+
+<span class="k">class</span> <span class="nc">Hat</span><span class="p">:</span>
+
+    <span class="n">houses</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Gryffindor"</span><span class="p">,</span> <span class="s">"Hufflepuff"</span><span class="p">,</span> <span class="s">"Ravenclaw"</span><span class="p">,</span> <span class="s">"Slytherin"</span><span class="p">]</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">sort</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s">"is in"</span><span class="p">,</span> <span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">cls</span><span class="p">.</span><span class="n">houses</span><span class="p">))</span>
+
+
+<span class="n">Hat</span><span class="p">.</span><span class="nf">sort</span><span class="p">(</span><span class="s">"Harry"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how the <code class="language-plaintext highlighter-rouge">__init__</code> method is removed because we don’t need to instantiate a hat anywhere in our code. <code class="language-plaintext highlighter-rouge">self</code>, therefore, is no longer relevant and is removed. We specify this <code class="language-plaintext highlighter-rouge">sort</code> as a <code class="language-plaintext highlighter-rouge">@classmethod</code>, replacing <code class="language-plaintext highlighter-rouge">self</code> with <code class="language-plaintext highlighter-rouge">cls</code>. Finally, notice how <code class="language-plaintext highlighter-rouge">Hat</code> is capitalized by convention near the end of this code, because this is the name of our class.</p>
+  </li>
+  <li data-marker="*">Returning back to <code class="language-plaintext highlighter-rouge">students.py</code> we can modify our code as follows, addressing some missed opportunities related to <code class="language-plaintext highlighter-rouge">@classmethod</code>s:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Student</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">house</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">house</span> <span class="o">=</span> <span class="n">house</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">self</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s"> from </span><span class="si">{</span><span class="n">self</span><span class="p">.</span><span class="n">house</span><span class="si">}</span><span class="s">"</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="n">cls</span><span class="p">):</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"Name: "</span><span class="p">)</span>
+        <span class="n">house</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"House: "</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nf">cls</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">house</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">student</span> <span class="o">=</span> <span class="n">Student</span><span class="p">.</span><span class="nf">get</span><span class="p">()</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">student</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice that <code class="language-plaintext highlighter-rouge">get_student</code> is removed and a <code class="language-plaintext highlighter-rouge">@classmethod</code> called <code class="language-plaintext highlighter-rouge">get</code> is created. This method can now be called without having to create a student first.</p>
+  </li>
+</ul>
+
+<h2 id="static-methods">Static Methods</h2>
+
+<ul>
+  <li data-marker="*">It turns out that besides <code class="language-plaintext highlighter-rouge">@classmethod</code>s, which are distinct from instance methods, there are other types of methods as well.</li>
+  <li data-marker="*">Using <code class="language-plaintext highlighter-rouge">@staticmethod</code> may be something you might wish to explore. While not covered explicitly in this course, you are welcome to go and learn more about static methods and their distinction from class methods.</li>
+</ul>
+
+<h2 id="inheritance">Inheritance</h2>
+
+<ul>
+  <li data-marker="*">Inheritance is, perhaps, the most powerful feature of object-oriented programming.</li>
+  <li data-marker="*">It just so happens that you can create a class that “inherits” methods, variables, and attributes from another class.</li>
+  <li data-marker="*">In the terminal, execute <code class="language-plaintext highlighter-rouge">code wizard.py</code>. Code as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Wizard</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="nc">ValueError</span><span class="p">(</span><span class="s">"Missing name"</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
+    <span class="p">...</span>
+
+
+<span class="k">class</span> <span class="nc">Student</span><span class="p">(</span><span class="n">Wizard</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">house</span><span class="p">):</span>
+        <span class="nf">super</span><span class="p">().</span><span class="nf">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">house</span> <span class="o">=</span> <span class="n">house</span>
+
+    <span class="p">...</span>
+
+
+<span class="k">class</span> <span class="nc">Professor</span><span class="p">(</span><span class="n">Wizard</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">subject</span><span class="p">):</span>
+        <span class="nf">super</span><span class="p">().</span><span class="nf">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">subject</span> <span class="o">=</span> <span class="n">subject</span>
+
+    <span class="p">...</span>
+
+
+<span class="n">wizard</span> <span class="o">=</span> <span class="nc">Wizard</span><span class="p">(</span><span class="s">"Albus"</span><span class="p">)</span>
+<span class="n">student</span> <span class="o">=</span> <span class="nc">Student</span><span class="p">(</span><span class="s">"Harry"</span><span class="p">,</span> <span class="s">"Gryffindor"</span><span class="p">)</span>
+<span class="n">professor</span> <span class="o">=</span> <span class="nc">Professor</span><span class="p">(</span><span class="s">"Severus"</span><span class="p">,</span> <span class="s">"Defense Against the Dark Arts"</span><span class="p">)</span>
+<span class="p">...</span>
+</code></pre></div>    </div>
+    <p>Notice that there is a class above called <code class="language-plaintext highlighter-rouge">Wizard</code> and a class called <code class="language-plaintext highlighter-rouge">Student</code>. Further, notice that there is a class called <code class="language-plaintext highlighter-rouge">Professor</code>. Both students and professors have names. Also, both students and professors are wizards. Therefore, both <code class="language-plaintext highlighter-rouge">Student</code> and <code class="language-plaintext highlighter-rouge">Professor</code> inherit the characteristics of <code class="language-plaintext highlighter-rouge">Wizard</code>. Within the “child” class <code class="language-plaintext highlighter-rouge">Student</code>, <code class="language-plaintext highlighter-rouge">Student</code> can inherit from the “parent” or “super” class <code class="language-plaintext highlighter-rouge">Wizard</code> as the line <code class="language-plaintext highlighter-rouge">super().__init__(name)</code> runs the <code class="language-plaintext highlighter-rouge">init</code> method of <code class="language-plaintext highlighter-rouge">Wizard</code>. Finally, notice that the last lines of this code create a wizard called Albus, a student called Harry, and so on.</p>
+  </li>
+</ul>
+
+<h2 id="inheritance-and-exceptions">Inheritance and Exceptions</h2>
+
+<ul>
+  <li data-marker="*">While we have just introduced inheritance, we have been using this all along during our use of exceptions.</li>
+  <li data-marker="*">It just so happens that exceptions come in a heirarchy, where there are children, parent, and grandparent classes. These are illustrated below:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>BaseException
+ +-- KeyboardInterrupt
+ +-- Exception
+      +-- ArithmeticError
+      |    +-- ZeroDivisionError
+      +-- AssertionError
+      +-- AttributeError
+      +-- EOFError
+      +-- ImportError
+      |    +-- ModuleNotFoundError
+      +-- LookupError
+      |    +-- KeyError
+      +-- NameError
+      +-- SyntaxError
+      |    +-- IndentationError
+      +-- ValueError
+ ...
+</code></pre></div>    </div>
+  </li>
+  <li data-marker="*">You can learn more in Python’s documentation of <a href="https://docs.python.org/3/library/exceptions.html">exceptions</a>.</li>
+</ul>
+
+<h2 id="operator-overloading">Operator Overloading</h2>
+
+<ul>
+  <li data-marker="*">Some operators such as <code class="language-plaintext highlighter-rouge">+</code> and <code class="language-plaintext highlighter-rouge">-</code> can be “overloaded” such that they can have more abilities beyond simple arithmetic.</li>
+  <li data-marker="*">In your terminal window, type <code class="language-plaintext highlighter-rouge">code vault.py</code>. Then, code as follows:
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Vault</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">galleons</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sickles</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">knuts</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">galleons</span> <span class="o">=</span> <span class="n">galleons</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">sickles</span> <span class="o">=</span> <span class="n">sickles</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">knuts</span> <span class="o">=</span> <span class="n">knuts</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">self</span><span class="p">.</span><span class="n">galleons</span><span class="si">}</span><span class="s"> Galleons, </span><span class="si">{</span><span class="n">self</span><span class="p">.</span><span class="n">sickles</span><span class="si">}</span><span class="s"> Sickles, </span><span class="si">{</span><span class="n">self</span><span class="p">.</span><span class="n">knuts</span><span class="si">}</span><span class="s"> Knuts"</span>
+
+    <span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="n">galleons</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">galleons</span> <span class="o">+</span> <span class="n">other</span><span class="p">.</span><span class="n">galleons</span>
+        <span class="n">sickles</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">sickles</span> <span class="o">+</span> <span class="n">other</span><span class="p">.</span><span class="n">sickles</span>
+        <span class="n">knuts</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">knuts</span> <span class="o">+</span> <span class="n">other</span><span class="p">.</span><span class="n">knuts</span>
+        <span class="k">return</span> <span class="nc">Vault</span><span class="p">(</span><span class="n">galleons</span><span class="p">,</span> <span class="n">sickles</span><span class="p">,</span> <span class="n">knuts</span><span class="p">)</span>
+
+
+<span class="n">potter</span> <span class="o">=</span> <span class="nc">Vault</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">potter</span><span class="p">)</span>
+
+<span class="n">weasley</span> <span class="o">=</span> <span class="nc">Vault</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">weasley</span><span class="p">)</span>
+
+<span class="n">total</span> <span class="o">=</span> <span class="n">potter</span> <span class="o">+</span> <span class="n">weasley</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">total</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how the <code class="language-plaintext highlighter-rouge">__str__</code> method returns a formatted string. Further, notice how the <code class="language-plaintext highlighter-rouge">__add__</code> method allows for the addition of the values of two vaults. <code class="language-plaintext highlighter-rouge">self</code> is what is on the left of the <code class="language-plaintext highlighter-rouge">+</code> operand. <code class="language-plaintext highlighter-rouge">other</code> is what is right of the <code class="language-plaintext highlighter-rouge">+</code>.</p>
+  </li>
+  <li data-marker="*">You can learn more in Python’s documentation of <a href="https://docs.python.org/3/reference/datamodel.html#special-method-names">operator overloading</a>.</li>
+</ul>
+
+<h2 id="summing-up">Summing Up</h2>
+<p>Now, you’ve learned a whole new level of capability through object-oriented programming.</p>
+
+<ul>
+  <li data-marker="*">Object-oriented programming</li>
+  <li data-marker="*">Classes</li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">raise</code></li>
+  <li data-marker="*">Class Methods</li>
+  <li data-marker="*">Static Methods</li>
+  <li data-marker="*">Inheritance</li>
+  <li data-marker="*">Operator Overloading</li>
+</ul>
+
+
+                </main>
