@@ -1,5 +1,5 @@
 # Introduction to Python
-These are the notes I took following CS50's Introduction to Programming with Python.
+These are the notes I took following CS50's Introduction to Programming with Python. The repository also contains my solutions to some Problem Sets.
 
 ## Resources
 * [YouTube Playlist of CS50P](https://www.youtube.com/playlist?list=PLhQjrBD2T3817j24-GogXmWqO5Q5vYy0V)
