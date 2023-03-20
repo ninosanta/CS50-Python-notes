@@ -1,0 +1,944 @@
+                <main class="col-lg">
+
+                    <h1 class="no_toc" id="lecture-9">Lecture 9</h1>
+
+<ul id="markdown-toc">
+  <li><a href="#et-cetera" id="markdown-toc-et-cetera">Et Cetera</a></li>
+  <li><a href="#set" id="markdown-toc-set"><code class="language-plaintext highlighter-rouge">set</code></a></li>
+  <li><a href="#global-variables" id="markdown-toc-global-variables">Global Variables</a></li>
+  <li><a href="#constants" id="markdown-toc-constants">Constants</a></li>
+  <li><a href="#type-hints" id="markdown-toc-type-hints">Type Hints</a></li>
+  <li><a href="#docstrings" id="markdown-toc-docstrings">Docstrings</a></li>
+  <li><a href="#argparse" id="markdown-toc-argparse"><code class="language-plaintext highlighter-rouge">argparse</code></a></li>
+  <li><a href="#unpacking" id="markdown-toc-unpacking">Unpacking</a></li>
+  <li><a href="#args-and-kwargs" id="markdown-toc-args-and-kwargs"><code class="language-plaintext highlighter-rouge">args</code> and <code class="language-plaintext highlighter-rouge">kwargs</code></a></li>
+  <li><a href="#map" id="markdown-toc-map"><code class="language-plaintext highlighter-rouge">map</code></a></li>
+  <li><a href="#list-comprehensions" id="markdown-toc-list-comprehensions">List Comprehensions</a></li>
+  <li><a href="#filter" id="markdown-toc-filter"><code class="language-plaintext highlighter-rouge">filter</code></a></li>
+  <li><a href="#dictionary-comprehensions" id="markdown-toc-dictionary-comprehensions">Dictionary Comprehensions</a></li>
+  <li><a href="#enumerate" id="markdown-toc-enumerate"><code class="language-plaintext highlighter-rouge">enumerate</code></a></li>
+  <li><a href="#generators-and-iterators" id="markdown-toc-generators-and-iterators">Generators and Iterators</a></li>
+  <li><a href="#congratulations" id="markdown-toc-congratulations">Congratulations!</a></li>
+  <li><a href="#this-was-cs50" id="markdown-toc-this-was-cs50">This was CS50!</a></li>
+</ul>
+
+<h2 id="et-cetera">Et Cetera</h2>
+
+<ul>
+  <li data-marker="*">Over the many past lessons, we have covered so much related to Python!</li>
+  <li data-marker="*">In this lesson, we will be focusing upon many of the “et cetera” items not previously discussed. “Et cetera” literally means “and the rest”!</li>
+  <li data-marker="*">Indeed, if you look at the Python documentation, you will find quite “the rest” of other features.</li>
+</ul>
+
+<h2 id="set"><code class="language-plaintext highlighter-rouge">set</code></h2>
+<ul>
+  <li data-marker="*">In math, a set would be considered a set of numbers without any duplicates.</li>
+  <li data-marker="*">
+    <p>In the text editor window, code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">students</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"Hermione"</span><span class="p">,</span> <span class="s">"house"</span><span class="p">:</span> <span class="s">"Gryffindor"</span><span class="p">},</span>
+    <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"Harry"</span><span class="p">,</span> <span class="s">"house"</span><span class="p">:</span> <span class="s">"Gryffindor"</span><span class="p">},</span>
+    <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"Ron"</span><span class="p">,</span> <span class="s">"house"</span><span class="p">:</span> <span class="s">"Gryffindor"</span><span class="p">},</span>
+    <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"Draco"</span><span class="p">,</span> <span class="s">"house"</span><span class="p">:</span> <span class="s">"Slytherin"</span><span class="p">},</span>
+    <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"Padma"</span><span class="p">,</span> <span class="s">"house"</span><span class="p">:</span> <span class="s">"Ravenclaw"</span><span class="p">},</span>
+<span class="p">]</span>
+
+<span class="n">houses</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">student</span> <span class="ow">in</span> <span class="n">students</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">student</span><span class="p">[</span><span class="s">"house"</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">houses</span><span class="p">:</span>
+        <span class="n">houses</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">student</span><span class="p">[</span><span class="s">"house"</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">house</span> <span class="ow">in</span> <span class="nf">sorted</span><span class="p">(</span><span class="n">houses</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">house</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how we have a list of dictionaries, each being a student. An empty list called <code class="language-plaintext highlighter-rouge">houses</code> is created. We iterate through each <code class="language-plaintext highlighter-rouge">student</code> in <code class="language-plaintext highlighter-rouge">students</code>. If a student’s <code class="language-plaintext highlighter-rouge">house</code> is not in <code class="language-plaintext highlighter-rouge">houses</code>, we append to our list of <code class="language-plaintext highlighter-rouge">houses</code>.</p>
+  </li>
+  <li data-marker="*">It turns out we can use the built-in <code class="language-plaintext highlighter-rouge">set</code> features to eliminate duplicates.</li>
+  <li data-marker="*">
+    <p>In the text editor window, code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">students</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"Hermione"</span><span class="p">,</span> <span class="s">"house"</span><span class="p">:</span> <span class="s">"Gryffindor"</span><span class="p">},</span>
+    <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"Harry"</span><span class="p">,</span> <span class="s">"house"</span><span class="p">:</span> <span class="s">"Gryffindor"</span><span class="p">},</span>
+    <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"Ron"</span><span class="p">,</span> <span class="s">"house"</span><span class="p">:</span> <span class="s">"Gryffindor"</span><span class="p">},</span>
+    <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"Draco"</span><span class="p">,</span> <span class="s">"house"</span><span class="p">:</span> <span class="s">"Slytherin"</span><span class="p">},</span>
+    <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"Padma"</span><span class="p">,</span> <span class="s">"house"</span><span class="p">:</span> <span class="s">"Ravenclaw"</span><span class="p">},</span>
+<span class="p">]</span>
+
+<span class="n">houses</span> <span class="o">=</span> <span class="nf">set</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">student</span> <span class="ow">in</span> <span class="n">students</span><span class="p">:</span>
+    <span class="n">houses</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="n">student</span><span class="p">[</span><span class="s">"house"</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">house</span> <span class="ow">in</span> <span class="nf">sorted</span><span class="p">(</span><span class="n">houses</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">house</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how no checking needs to be included to ensure there are no duplicates. The <code class="language-plaintext highlighter-rouge">set</code> object takes care of this for us automatically.</p>
+  </li>
+  <li data-marker="*">You can learn more in Python’s documentation of <a href="https://docs.python.org/3/library/stdtypes.html#set"><code class="language-plaintext highlighter-rouge">set</code></a>.</li>
+</ul>
+
+<h2 id="global-variables">Global Variables</h2>
+<ul>
+  <li data-marker="*">In other programming languages, there is the notion of global variables that are accessible to any function.</li>
+  <li data-marker="*">
+    <p>We can leverage this ability within Python. In the text editor window, code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">balance</span> <span class="o">=</span> <span class="mi">0</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Balance:"</span><span class="p">,</span> <span class="n">balance</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice how we create a global variable called <code class="language-plaintext highlighter-rouge">balance</code>, outside of any function.</p>
+  </li>
+  <li data-marker="*">
+    <p>Since no errors are presented by executing the code above, you’d think all is well. However, it is not! In the text editor window, code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">balance</span> <span class="o">=</span> <span class="mi">0</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Balance:"</span><span class="p">,</span> <span class="n">balance</span><span class="p">)</span>
+    <span class="nf">deposit</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+    <span class="nf">withdraw</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Balance:"</span><span class="p">,</span> <span class="n">balance</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">deposit</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">balance</span> <span class="o">+=</span> <span class="n">n</span>
+
+
+<span class="k">def</span> <span class="nf">withdraw</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">balance</span> <span class="o">-=</span> <span class="n">n</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice how we now add the functionality to add and withdraw funds to and from <code class="language-plaintext highlighter-rouge">balance</code>. However, executing this code, we are presented with an error! We see an error called <code class="language-plaintext highlighter-rouge">UnboundLocalError</code>. You might be able to guess that, at least in the way we’ve currently coded <code class="language-plaintext highlighter-rouge">balance</code> and our <code class="language-plaintext highlighter-rouge">deposit</code> and <code class="language-plaintext highlighter-rouge">withdraw</code> functions, we can’t reassign it a value value inside a function.</p>
+  </li>
+  <li data-marker="*">
+    <p>To interact with a global variable inside a function, the solution is to use the <code class="language-plaintext highlighter-rouge">global</code> keyword. In the text editor window, code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">balance</span> <span class="o">=</span> <span class="mi">0</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Balance:"</span><span class="p">,</span> <span class="n">balance</span><span class="p">)</span>
+    <span class="nf">deposit</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+    <span class="nf">withdraw</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Balance:"</span><span class="p">,</span> <span class="n">balance</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">deposit</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">balance</span>
+    <span class="n">balance</span> <span class="o">+=</span> <span class="n">n</span>
+
+
+<span class="k">def</span> <span class="nf">withdraw</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">balance</span>
+    <span class="n">balance</span> <span class="o">-=</span> <span class="n">n</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice how the <code class="language-plaintext highlighter-rouge">global</code> keyword tells each function that <code class="language-plaintext highlighter-rouge">balance</code> does not refer to a local variable: instead, it refers to the global variable we originally placed at the top of our code. Now, our code functions!</p>
+  </li>
+  <li data-marker="*">
+    <p>Utilizing our powers from our experience with object-oriented programming, we can modify our code to use a class instead of a global variable. In the text editor window, code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Account</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">_balance</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">balance</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="n">_balance</span>
+
+    <span class="k">def</span> <span class="nf">deposit</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">_balance</span> <span class="o">+=</span> <span class="n">n</span>
+
+    <span class="k">def</span> <span class="nf">withdraw</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">_balance</span> <span class="o">-=</span> <span class="n">n</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">account</span> <span class="o">=</span> <span class="nc">Account</span><span class="p">()</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Balance:"</span><span class="p">,</span> <span class="n">account</span><span class="p">.</span><span class="n">balance</span><span class="p">)</span>
+    <span class="n">account</span><span class="p">.</span><span class="nf">deposit</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">account</span><span class="p">.</span><span class="nf">withdraw</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Balance:"</span><span class="p">,</span> <span class="n">account</span><span class="p">.</span><span class="n">balance</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice how we use <code class="language-plaintext highlighter-rouge">account = Account()</code> to create an account. Classes allow us to solve this issue of needing a global variable more cleanly because these instance variables are accessible to all the methods of this class utilizing <code class="language-plaintext highlighter-rouge">self</code>.</p>
+  </li>
+  <li data-marker="*">Generally speaking, global variables should be used quite sparingly, if at all!</li>
+</ul>
+
+<h2 id="constants">Constants</h2>
+<ul>
+  <li data-marker="*">Some languages allow you to create variables that are unchangeable, called “constants”. Constants allow one to program defensively and reduce the opportunities for important values to be altered.</li>
+  <li data-marker="*">
+    <p>In the text editor window, code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">MEOWS</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">MEOWS</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"meow"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice <code class="language-plaintext highlighter-rouge">MEOWS</code> is our constant in this case. Constants are typically denoted by capital variable names and are placed at the top of our code. Though this <em>looks</em> like a constant, in reality, Python actually has no mechanism to prevent us from changing that value within our code! Instead, you’re on the honor system: if a variable name is written in all caps, just don’t change it!</p>
+  </li>
+  <li data-marker="*">
+    <p>One can create a class “constant”, now in quotes because we know Python doesn’t quite support “constants”. In the text editor window, code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Cat</span><span class="p">:</span>
+    <span class="n">MEOWS</span> <span class="o">=</span> <span class="mi">3</span>
+
+    <span class="k">def</span> <span class="nf">meow</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">Cat</span><span class="p">.</span><span class="n">MEOWS</span><span class="p">):</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s">"meow"</span><span class="p">)</span>
+
+
+<span class="n">cat</span> <span class="o">=</span> <span class="nc">Cat</span><span class="p">()</span>
+<span class="n">cat</span><span class="p">.</span><span class="nf">meow</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Because <code class="language-plaintext highlighter-rouge">MEOWS</code> is defined outside of any particular class method, all of them have access to that value via <code class="language-plaintext highlighter-rouge">Cat.MEOWS</code>.</p>
+  </li>
+</ul>
+
+<h2 id="type-hints">Type Hints</h2>
+<ul>
+  <li data-marker="*">In other programming languages, one expresses explicitly what variable type you want to use.</li>
+  <li data-marker="*">As we saw earlier in the course, Python does require the explicit declaration of types.</li>
+  <li data-marker="*">Nevertheless, it’s good practice need to ensure all of your variables are of the right type.</li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">mypy</code> is a program that can help you test to make sure all your variables are of the right type.</li>
+  <li data-marker="*">You can install <code class="language-plaintext highlighter-rouge">mypy</code> by executing in your terminal window: <code class="language-plaintext highlighter-rouge">pip install mypy</code>.</li>
+</ul>
+
+<p>In the text editor window, code as follows:</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">def</span> <span class="nf">meow</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+      <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+          <span class="nf">print</span><span class="p">(</span><span class="s">"meow"</span><span class="p">)</span>
+
+
+  <span class="n">number</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"Number: "</span><span class="p">)</span>
+  <span class="nf">meow</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+</code></pre></div></div>
+<p>You may already see that <code class="language-plaintext highlighter-rouge">number = input("Number: )"</code> returns a <code class="language-plaintext highlighter-rouge">string</code>, not an <code class="language-plaintext highlighter-rouge">int</code>. But <code class="language-plaintext highlighter-rouge">meow</code> will likely want an <code class="language-plaintext highlighter-rouge">int</code>!</p>
+
+<ul>
+  <li data-marker="*">
+    <p>A type hint can be added to give Python a hint of what type of variable <code class="language-plaintext highlighter-rouge">meow</code> should expect. In the text editor window, code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">meow</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"meow"</span><span class="p">)</span>
+
+
+<span class="n">number</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"Number: "</span><span class="p">)</span>
+<span class="nf">meow</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice, though, that our program still throws an error.</p>
+  </li>
+  <li data-marker="*">After installing <code class="language-plaintext highlighter-rouge">mypy</code>, execute <code class="language-plaintext highlighter-rouge">mypy meows.py</code> in the terminal window. <code class="language-plaintext highlighter-rouge">mypy</code> will provide some guidance about how to fix this error.</li>
+  <li data-marker="*">
+    <p>You can annotate all your variables. In the text editor window, code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">meow</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"meow"</span><span class="p">)</span>
+
+
+<span class="n">number</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"Number: "</span><span class="p">)</span>
+<span class="nf">meow</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how <code class="language-plaintext highlighter-rouge">number</code> is now provided a type hint.</p>
+  </li>
+  <li data-marker="*">Again, executing <code class="language-plaintext highlighter-rouge">mypy meows.py</code> in the terminal window provides much more specific feedback to you, the programmer.</li>
+  <li data-marker="*">
+    <p>We can fix our final error by coding as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">meow</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"meow"</span><span class="p">)</span>
+
+
+<span class="n">number</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"Number: "</span><span class="p">))</span>
+<span class="nf">meow</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how running <code class="language-plaintext highlighter-rouge">mypy</code> how produces no errors because cast our input as an integer.</p>
+  </li>
+  <li data-marker="*">
+    <p>Let’s introduce a new error by assuming that <code class="language-plaintext highlighter-rouge">meow</code> will return to us a string, or <code class="language-plaintext highlighter-rouge">str</code>. In the text editor window, code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">meow</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"meow"</span><span class="p">)</span>
+
+
+<span class="n">number</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"Number: "</span><span class="p">))</span>
+<span class="n">meows</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="nf">meow</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">meows</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how the <code class="language-plaintext highlighter-rouge">meow</code> function has only a side effect. Because we only attempt to print “meow”, not return a value, an error is thrown when we try to store the return value of <code class="language-plaintext highlighter-rouge">meow</code> in <code class="language-plaintext highlighter-rouge">meows</code>.</p>
+  </li>
+  <li data-marker="*">
+    <p>We can further use type hints to check for errors, this time annotating the return values of functions. In the text editor window, code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">meow</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"meow"</span><span class="p">)</span>
+
+
+<span class="n">number</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"Number: "</span><span class="p">))</span>
+<span class="n">meows</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="nf">meow</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">meows</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how the notation <code class="language-plaintext highlighter-rouge">-&gt; None</code> tells <code class="language-plaintext highlighter-rouge">mypy</code> that there is no return value.</p>
+  </li>
+  <li data-marker="*">
+    <p>We can modify our code to return a string if we wish:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">meow</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="s">"meow</span><span class="se">\n</span><span class="s">"</span> <span class="o">*</span> <span class="n">n</span>
+
+
+<span class="n">number</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"Number: "</span><span class="p">))</span>
+<span class="n">meows</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="nf">meow</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">meows</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s">""</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how we store in <code class="language-plaintext highlighter-rouge">meows</code> multiple <code class="language-plaintext highlighter-rouge">str</code>s. Running <code class="language-plaintext highlighter-rouge">mypy</code> produces no errors.</p>
+  </li>
+  <li data-marker="*">You can learn more in Python’s documentation of <a href="https://docs.python.org/3/library/typing.html">Type Hints</a>.</li>
+  <li data-marker="*">You can learn more about <a href="https://mypy.readthedocs.io/"><code class="language-plaintext highlighter-rouge">mypy</code></a> through the program’s own documentation.</li>
+</ul>
+
+<h2 id="docstrings">Docstrings</h2>
+
+<ul>
+  <li data-marker="*">
+    <p>A standard way of commenting your function’s purpose is to use a docstring. In the text editor window, code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">meow</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="s">"""Meow n times."""</span>
+    <span class="k">return</span> <span class="s">"meow</span><span class="se">\n</span><span class="s">"</span> <span class="o">*</span> <span class="n">n</span>
+
+
+<span class="n">number</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"Number: "</span><span class="p">))</span>
+<span class="n">meows</span> <span class="o">=</span> <span class="nf">meow</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">meows</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s">""</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how the three double quotes designate what the function does.</p>
+  </li>
+  <li data-marker="*">You can use docstrings to standardize how you document the features of a function. In the text editor window, code as follows:
+s
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">meow</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="s">"""
+    Meow n times.
+
+    :param n: Number of times to meow
+    :type n: int
+    :raise TypeError: If n is not an int
+    :return: A string of n meows, one per line
+    :rtype: str
+    """</span>
+    <span class="k">return</span> <span class="s">"meow</span><span class="se">\n</span><span class="s">"</span> <span class="o">*</span> <span class="n">n</span>
+
+
+<span class="n">number</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"Number: "</span><span class="p">))</span>
+<span class="n">meows</span> <span class="o">=</span> <span class="nf">meow</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">meows</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s">""</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how multiple docstring arguments are included. For example, it describes the parameters taken by the function and what is returned by the function.</p>
+  </li>
+  <li data-marker="*">Established tools, such as <a href="https://www.sphinx-doc.org/en/master/index.html">Sphinx</a>, can be used to parse docstrings and automatically create documentation for us in the form of web pages and PDF files such that you can publish and share with others.</li>
+  <li data-marker="*">You can learn more in Python’s documentation of <a href="https://peps.python.org/pep-0257/">docstrings</a>.</li>
+</ul>
+
+<h2 id="argparse"><code class="language-plaintext highlighter-rouge">argparse</code></h2>
+
+<ul>
+  <li data-marker="*">
+    <p>Suppose we want to use command-line arguments in our program. In the text editor window, code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">sys</span>
+
+<span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"meow"</span><span class="p">)</span>
+<span class="k">elif</span> <span class="nf">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span> <span class="ow">and</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">"-n"</span><span class="p">:</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"meow"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"usage: meows.py [-n NUMBER]"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how <code class="language-plaintext highlighter-rouge">sys</code> is imported, from which we get access to <code class="language-plaintext highlighter-rouge">sys.argv</code>—an array of command-line arguments given to our program when run. We can use several <code class="language-plaintext highlighter-rouge">if</code> statements to check whether the use has run our program properly.</p>
+  </li>
+  <li data-marker="*">Let’s assume that this program will be getting much more complicated. How could we check all the arguments that could be inserted by the user? We might give up if we have more than a few command-line arguments!</li>
+  <li data-marker="*">
+    <p>Luckily, <code class="language-plaintext highlighter-rouge">argparse</code> is a library that handles all the parsing of complicated strings of command-line arguments. In the text editor window, code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">argparse</span>
+
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="nc">ArgumentParser</span><span class="p">()</span>
+<span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="s">"-n"</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="nf">parse_args</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">int</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">n</span><span class="p">)):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"meow"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how <code class="language-plaintext highlighter-rouge">argparse</code> is imported instead of <code class="language-plaintext highlighter-rouge">sys</code>. An object called <code class="language-plaintext highlighter-rouge">parser</code> is created from an <code class="language-plaintext highlighter-rouge">ArgumentParser</code> class. That class’s <code class="language-plaintext highlighter-rouge">add_argument</code> method is used to tell <code class="language-plaintext highlighter-rouge">argparse</code> what arguments we should expect from the user when they run our program. Finally, running the parser’s <code class="language-plaintext highlighter-rouge">parse_args</code> method ensures that all of the arguments have been included properly by the user.</p>
+  </li>
+  <li data-marker="*">
+    <p>We can also program more cleanly, such that our user can get some information about the proper usage of our code when they fail to use the program correctly. In the text editor window, code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">argparse</span>
+
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="nc">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">"Meow like a cat"</span><span class="p">)</span>
+<span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="s">"-n"</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">"number of times to meow"</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="nf">parse_args</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">int</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">n</span><span class="p">)):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"meow"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how the user is provided some documentation. Specifically, a <code class="language-plaintext highlighter-rouge">help</code> argument is provided. Now, if the user executes <code class="language-plaintext highlighter-rouge">python meows.py --help</code> or <code class="language-plaintext highlighter-rouge">-h</code>, the user will be presented with some clues about how to use this program.</p>
+  </li>
+  <li data-marker="*">
+    <p>We can further improve this program.  In the text editor window, code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">argparse</span>
+
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="nc">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">"Meow like a cat"</span><span class="p">)</span>
+<span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="s">"-n"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">"number of times to meow"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="nf">parse_args</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">n</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"meow"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how not only is help documentation included, but you can provide a <code class="language-plaintext highlighter-rouge">default</code> value when no arguments are provided by the user.</p>
+  </li>
+  <li data-marker="*">You can learn more in Python’s documentation of <a href="https://docs.python.org/3/library/argparse.html"><code class="language-plaintext highlighter-rouge">argparse</code></a>.</li>
+</ul>
+
+<h2 id="unpacking">Unpacking</h2>
+
+<ul>
+  <li data-marker="*">
+    <p>Would it not be nice to be able to split a single variable into two variables? In the text editor window, code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">first</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's your name? "</span><span class="p">).</span><span class="nf">split</span><span class="p">(</span><span class="s">" "</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"hello, </span><span class="si">{</span><span class="n">first</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how this program tries to get a user’s first name by naively splitting on a single space.</p>
+  </li>
+  <li data-marker="*">
+    <p>It turns out there are other ways to unpack variables. You can write more powerful and elegant code by understanding how to unpack variables in seemingly more advanced ways. In the text editor window, code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">total</span><span class="p">(</span><span class="n">galleons</span><span class="p">,</span> <span class="n">sickles</span><span class="p">,</span> <span class="n">knuts</span><span class="p">):</span>
+    <span class="nf">return </span><span class="p">(</span><span class="n">galleons</span> <span class="o">*</span> <span class="mi">17</span> <span class="o">+</span> <span class="n">sickles</span><span class="p">)</span> <span class="o">*</span> <span class="mi">29</span> <span class="o">+</span> <span class="n">knuts</span>
+
+
+<span class="nf">print</span><span class="p">(</span><span class="nf">total</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">25</span><span class="p">),</span> <span class="s">"Knuts"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how this returns the total value of Knuts.</p>
+  </li>
+  <li data-marker="*">
+    <p>What if we wanted to store our coins in a list? In the text editor window, code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">total</span><span class="p">(</span><span class="n">galleons</span><span class="p">,</span> <span class="n">sickles</span><span class="p">,</span> <span class="n">knuts</span><span class="p">):</span>
+    <span class="nf">return </span><span class="p">(</span><span class="n">galleons</span> <span class="o">*</span> <span class="mi">17</span> <span class="o">+</span> <span class="n">sickles</span><span class="p">)</span> <span class="o">*</span> <span class="mi">29</span> <span class="o">+</span> <span class="n">knuts</span>
+
+
+<span class="n">coins</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">25</span><span class="p">]</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="nf">total</span><span class="p">(</span><span class="n">coins</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">coins</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">coins</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span> <span class="s">"Knuts"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how a list called <code class="language-plaintext highlighter-rouge">coins</code> is created. We can pass each value in by indexing using <code class="language-plaintext highlighter-rouge">0</code>, <code class="language-plaintext highlighter-rouge">1</code>, and so on.</p>
+  </li>
+  <li data-marker="*">This is getting quite verbose. Wouldn’t it be nice if we could simply pass the list of coins to our function?</li>
+  <li data-marker="*">
+    <p>To enable the possibility of passing the entire list, we can use unpacking. In the text editor window, code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">total</span><span class="p">(</span><span class="n">galleons</span><span class="p">,</span> <span class="n">sickles</span><span class="p">,</span> <span class="n">knuts</span><span class="p">):</span>
+    <span class="nf">return </span><span class="p">(</span><span class="n">galleons</span> <span class="o">*</span> <span class="mi">17</span> <span class="o">+</span> <span class="n">sickles</span><span class="p">)</span> <span class="o">*</span> <span class="mi">29</span> <span class="o">+</span> <span class="n">knuts</span>
+
+
+<span class="n">coins</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">25</span><span class="p">]</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="nf">total</span><span class="p">(</span><span class="o">*</span><span class="n">coins</span><span class="p">),</span> <span class="s">"Knuts"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how a <code class="language-plaintext highlighter-rouge">*</code> unpacks the sequence of the list of coins and passes in each of its individual elements to <code class="language-plaintext highlighter-rouge">total</code>.</p>
+  </li>
+  <li data-marker="*">
+    <p>Suppose that we could pass in the names of the currency in any order? In the text editor window, code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">total</span><span class="p">(</span><span class="n">galleons</span><span class="p">,</span> <span class="n">sickles</span><span class="p">,</span> <span class="n">knuts</span><span class="p">):</span>
+    <span class="nf">return </span><span class="p">(</span><span class="n">galleons</span> <span class="o">*</span> <span class="mi">17</span> <span class="o">+</span> <span class="n">sickles</span><span class="p">)</span> <span class="o">*</span> <span class="mi">29</span> <span class="o">+</span> <span class="n">knuts</span>
+
+
+<span class="nf">print</span><span class="p">(</span><span class="nf">total</span><span class="p">(</span><span class="n">galleons</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">sickles</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">knuts</span><span class="o">=</span><span class="mi">25</span><span class="p">),</span> <span class="s">"Knuts"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how this still calculates correctly.</p>
+  </li>
+  <li data-marker="*">
+    <p>When you start talking about “names” and “values,” dictionaries might start coming to mind! You can implement this as a dictionary. In the text editor window, code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">total</span><span class="p">(</span><span class="n">galleons</span><span class="p">,</span> <span class="n">sickles</span><span class="p">,</span> <span class="n">knuts</span><span class="p">):</span>
+    <span class="nf">return </span><span class="p">(</span><span class="n">galleons</span> <span class="o">*</span> <span class="mi">17</span> <span class="o">+</span> <span class="n">sickles</span><span class="p">)</span> <span class="o">*</span> <span class="mi">29</span> <span class="o">+</span> <span class="n">knuts</span>
+
+
+<span class="n">coins</span> <span class="o">=</span> <span class="p">{</span><span class="s">"galleons"</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s">"sickles"</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span> <span class="s">"knuts"</span><span class="p">:</span> <span class="mi">25</span><span class="p">}</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="nf">total</span><span class="p">(</span><span class="n">coins</span><span class="p">[</span><span class="s">"galleons"</span><span class="p">],</span> <span class="n">coins</span><span class="p">[</span><span class="s">"sickles"</span><span class="p">],</span> <span class="n">coins</span><span class="p">[</span><span class="s">"knuts"</span><span class="p">]),</span> <span class="s">"Knuts"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how a dictionary called <code class="language-plaintext highlighter-rouge">coins</code> is provided. We can index into it using keys, such as “galleons” or “sickles”.</p>
+  </li>
+  <li data-marker="*">
+    <p>Since the <code class="language-plaintext highlighter-rouge">total</code> function expects three arguments, we cannot pass in a dictionary. We can use unpacking to help with this. In the text editor window, code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">total</span><span class="p">(</span><span class="n">galleons</span><span class="p">,</span> <span class="n">sickles</span><span class="p">,</span> <span class="n">knuts</span><span class="p">):</span>
+    <span class="nf">return </span><span class="p">(</span><span class="n">galleons</span> <span class="o">*</span> <span class="mi">17</span> <span class="o">+</span> <span class="n">sickles</span><span class="p">)</span> <span class="o">*</span> <span class="mi">29</span> <span class="o">+</span> <span class="n">knuts</span>
+
+
+<span class="n">coins</span> <span class="o">=</span> <span class="p">{</span><span class="s">"galleons"</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s">"sickles"</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span> <span class="s">"knuts"</span><span class="p">:</span> <span class="mi">25</span><span class="p">}</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="nf">total</span><span class="p">(</span><span class="o">**</span><span class="n">coins</span><span class="p">),</span> <span class="s">"Knuts"</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how <code class="language-plaintext highlighter-rouge">**</code> allows you to unpack a dictionary. When unpacking a dictionary, it provides both the keys and values.</p>
+  </li>
+</ul>
+
+<h2 id="args-and-kwargs"><code class="language-plaintext highlighter-rouge">args</code> and <code class="language-plaintext highlighter-rouge">kwargs</code></h2>
+
+<ul>
+  <li data-marker="*">
+    <p>Recall the <code class="language-plaintext highlighter-rouge">print</code> documentation we looked at earlier in this course:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>print(*objects, sep=' ', end='\n', file=sys.stdout, flush=False)
+</code></pre></div>    </div>
+  </li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">args</code> are positional arguments, such as those we provide to print like <code class="language-plaintext highlighter-rouge">print("Hello", "World")</code>.</li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">kwargs</code> are named arguments, or “keyword arguments”, such as those we provide to print like <code class="language-plaintext highlighter-rouge">print(end="")</code>.</li>
+  <li data-marker="*">
+    <p>As we see in the prototype for the <code class="language-plaintext highlighter-rouge">print</code> function above, we can tell our function to expect a presently unknown number positional arguments. We can also tell it to expect a presently unknown number of keyword arguments. In the text editor window, code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Positional:"</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+
+
+<span class="nf">f</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how executing this code will be printed as positional arguments.</p>
+  </li>
+  <li data-marker="*">
+    <p>We can even pass in named arguments. In the text editor window, code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Named:"</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+
+
+<span class="nf">f</span><span class="p">(</span><span class="n">galleons</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">sickles</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">knuts</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how the named values are provided in the form of a dictionary.</p>
+  </li>
+  <li data-marker="*">Thinking about the <code class="language-plaintext highlighter-rouge">print</code> function above, you can see how <code class="language-plaintext highlighter-rouge">*objects</code> takes any number of positional arguments.</li>
+  <li data-marker="*">You can learn more in Python’s documentation of <a href="https://docs.python.org/3/library/functions.html#print"><code class="language-plaintext highlighter-rouge">print</code></a>.</li>
+</ul>
+
+<h2 id="map"><code class="language-plaintext highlighter-rouge">map</code></h2>
+
+<ul>
+  <li data-marker="*">Early on, we began with procedural programming.</li>
+  <li data-marker="*">We later revealed Python is an object oriented programming language.</li>
+  <li data-marker="*">
+    <p>We saw hints of functional programming, where functions have side effects without a return value. We can illustrate this in the text editor window, type <code class="language-plaintext highlighter-rouge">code yell.py</code> and code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="nf">yell</span><span class="p">(</span><span class="s">"This is CS50"</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">yell</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">word</span><span class="p">.</span><span class="nf">upper</span><span class="p">())</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice how the <code class="language-plaintext highlighter-rouge">yell</code> function is simply yelled.</p>
+  </li>
+  <li data-marker="*">
+    <p>Wouldn’t it be nice to yell a list of unlimited words? Modify your code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="nf">yell</span><span class="p">([</span><span class="s">"This"</span><span class="p">,</span> <span class="s">"is"</span><span class="p">,</span> <span class="s">"CS50"</span><span class="p">])</span>
+
+
+<span class="k">def</span> <span class="nf">yell</span><span class="p">(</span><span class="n">words</span><span class="p">):</span>
+    <span class="n">uppercased</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+        <span class="n">uppercased</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">word</span><span class="p">.</span><span class="nf">upper</span><span class="p">())</span>
+    <span class="nf">print</span><span class="p">(</span><span class="o">*</span><span class="n">uppercased</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice we accumulate the uppercase words, iterating over each of the words and uppercasing them. The uppercase list is printed utilizing the <code class="language-plaintext highlighter-rouge">*</code> to unpack it.</p>
+  </li>
+  <li data-marker="*">
+    <p>Removing the brackets, we can pass the words in as arguments. In the text editor window, code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="nf">yell</span><span class="p">(</span><span class="s">"This"</span><span class="p">,</span> <span class="s">"is"</span><span class="p">,</span> <span class="s">"CS50"</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">yell</span><span class="p">(</span><span class="o">*</span><span class="n">words</span><span class="p">):</span>
+    <span class="n">uppercased</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+        <span class="n">uppercased</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">word</span><span class="p">.</span><span class="nf">upper</span><span class="p">())</span>
+    <span class="nf">print</span><span class="p">(</span><span class="o">*</span><span class="n">uppercased</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice how <code class="language-plaintext highlighter-rouge">*words</code> allows for many arguments to be taken by the function.</p>
+  </li>
+  <li data-marker="*">
+    <p><code class="language-plaintext highlighter-rouge">map</code> allows you to map a function to a sequence of values. In practice, we can code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="nf">yell</span><span class="p">(</span><span class="s">"This"</span><span class="p">,</span> <span class="s">"is"</span><span class="p">,</span> <span class="s">"CS50"</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">yell</span><span class="p">(</span><span class="o">*</span><span class="n">words</span><span class="p">):</span>
+    <span class="n">uppercased</span> <span class="o">=</span> <span class="nf">map</span><span class="p">(</span><span class="nb">str</span><span class="p">.</span><span class="n">upper</span><span class="p">,</span> <span class="n">words</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="o">*</span><span class="n">uppercased</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice how <code class="language-plaintext highlighter-rouge">map</code> takes two arguments. First, it takes a function we want applied to every element of a list. Second, it takes that list itself, to which we’ll apply the aforementioned function. Hence, all words in <code class="language-plaintext highlighter-rouge">words</code> will be handed to the <code class="language-plaintext highlighter-rouge">str.upper</code> function and returned to <code class="language-plaintext highlighter-rouge">uppercased</code>.</p>
+  </li>
+  <li data-marker="*">You can learn more in Python’s documentation of <a href="https://docs.python.org/3/library/functions.html#map"><code class="language-plaintext highlighter-rouge">map</code></a>.</li>
+</ul>
+
+<h2 id="list-comprehensions">List Comprehensions</h2>
+<ul>
+  <li data-marker="*">List comprehensions allow you to create a list on the fly in one elegant one-liner.</li>
+  <li data-marker="*">
+    <p>We can implement this in our code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="nf">yell</span><span class="p">(</span><span class="s">"This"</span><span class="p">,</span> <span class="s">"is"</span><span class="p">,</span> <span class="s">"CS50"</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">yell</span><span class="p">(</span><span class="o">*</span><span class="n">words</span><span class="p">):</span>
+    <span class="n">uppercased</span> <span class="o">=</span> <span class="p">[</span><span class="n">arg</span><span class="p">.</span><span class="nf">upper</span><span class="p">()</span> <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">words</span><span class="p">]</span>
+    <span class="nf">print</span><span class="p">(</span><span class="o">*</span><span class="n">uppercased</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+
+</code></pre></div>    </div>
+    <p>Notice how instead of using <code class="language-plaintext highlighter-rouge">map</code>, we write a Python expression within square brackets. For each argument, <code class="language-plaintext highlighter-rouge">.upper</code> is applied to it.</p>
+  </li>
+  <li data-marker="*">Taking this concept further, let’s pivot toward another program.</li>
+  <li data-marker="*">
+    <p>In the text editor window, type <code class="language-plaintext highlighter-rouge">code gryffindors.py</code> and code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">students</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"Hermione"</span><span class="p">,</span> <span class="s">"house"</span><span class="p">:</span> <span class="s">"Gryffindor"</span><span class="p">},</span>
+    <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"Harry"</span><span class="p">,</span> <span class="s">"house"</span><span class="p">:</span> <span class="s">"Gryffindor"</span><span class="p">},</span>
+    <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"Ron"</span><span class="p">,</span> <span class="s">"house"</span><span class="p">:</span> <span class="s">"Gryffindor"</span><span class="p">},</span>
+    <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"Draco"</span><span class="p">,</span> <span class="s">"house"</span><span class="p">:</span> <span class="s">"Slytherin"</span><span class="p">},</span>
+<span class="p">]</span>
+
+<span class="n">gryffindors</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">student</span> <span class="ow">in</span> <span class="n">students</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">student</span><span class="p">[</span><span class="s">"house"</span><span class="p">]</span> <span class="o">==</span> <span class="s">"Gryffindor"</span><span class="p">:</span>
+        <span class="n">gryffindors</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">student</span><span class="p">[</span><span class="s">"name"</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">gryffindor</span> <span class="ow">in</span> <span class="nf">sorted</span><span class="p">(</span><span class="n">gryffindors</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">gryffindor</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice we have a conditional while we’re creating our list. <em>If</em> the student’s house is Gryffindor, we append the student to the list of names. Finally, we print all the names.</p>
+  </li>
+  <li data-marker="*">
+    <p>More elegantly, we can simplify this code with a list comprehension as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">students</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"Hermione"</span><span class="p">,</span> <span class="s">"house"</span><span class="p">:</span> <span class="s">"Gryffindor"</span><span class="p">},</span>
+    <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"Harry"</span><span class="p">,</span> <span class="s">"house"</span><span class="p">:</span> <span class="s">"Gryffindor"</span><span class="p">},</span>
+    <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"Ron"</span><span class="p">,</span> <span class="s">"house"</span><span class="p">:</span> <span class="s">"Gryffindor"</span><span class="p">},</span>
+    <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"Draco"</span><span class="p">,</span> <span class="s">"house"</span><span class="p">:</span> <span class="s">"Slytherin"</span><span class="p">},</span>
+<span class="p">]</span>
+
+<span class="n">gryffindors</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">student</span><span class="p">[</span><span class="s">"name"</span><span class="p">]</span> <span class="k">for</span> <span class="n">student</span> <span class="ow">in</span> <span class="n">students</span> <span class="k">if</span> <span class="n">student</span><span class="p">[</span><span class="s">"house"</span><span class="p">]</span> <span class="o">==</span> <span class="s">"Gryffindor"</span>
+<span class="p">]</span>
+
+<span class="k">for</span> <span class="n">gryffindor</span> <span class="ow">in</span> <span class="nf">sorted</span><span class="p">(</span><span class="n">gryffindors</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">gryffindor</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how the list comprehension is on a single line!</p>
+  </li>
+</ul>
+
+<h2 id="filter"><code class="language-plaintext highlighter-rouge">filter</code></h2>
+<ul>
+  <li data-marker="*">Using Python’s <code class="language-plaintext highlighter-rouge">filter</code> function allows us to return a subset of a sequence for which a certain condition is true.</li>
+  <li data-marker="*">
+    <p>In the text editor window, code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">students</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"Hermione"</span><span class="p">,</span> <span class="s">"house"</span><span class="p">:</span> <span class="s">"Gryffindor"</span><span class="p">},</span>
+    <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"Harry"</span><span class="p">,</span> <span class="s">"house"</span><span class="p">:</span> <span class="s">"Gryffindor"</span><span class="p">},</span>
+    <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"Ron"</span><span class="p">,</span> <span class="s">"house"</span><span class="p">:</span> <span class="s">"Gryffindor"</span><span class="p">},</span>
+    <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"Draco"</span><span class="p">,</span> <span class="s">"house"</span><span class="p">:</span> <span class="s">"Slytherin"</span><span class="p">},</span>
+<span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">is_gryffindor</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">s</span><span class="p">[</span><span class="s">"house"</span><span class="p">]</span> <span class="o">==</span> <span class="s">"Gryffindor"</span>
+
+
+<span class="n">gryffindors</span> <span class="o">=</span> <span class="nf">filter</span><span class="p">(</span><span class="n">is_gryffindor</span><span class="p">,</span> <span class="n">students</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">gryffindor</span> <span class="ow">in</span> <span class="nf">sorted</span><span class="p">(</span><span class="n">gryffindors</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="p">[</span><span class="s">"name"</span><span class="p">]):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">gryffindor</span><span class="p">[</span><span class="s">"name"</span><span class="p">])</span>
+</code></pre></div>    </div>
+    <p>Notice how a function called <code class="language-plaintext highlighter-rouge">is_gryffindor</code> is created. This is our filtering function that will take a student <code class="language-plaintext highlighter-rouge">s</code>, and return <code class="language-plaintext highlighter-rouge">True</code> or <code class="language-plaintext highlighter-rouge">False</code> depending on whether the student’s house is Gryffindor. You can see the new <code class="language-plaintext highlighter-rouge">filter</code> function takes two arguments. First, it takes the function that will be applied to each element in a sequence—in this case, <code class="language-plaintext highlighter-rouge">is_gryffindor</code>. Second, it takes the sequence to which it will apply the filtering function—in this case, <code class="language-plaintext highlighter-rouge">students</code>. In <code class="language-plaintext highlighter-rouge">gryffindors</code>, we should see only those students who are in Gryffindor.</p>
+  </li>
+  <li data-marker="*">
+    <p><code class="language-plaintext highlighter-rouge">filter</code> can also use lambda functions as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">students</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"Hermione"</span><span class="p">,</span> <span class="s">"house"</span><span class="p">:</span> <span class="s">"Gryffindor"</span><span class="p">},</span>
+    <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"Harry"</span><span class="p">,</span> <span class="s">"house"</span><span class="p">:</span> <span class="s">"Gryffindor"</span><span class="p">},</span>
+    <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"Ron"</span><span class="p">,</span> <span class="s">"house"</span><span class="p">:</span> <span class="s">"Gryffindor"</span><span class="p">},</span>
+    <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"Draco"</span><span class="p">,</span> <span class="s">"house"</span><span class="p">:</span> <span class="s">"Slytherin"</span><span class="p">},</span>
+<span class="p">]</span>
+
+
+<span class="n">gryffindors</span> <span class="o">=</span> <span class="nf">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="p">[</span><span class="s">"house"</span><span class="p">]</span> <span class="o">==</span> <span class="s">"Gryffindor"</span><span class="p">,</span> <span class="n">students</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">gryffindor</span> <span class="ow">in</span> <span class="nf">sorted</span><span class="p">(</span><span class="n">gryffindors</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="p">[</span><span class="s">"name"</span><span class="p">]):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">gryffindor</span><span class="p">[</span><span class="s">"name"</span><span class="p">])</span>
+</code></pre></div>    </div>
+    <p>Notice how the same list of students is provided.</p>
+  </li>
+  <li data-marker="*">You can learn more in Python’s documentation of <a href="https://docs.python.org/3/library/functions.html#filter"><code class="language-plaintext highlighter-rouge">filter</code></a>.</li>
+</ul>
+
+<h2 id="dictionary-comprehensions">Dictionary Comprehensions</h2>
+
+<ul>
+  <li data-marker="*">
+    <p>We can apply the same idea behind list comprehensions to dictionaries. In the text editor window, code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">students</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Hermione"</span><span class="p">,</span> <span class="s">"Harry"</span><span class="p">,</span> <span class="s">"Ron"</span><span class="p">]</span>
+
+<span class="n">gryffindors</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">student</span> <span class="ow">in</span> <span class="n">students</span><span class="p">:</span>
+    <span class="n">gryffindors</span><span class="p">.</span><span class="nf">append</span><span class="p">({</span><span class="s">"name"</span><span class="p">:</span> <span class="n">student</span><span class="p">,</span> <span class="s">"house"</span><span class="p">:</span> <span class="s">"Gryffindor"</span><span class="p">})</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">gryffindors</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how this code doesn’t (yet!) use any comprehensions. Instead, it follows the same paradigms we have seen before.</p>
+  </li>
+  <li data-marker="*">
+    <p>We can now apply dictionary comprehensions by modifying our code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">students</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Hermione"</span><span class="p">,</span> <span class="s">"Harry"</span><span class="p">,</span> <span class="s">"Ron"</span><span class="p">]</span>
+
+<span class="n">gryffindors</span> <span class="o">=</span> <span class="p">[{</span><span class="s">"name"</span><span class="p">:</span> <span class="n">student</span><span class="p">,</span> <span class="s">"house"</span><span class="p">:</span> <span class="s">"Gryffindor"</span><span class="p">}</span> <span class="k">for</span> <span class="n">student</span> <span class="ow">in</span> <span class="n">students</span><span class="p">]</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">gryffindors</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how all the prior code is simplified into a single line where the structure of the dictionary is provided for each <code class="language-plaintext highlighter-rouge">student</code> in <code class="language-plaintext highlighter-rouge">students</code>.</p>
+  </li>
+  <li data-marker="*">
+    <p>We can even simplify further as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">students</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Hermione"</span><span class="p">,</span> <span class="s">"Harry"</span><span class="p">,</span> <span class="s">"Ron"</span><span class="p">]</span>
+
+<span class="n">gryffindors</span> <span class="o">=</span> <span class="p">{</span><span class="n">student</span><span class="p">:</span> <span class="s">"Gryffindor"</span> <span class="k">for</span> <span class="n">student</span> <span class="ow">in</span> <span class="n">students</span><span class="p">}</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">gryffindors</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how the dictionary will be constructed with key-value pairs.</p>
+  </li>
+</ul>
+
+<h2 id="enumerate"><code class="language-plaintext highlighter-rouge">enumerate</code></h2>
+<ul>
+  <li data-marker="*">
+    <p>We may wish to provide some ranking of each student. In the text editor window, code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">students</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Hermione"</span><span class="p">,</span> <span class="s">"Harry"</span><span class="p">,</span> <span class="s">"Ron"</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">students</span><span class="p">)):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">students</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</code></pre></div>    </div>
+    <p>Notice how each student is enumerated when running this code.</p>
+  </li>
+  <li data-marker="*">
+    <p>Utilizing enumeration, we can do the same:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">students</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Hermione"</span><span class="p">,</span> <span class="s">"Harry"</span><span class="p">,</span> <span class="s">"Ron"</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">student</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">students</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">student</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how enumerate presents the index and the value of each <code class="language-plaintext highlighter-rouge">student</code>.</p>
+  </li>
+  <li data-marker="*">
+    <p>You can learn more in Python’s documentation of <a href="https://docs.python.org/3/library/functions.html#enumerate"><code class="language-plaintext highlighter-rouge">enumerate</code></a>.</p>
+  </li>
+</ul>
+
+<h2 id="generators-and-iterators">Generators and Iterators</h2>
+<ul>
+  <li data-marker="*">In Python, there is a way to protect against your system running out of resources the problems they are addressing become too large.</li>
+  <li data-marker="*">In the United States, it’s customary to “count sheep” in one’s mind when one is having a hard time falling asleep.</li>
+  <li data-marker="*">
+    <p>In the text editor window, type <code class="language-plaintext highlighter-rouge">code sleep.py</code> and code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">n</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's n? "</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"🐑"</span> <span class="o">*</span> <span class="n">i</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>Notice how this program will count the number of sheep you ask of it.</p>
+  </li>
+  <li data-marker="*">
+    <p>We can make our program more sophisticated by adding a <code class="language-plaintext highlighter-rouge">main</code> function by coding as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's n? "</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"🐑"</span> <span class="o">*</span> <span class="n">i</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice how a <code class="language-plaintext highlighter-rouge">main</code> function is provided.</p>
+  </li>
+  <li data-marker="*">We have been getting into the habit of abstracting away parts of our code.</li>
+  <li data-marker="*">
+    <p>We can call a sheep function by modifying our code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's n? "</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="nf">sheep</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">sheep</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s">"🐑"</span> <span class="o">*</span> <span class="n">n</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice how the <code class="language-plaintext highlighter-rouge">main</code> function does the iteration.</p>
+  </li>
+  <li data-marker="*">
+    <p>We can provide the <code class="language-plaintext highlighter-rouge">sheep</code> function more abilities. In the text editor window, code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's n? "</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nf">sheep</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">sheep</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">flock</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">flock</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="s">"🐑"</span> <span class="o">*</span> <span class="n">i</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">flock</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice how we create a flock of sheep and return the <code class="language-plaintext highlighter-rouge">flock</code>.</p>
+  </li>
+  <li data-marker="*">Executing our code, you might try different numbers of sheep such as <code class="language-plaintext highlighter-rouge">10</code>, <code class="language-plaintext highlighter-rouge">1000</code>, and <code class="language-plaintext highlighter-rouge">10000</code>. What if you asked for <code class="language-plaintext highlighter-rouge">1000000</code> sheep, your program might completely hang or crash. Because you have attempted to generate a massive list of sheep, your computer may be struggling to complete the computation.</li>
+  <li data-marker="*">
+    <p>The <code class="language-plaintext highlighter-rouge">yield</code> generator can solve this problem by returning a small bit of the results at a time. In the text editor window, code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="s">"What's n? "</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nf">sheep</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">sheep</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="s">"🐑"</span> <span class="o">*</span> <span class="n">i</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+
+</code></pre></div>    </div>
+    <p>Notice how <code class="language-plaintext highlighter-rouge">yield</code> provides only one value at a time while the <code class="language-plaintext highlighter-rouge">for</code> loop keeps working.</p>
+  </li>
+  <li data-marker="*">You can learn more in Python’s documentation of <a href="https://docs.python.org/3/howto/functional.html#generators">generators</a>.</li>
+  <li data-marker="*">You can learn more in Python’s documentation of <a href="https://docs.python.org/3/howto/functional.html#iterators">iterators</a>.</li>
+</ul>
+
+<h2 id="congratulations">Congratulations!</h2>
+<ul>
+  <li data-marker="*">As you exit from this course, you have more of a mental model and toolbox to address programming-related problems.</li>
+  <li data-marker="*">First, you learned about functions and variables.</li>
+  <li data-marker="*">Second, you learned about conditionals.</li>
+  <li data-marker="*">Third, you learned about loops.</li>
+  <li data-marker="*">Fourth, you learned about exceptions.</li>
+  <li data-marker="*">Fifth, you learned about libraries.</li>
+  <li data-marker="*">Sixth, you learned about unit tests.</li>
+  <li data-marker="*">Seventh, you learned about file I/O.</li>
+  <li data-marker="*">Eighth, you learned about regular expressions.</li>
+  <li data-marker="*">Most recently, you learned about object-oriented programming.</li>
+  <li data-marker="*">Today, you learned about many other tools you can use.</li>
+</ul>
+
+<h2 id="this-was-cs50">This was CS50!</h2>
+
+<ul>
+  <li data-marker="*">
+    <p>Creating a final program together, type <code class="language-plaintext highlighter-rouge">code say.py</code> in your terminal window and code as follows:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">cowsay</span>
+<span class="kn">import</span> <span class="n">pyttsx3</span>
+
+<span class="n">engine</span> <span class="o">=</span> <span class="n">pyttsx3</span><span class="p">.</span><span class="nf">init</span><span class="p">()</span>
+<span class="n">this</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"What's this? "</span><span class="p">)</span>
+<span class="n">cowsay</span><span class="p">.</span><span class="nf">cow</span><span class="p">(</span><span class="n">this</span><span class="p">)</span>
+<span class="n">engine</span><span class="p">.</span><span class="nf">say</span><span class="p">(</span><span class="n">this</span><span class="p">)</span>
+<span class="n">engine</span><span class="p">.</span><span class="nf">runAndWait</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <p>Notice how running this program provides you with a spirited send-off.</p>
+  </li>
+  <li data-marker="*">Our great hope is that you will use what you learned in this course to address real problems in the world, making our globe a better place.</li>
+  <li data-marker="*">This was CS50!</li>
+</ul>
+
+
+                </main>
