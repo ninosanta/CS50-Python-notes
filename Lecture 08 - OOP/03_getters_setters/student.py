@@ -53,7 +53,7 @@ def main():
     # because it is based on the honor system that says:
     #   "Don't change the value of a property that starts with an underscore, because
     #    it is meant to be private and you will break the code of the class"
-    student._name = "h4cK1G the class"  # won't be prevented by the setter
+    student._house = "h4cK1G the class"  # won't be prevented by the setter
     print(student)
 
 
